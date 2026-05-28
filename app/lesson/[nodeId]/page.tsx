@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import { questions as allQuestions } from '@/data/questions';
+import type { Question } from '@/data/questions';
 import { getLessonQuestions } from '@/lib/lesson';
 import { LessonHeader }     from '@/components/lesson/LessonHeader';
 import { QuestionRenderer } from '@/components/lesson/QuestionRenderer';
@@ -10,17 +11,26 @@ import { FeedbackBanner }   from '@/components/lesson/FeedbackBanner';
 import { Icon }             from '@/components/icons';
 import { Button }           from '@/components/Button';
 
-const TOTAL = 3;
 const TWO_PAGE_TYPES = new Set(['ai-detection', 'image-verification']);
 
 export default function LessonPage() {
-  const router = useRouter();
-  const { nodeId } = useParams<{ nodeId: string }>();
+  const router       = useRouter();
+  const { nodeId }   = useParams<{ nodeId: string }>();
+  const searchParams = useSearchParams();
 
-  const lessonQuestions = useMemo(
-    () => getLessonQuestions(nodeId, allQuestions),
-    [nodeId],
-  );
+  const lessonQuestions = useMemo((): Question[] => {
+    const qParam = searchParams.get('q');
+    if (qParam) {
+      const ids = qParam.split(',').map(s => s.trim());
+      const filtered = ids
+        .map(id => allQuestions.find(q => q.id === id))
+        .filter((q): q is Question => q !== undefined);
+      if (filtered.length > 0) return filtered;
+    }
+    return getLessonQuestions(nodeId, allQuestions);
+  }, [nodeId, searchParams]);
+
+  const TOTAL = lessonQuestions.length;
 
   const [qIndex, setQIndex]           = useState(0);
   const [page, setPage]               = useState(0);
