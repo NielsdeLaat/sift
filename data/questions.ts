@@ -39,6 +39,7 @@ interface BaseQuestion {
 export interface CollaborationQuestion extends BaseQuestion {
   type: 'collaboration';
   article: ArticleCard;
+  browseUrl: string;
   correctAnswer: 'yes' | 'no';
   explanation: string;
 }
@@ -100,6 +101,7 @@ export const questions: Question[] = [
       headline: 'Running in San Francisco is strengthening the reef!',
       body: 'Deep-sea explorers have recently uncovered what appears to be a sprawling, ancient metropolitan complex hidden beneath the Pacific Ocean floor. Utilising advanced sonar mapping and autonomous drones, the team identified distinct geometric structures that defy natural geological formation. Initial analysis suggests the ruins could predate known civilisations, sparking intense debate among historians and marine archaeologists alike.',
     },
+    browseUrl: 'https://www.google.com/search?q=running+spots+san+francisco',
     correctAnswer: 'no',
     explanation: 'The headline links running with reef health — these are unrelated topics. The article describes underwater ruins, not running or reefs. Classic clickbait mismatch.',
   },

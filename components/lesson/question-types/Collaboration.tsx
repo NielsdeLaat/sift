@@ -1,5 +1,9 @@
+'use client';
+
+import { useState } from 'react';
 import type { CollaborationQuestion } from '@/data/questions';
 import { ArticleCardView } from '@/components/lesson/ArticleCardView';
+import { InAppBrowser } from '@/components/lesson/InAppBrowser';
 import { Button } from '@/components/Button';
 
 interface Props {
@@ -8,20 +12,50 @@ interface Props {
 }
 
 export function Collaboration({ question, onAnswer }: Props) {
+  const [hasOpened, setHasOpened]     = useState(false);
+  const [showBrowser, setShowBrowser] = useState(false);
+
+  function openBrowser() {
+    setShowBrowser(true);
+    setHasOpened(true);
+  }
+
   return (
-    <div className="space-y-5">
-      <ArticleCardView article={question.article} />
-      <h2 className="text-text font-bold text-xl text-center">
-        Is this article telling the truth?
-      </h2>
-      <div className="flex gap-3 justify-center">
-        <Button variant="yes" onClick={() => onAnswer(question.correctAnswer === 'yes')}>
-          Yes
-        </Button>
-        <Button variant="no" onClick={() => onAnswer(question.correctAnswer === 'no')}>
-          No
-        </Button>
+    <>
+      {showBrowser && (
+        <InAppBrowser url={question.browseUrl} onReturn={() => setShowBrowser(false)} />
+      )}
+
+      <div className="space-y-5">
+        <ArticleCardView article={question.article} />
+
+        <div className="flex justify-center">
+          <Button variant="outlined" onClick={openBrowser}>
+            Browse
+          </Button>
+        </div>
+
+        <h2 className="text-text font-bold text-xl text-center">
+          Is this article telling the truth?
+        </h2>
+
+        <div className="flex gap-3 justify-center">
+          <Button
+            variant="no"
+            disabled={!hasOpened}
+            onClick={() => onAnswer(question.correctAnswer === 'no')}
+          >
+            No
+          </Button>
+          <Button
+            variant="yes"
+            disabled={!hasOpened}
+            onClick={() => onAnswer(question.correctAnswer === 'yes')}
+          >
+            Yes
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
