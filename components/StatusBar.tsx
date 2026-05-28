@@ -1,4 +1,5 @@
 import type { UserState } from '@/data/user';
+import { getLevelFromXP, getLevelProgress } from '@/lib/levels';
 import { Icon } from '@/components/icons';
 
 interface Props {
@@ -6,7 +7,8 @@ interface Props {
 }
 
 export function StatusBar({ user }: Props) {
-  const xpPct = Math.min(100, Math.round((user.xp / user.xpForNextLevel) * 100));
+  const level  = getLevelFromXP(user.xp);
+  const xpPct  = getLevelProgress(user.xp);
 
   return (
     <header className="sticky top-0 z-20 bg-background border-b border-surface flex items-center gap-3 px-4 py-3">
@@ -26,7 +28,7 @@ export function StatusBar({ user }: Props) {
           )}
         </div>
         <span className="absolute -bottom-1 -left-1 bg-secondary text-text text-[10px] font-extrabold px-1.5 py-0.5 rounded-full leading-none whitespace-nowrap">
-          Lv {user.level}
+          Lv {level}
         </span>
       </div>
 

@@ -14,6 +14,11 @@ import { SearchIcon }      from './svgs/SearchIcon';
 import { EditIcon }        from './svgs/EditIcon';
 import { YesCheckIcon }    from './svgs/YesCheckIcon';
 import { NoXIcon }         from './svgs/NoXIcon';
+import { SettingsIcon }    from './svgs/SettingsIcon';
+import { TrophyIcon }      from './svgs/TrophyIcon';
+import { PeopleIcon }      from './svgs/PeopleIcon';
+import { BookIcon }        from './svgs/BookIcon';
+import { BadgeCheckIcon }  from './svgs/BadgeCheckIcon';
 
 // ── Registry ─────────────────────────────────────────────────────────────────
 // To swap any icon: replace its .tsx file in svgs/ OR point this line to a
@@ -35,6 +40,11 @@ const registry = {
   edit:        EditIcon,
   yesCheck:    YesCheckIcon,
   noX:         NoXIcon,
+  settings:    SettingsIcon,
+  trophy:      TrophyIcon,
+  people:      PeopleIcon,
+  book:        BookIcon,
+  badgeCheck:  BadgeCheckIcon,
 } as const;
 
 export type IconName = keyof typeof registry;
