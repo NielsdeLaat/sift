@@ -5,11 +5,12 @@ import { Button } from '@/components/Button';
 interface Props {
   question: ImageVerificationQuestion;
   page: number;
+  locked: boolean;
   onAnswer: (isCorrect: boolean) => void;
   onPageAdvance: () => void;
 }
 
-export function ImageVerification({ question, page, onAnswer, onPageAdvance }: Props) {
+export function ImageVerification({ question, page, locked, onAnswer, onPageAdvance }: Props) {
   if (page === 1) {
     return <TellReveal imageUrl={question.imageUrl} tell={question.tell} onGotIt={onPageAdvance} />;
   }
@@ -27,10 +28,10 @@ export function ImageVerification({ question, page, onAnswer, onPageAdvance }: P
         Does this image support the claim?
       </p>
       <div className="flex gap-3 justify-center">
-        <Button variant="yes" onClick={() => onAnswer(question.correctAnswer === 'yes')}>
+        <Button variant="yes" disabled={locked} onClick={() => onAnswer(question.correctAnswer === 'yes')}>
           Yes
         </Button>
-        <Button variant="no" onClick={() => onAnswer(question.correctAnswer === 'no')}>
+        <Button variant="no" disabled={locked} onClick={() => onAnswer(question.correctAnswer === 'no')}>
           No
         </Button>
       </div>

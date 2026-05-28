@@ -29,7 +29,7 @@ export function LessonHeader({ totalQuestions, answers, onClose }: Props) {
         ))}
       </div>
 
-      <div className="flex-shrink-0 w-6" />
+      <Icon name="flag" className="flex-shrink-0 w-5 h-5 text-muted" />
     </div>
   );
 }

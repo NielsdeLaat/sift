@@ -38,8 +38,16 @@ export default function LessonPage() {
   const [answers, setAnswers]         = useState<(boolean | null)[]>(Array(TOTAL).fill(null));
   const [selectedOption, setOption]   = useState<number | null>(null);
 
-  const question = lessonQuestions[qIndex];
-  const isTwoPage = TWO_PAGE_TYPES.has(question.type);
+  const question   = lessonQuestions[qIndex];
+  const isTwoPage  = TWO_PAGE_TYPES.has(question.type);
+  const locked     = answers[qIndex] !== null;
+  const explanation: string | undefined =
+    question.type === 'collaboration' ||
+    question.type === 'manipulation-tactics' ||
+    question.type === 'evidence-checking' ||
+    question.type === 'source-investigation'
+      ? question.explanation
+      : undefined;
 
   function handleAnswer(isCorrect: boolean) {
     const updated = answers.map((a, i) => (i === qIndex ? isCorrect : a));
@@ -86,6 +94,7 @@ export default function LessonPage() {
         <QuestionRenderer
           question={question}
           page={page}
+          locked={locked}
           selectedOption={selectedOption}
           onAnswer={handleAnswer}
           onSelectOption={setOption}
@@ -94,7 +103,11 @@ export default function LessonPage() {
       </main>
 
       {phase === 'feedback' && !isTwoPage && (
-        <FeedbackBanner isCorrect={answers[qIndex] as boolean} onContinue={advance} />
+        <FeedbackBanner
+          isCorrect={answers[qIndex] as boolean}
+          explanation={explanation}
+          onContinue={advance}
+        />
       )}
 
       {phase === 'complete' && (

@@ -10,7 +10,11 @@ export function ArticleCardView({ article }: { article: ArticleCard }) {
           {article.sourceTag}
         </span>
         <h2 className="text-text font-bold text-base leading-snug">{article.headline}</h2>
-        <p className="text-muted-light text-sm leading-relaxed">{article.body}</p>
+        <div className="space-y-3">
+          {article.body.split('\n\n').map((para, i) => (
+            <p key={i} className="text-muted-light text-sm leading-relaxed">{para}</p>
+          ))}
+        </div>
       </div>
     </div>
   );

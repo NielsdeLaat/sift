@@ -9,6 +9,7 @@ import { ImageVerification }   from './question-types/ImageVerification';
 interface Props {
   question: Question;
   page: number;
+  locked: boolean;
   selectedOption: number | null;
   onAnswer: (isCorrect: boolean) => void;
   onSelectOption: (i: number) => void;
@@ -18,6 +19,7 @@ interface Props {
 export function QuestionRenderer({
   question,
   page,
+  locked,
   selectedOption,
   onAnswer,
   onSelectOption,
@@ -25,11 +27,12 @@ export function QuestionRenderer({
 }: Props) {
   switch (question.type) {
     case 'collaboration':
-      return <Collaboration question={question} onAnswer={onAnswer} />;
+      return <Collaboration question={question} locked={locked} onAnswer={onAnswer} />;
     case 'manipulation-tactics':
       return (
         <ManipulationTactics
           question={question}
+          locked={locked}
           selectedOption={selectedOption}
           onSelectOption={onSelectOption}
           onAnswer={onAnswer}
@@ -39,6 +42,7 @@ export function QuestionRenderer({
       return (
         <EvidenceChecking
           question={question}
+          locked={locked}
           selectedOption={selectedOption}
           onSelectOption={onSelectOption}
           onAnswer={onAnswer}
@@ -49,17 +53,19 @@ export function QuestionRenderer({
         <AiDetection
           question={question}
           page={page}
+          locked={locked}
           onAnswer={onAnswer}
           onPageAdvance={onPageAdvance}
         />
       );
     case 'source-investigation':
-      return <SourceInvestigation question={question} onAnswer={onAnswer} />;
+      return <SourceInvestigation question={question} locked={locked} onAnswer={onAnswer} />;
     case 'image-verification':
       return (
         <ImageVerification
           question={question}
           page={page}
+          locked={locked}
           onAnswer={onAnswer}
           onPageAdvance={onPageAdvance}
         />
