@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import { questions as allQuestions } from '@/data/questions';
 import type { Question } from '@/data/questions';
@@ -19,27 +19,39 @@ export default function LessonPage() {
   const { nodeId }   = useParams<{ nodeId: string }>();
   const searchParams = useSearchParams();
 
-  const lessonQuestions = useMemo((): Question[] => {
+  // Computed client-side only — Math.random() in getLessonQuestions causes
+  // SSR/hydration mismatch if run in useMemo (which executes on the server too).
+  const [lessonQuestions, setLessonQuestions] = useState<Question[]>([]);
+  const [answers, setAnswers]                 = useState<(boolean | null)[]>([]);
+
+  useEffect(() => {
     const qParam = searchParams.get('q');
+    let questions: Question[];
     if (qParam) {
-      const ids = qParam.split(',').map(s => s.trim());
+      const ids      = qParam.split(',').map(s => s.trim());
       const filtered = ids
         .map(id => allQuestions.find(q => q.id === id))
         .filter((q): q is Question => q !== undefined);
-      if (filtered.length > 0) return filtered;
+      questions = filtered.length > 0 ? filtered : getLessonQuestions(nodeId, allQuestions);
+    } else {
+      questions = getLessonQuestions(nodeId, allQuestions);
     }
-    return getLessonQuestions(nodeId, allQuestions);
-  }, [nodeId, searchParams]);
+    // Batch both updates so the component never renders with mismatched lengths
+    setLessonQuestions(questions);
+    setAnswers(Array(questions.length).fill(null));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const TOTAL = lessonQuestions.length;
+  const [qIndex, setQIndex]         = useState(0);
+  const [page, setPage]             = useState(0);
+  const [phase, setPhase]           = useState<'answering' | 'feedback' | 'complete'>('answering');
+  const [selectedOption, setOption] = useState<number | null>(null);
 
-  const [qIndex, setQIndex]           = useState(0);
-  const [page, setPage]               = useState(0);
-  const [phase, setPhase]             = useState<'answering' | 'feedback' | 'complete'>('answering');
-  const [answers, setAnswers]         = useState<(boolean | null)[]>(Array(TOTAL).fill(null));
-  const [selectedOption, setOption]   = useState<number | null>(null);
+  // Don't render until the client has selected questions
+  if (lessonQuestions.length === 0) return null;
 
-  const question   = lessonQuestions[qIndex];
+  const TOTAL    = lessonQuestions.length;
+  const question = lessonQuestions[qIndex];
   const isTwoPage  = TWO_PAGE_TYPES.has(question.type);
   const locked     = answers[qIndex] !== null;
   const explanation: string | undefined =
@@ -50,11 +62,8 @@ export default function LessonPage() {
   function handleAnswer(isCorrect: boolean) {
     const updated = answers.map((a, i) => (i === qIndex ? isCorrect : a));
     setAnswers(updated);
-
     if (isTwoPage) {
-      setTimeout(() => {
-        setPage(1);
-      }, 400);
+      setTimeout(() => setPage(1), 400);
     } else {
       setPhase('feedback');
     }
@@ -63,6 +72,11 @@ export default function LessonPage() {
   function handlePageAdvance() {
     setPhase('feedback');
   }
+
+  const xpEarned = lessonQuestions.reduce(
+    (sum, q, i) => sum + (answers[i] === true ? q.xp : 0),
+    0,
+  );
 
   function advance() {
     if (qIndex < TOTAL - 1) {
@@ -75,11 +89,6 @@ export default function LessonPage() {
       setPhase('complete');
     }
   }
-
-  const xpEarned = lessonQuestions.reduce(
-    (sum, q, i) => sum + (answers[i] === true ? q.xp : 0),
-    0,
-  );
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
