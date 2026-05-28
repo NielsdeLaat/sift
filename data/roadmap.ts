@@ -13,7 +13,10 @@ export interface LevelNode {
 
 export interface Section {
   id: string;
+  /** Short label used in the section divider between sections (e.g. "Section 1"). */
   title: string;
+  /** Descriptive subtitle shown in the sticky section banner. */
+  subtitle: string;
   /** Short badge label rendered as a small circle at section start (e.g. "L"). */
   badge?: string;
   nodes: LevelNode[];
@@ -26,6 +29,7 @@ export const roadmap: Section[] = [
   {
     id: 'section-1',
     title: 'Section 1',
+    subtitle: 'The basic skills of fact-checking',
     badge: 'L',
     nodes: [
       { id: 's1-n1', status: 'completed', icon: 'check', xp: 100 },
@@ -38,6 +42,7 @@ export const roadmap: Section[] = [
   {
     id: 'section-2',
     title: 'Section 2',
+    subtitle: 'Identifying misleading sources',
     nodes: [
       { id: 's2-n1', status: 'locked', icon: 'lock', xp: 250 },
       { id: 's2-n2', status: 'locked', icon: 'lock', xp: 250 },
