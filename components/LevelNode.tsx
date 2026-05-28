@@ -1,0 +1,58 @@
+import type { CSSProperties } from 'react';
+import type { LevelNode as LevelNodeType, NodeIcon } from '@/data/roadmap';
+import { Icon, type IconName } from '@/components/icons';
+
+interface Props {
+  node: LevelNodeType;
+  style: CSSProperties;
+}
+
+function resolveIcon(icon: NodeIcon): IconName {
+  const map: Record<string, IconName> = {
+    check: 'check',
+    play:  'play',
+    lock:  'lock',
+    flag:  'flag',
+    star:  'star',
+  };
+  return (map[icon] as IconName) ?? 'lock';
+}
+
+export function LevelNode({ node, style }: Props) {
+  const isActive  = node.status === 'completed' || node.status === 'current';
+  const isCurrent = node.status === 'current';
+
+  const sizeClass  = isCurrent ? 'w-[72px] h-[72px]' : isActive ? 'w-16 h-16' : 'w-14 h-14';
+  const bgClass    = isActive  ? 'bg-primary' : 'bg-surface';
+  const borderClass = isActive ? '' : 'border-2 border-muted/50';
+  const iconColor  = isActive  ? 'text-text'  : 'text-muted';
+  const iconSize   = isActive  ? 'w-8 h-8'    : 'w-7 h-7';
+
+  return (
+    <div
+      className="absolute flex flex-col items-center"
+      style={{ ...style, transform: 'translate(-50%, -50%)' }}
+    >
+      {/* Tooltip */}
+      {isCurrent && node.label && (
+        <div className="mb-2 px-3 py-1.5 bg-surface-elevated text-text text-sm font-semibold rounded-lg shadow-lg whitespace-nowrap">
+          {node.label}
+        </div>
+      )}
+
+      {/* Circle */}
+      <div
+        className={[
+          'flex items-center justify-center rounded-full transition-all',
+          sizeClass,
+          bgClass,
+          borderClass,
+          isCurrent  ? 'shadow-glow-primary animate-glow-pulse' : '',
+          isActive && !isCurrent ? 'shadow-glow-primary-sm' : '',
+        ].join(' ')}
+      >
+        <Icon name={resolveIcon(node.icon)} className={`${iconSize} ${iconColor}`} />
+      </div>
+    </div>
+  );
+}

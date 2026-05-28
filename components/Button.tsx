@@ -1,0 +1,43 @@
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
+
+export type ButtonVariant = 'primary' | 'outlined' | 'yes' | 'no' | 'circle';
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: ButtonVariant;
+  children: ReactNode;
+}
+
+const variantClasses: Record<ButtonVariant, string> = {
+  primary:
+    'bg-primary text-text rounded-full px-8 py-3 hover:bg-primary-600 active:bg-primary-700',
+  outlined:
+    'border-2 border-primary text-primary rounded-full px-8 py-3 hover:bg-primary/10 active:bg-primary/20',
+  yes:
+    'bg-primary text-text rounded-full px-6 py-2.5 hover:bg-primary-600 active:bg-primary-700',
+  no:
+    'border-2 border-secondary text-secondary rounded-full px-6 py-2.5 hover:bg-secondary/10 active:bg-secondary/20',
+  circle:
+    'bg-surface w-12 h-12 rounded-full border border-surface-elevated hover:bg-surface-elevated active:bg-surface-elevated/80',
+};
+
+export function Button({
+  variant = 'primary',
+  children,
+  className = '',
+  ...props
+}: ButtonProps) {
+  return (
+    <button
+      className={[
+        'inline-flex items-center justify-center gap-2 font-bold transition-colors',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
+        'disabled:opacity-50 disabled:pointer-events-none',
+        variantClasses[variant],
+        className,
+      ].join(' ')}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
