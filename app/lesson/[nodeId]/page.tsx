@@ -10,6 +10,7 @@ import { QuestionRenderer } from '@/components/lesson/QuestionRenderer';
 import { FeedbackBanner }   from '@/components/lesson/FeedbackBanner';
 import { Icon }             from '@/components/icons';
 import { Button }           from '@/components/Button';
+import { completeLesson }   from '@/lib/store';
 
 const TWO_PAGE_TYPES = new Set(['ai-detection', 'image-verification']);
 
@@ -42,12 +43,9 @@ export default function LessonPage() {
   const isTwoPage  = TWO_PAGE_TYPES.has(question.type);
   const locked     = answers[qIndex] !== null;
   const explanation: string | undefined =
-    question.type === 'collaboration' ||
-    question.type === 'manipulation-tactics' ||
-    question.type === 'evidence-checking' ||
-    question.type === 'source-investigation'
-      ? question.explanation
-      : undefined;
+    'tell' in question        ? question.tell.explanation :
+    'explanation' in question ? question.explanation      :
+    undefined;
 
   function handleAnswer(isCorrect: boolean) {
     const updated = answers.map((a, i) => (i === qIndex ? isCorrect : a));
@@ -63,7 +61,7 @@ export default function LessonPage() {
   }
 
   function handlePageAdvance() {
-    advance();
+    setPhase('feedback');
   }
 
   function advance() {
@@ -73,6 +71,7 @@ export default function LessonPage() {
       setPhase('answering');
       setOption(null);
     } else {
+      completeLesson(xpEarned);
       setPhase('complete');
     }
   }
@@ -102,7 +101,7 @@ export default function LessonPage() {
         />
       </main>
 
-      {phase === 'feedback' && !isTwoPage && (
+      {phase === 'feedback' && (
         <FeedbackBanner
           isCorrect={answers[qIndex] as boolean}
           explanation={explanation}

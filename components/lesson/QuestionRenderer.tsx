@@ -39,15 +39,7 @@ export function QuestionRenderer({
         />
       );
     case 'evidence-checking':
-      return (
-        <EvidenceChecking
-          question={question}
-          locked={locked}
-          selectedOption={selectedOption}
-          onSelectOption={onSelectOption}
-          onAnswer={onAnswer}
-        />
-      );
+      return <EvidenceChecking question={question} locked={locked} onAnswer={onAnswer} />;
     case 'ai-detection':
       return (
         <AiDetection

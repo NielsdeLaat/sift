@@ -55,8 +55,10 @@ export interface ManipulationTacticsQuestion extends BaseQuestion {
 export interface EvidenceCheckingQuestion extends BaseQuestion {
   type: 'evidence-checking';
   article: ArticleCard;
-  snippets: [string, string, string, string];
-  correctIndex: 0 | 1 | 2 | 3;
+  /** 'evidence' = there is a passage that supports the headline; 'none' = no evidence exists */
+  correctAnswer: 'evidence' | 'none';
+  /** The ideal passage to highlight, shown in feedback when correctAnswer === 'evidence' */
+  correctSnippet?: string;
   explanation: string;
 }
 
@@ -134,14 +136,9 @@ export const questions: Question[] = [
       headline: 'Paris hit by record 45 cm snowfall — traffic at standstill',
       body: 'Commuters in Paris faced severe disruptions on Tuesday after the city recorded 45 cm of snowfall overnight — the heaviest fall in over 130 years. Many drivers abandoned vehicles on major motorways. Weather experts described conditions as "exceptional." Local authorities urged residents to stay indoors. The Eiffel Tower was temporarily closed to visitors for safety reasons.\n\nEmergency services responded to over 1,200 incidents across the Île-de-France region during the night, predominantly involving vehicles stranded on the A1, A4, and périphérique motorways. The Préfecture de Police issued an emergency bulletin at 3:47 AM advising all residents to avoid non-essential travel.\n\nMétéo-France had issued a Level 3 orange alert for snow and ice the previous afternoon, though traffic authorities say many motorists chose to ignore the warnings. The city\'s fleet of 260 snow-removal vehicles worked through the night, but officials acknowledged the unprecedented accumulation had overwhelmed capacity.\n\nClimatologists note that Paris averages just 10–15 cm of snowfall per year, making the 45 cm figure statistically exceptional. The last comparable event — 38 cm in January 1987 — brought the city to a near-complete standstill for nearly 72 hours.',
     },
-    snippets: [
-      'the city recorded 45 cm of snowfall overnight — the heaviest fall in over 130 years',
-      'Many drivers abandoned vehicles on major motorways',
-      'Weather experts described conditions as "exceptional."',
-      'The Eiffel Tower was temporarily closed to visitors for safety reasons',
-    ],
-    correctIndex: 0,
-    explanation: 'Only the first snippet contains a specific, verifiable measurement (45 cm) that directly supports the "record snowfall" headline. The others describe effects, not evidence of the record itself.',
+    correctAnswer: 'evidence',
+    correctSnippet: 'the city recorded 45 cm of snowfall overnight — the heaviest fall in over 130 years',
+    explanation: 'The specific measurement "45 cm of snowfall overnight — the heaviest fall in over 130 years" directly supports the headline. Look for numbers and verifiable facts, not descriptions of effects.',
   },
   {
     id: 'q4',
