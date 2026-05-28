@@ -2,6 +2,7 @@ import { BottomNav }        from '@/components/BottomNav';
 import { Icon }             from '@/components/icons';
 import { StatCard }         from '@/components/StatCard';
 import { AchievementBadge } from '@/components/AchievementBadge';
+import { Button }           from '@/components/Button';
 import { user }             from '@/data/user';
 import { getLevelFromXP }   from '@/lib/levels';
 
@@ -68,6 +69,11 @@ export default function ProfilePage() {
           <StatCard icon="people"                                 value={String(user.friends)} label="Friends" />
           <StatCard icon="trophy"                                 value={user.league}          label="League"  />
         </section>
+
+        {/* ── Add Friends ──────────────────────────────────────── */}
+        <Button variant="primary" className="w-full">
+          Add Friends
+        </Button>
 
         {/* ── Achievements ─────────────────────────────────────── */}
         <section className="bg-surface rounded-2xl p-5" aria-label="Achievements">

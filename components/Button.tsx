@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { Icon } from '@/components/icons';
 
 export type ButtonVariant = 'primary' | 'outlined' | 'yes' | 'no' | 'circle';
 
@@ -11,11 +12,11 @@ const variantClasses: Record<ButtonVariant, string> = {
   primary:
     'bg-primary text-text rounded-full px-8 py-3 hover:bg-primary-600 active:bg-primary-700',
   outlined:
-    'border-2 border-primary text-primary rounded-full px-8 py-3 hover:bg-primary/10 active:bg-primary/20',
+    'border-2 border-primary text-primary rounded-full w-36 h-10 hover:bg-primary/10 active:bg-primary/20',
   yes:
-    'bg-primary text-text rounded-full px-6 py-2.5 hover:bg-primary-600 active:bg-primary-700',
+    'bg-primary text-text rounded-full w-36 h-10 hover:bg-primary-600 active:bg-primary-700',
   no:
-    'border-2 border-secondary text-secondary rounded-full px-6 py-2.5 hover:bg-secondary/10 active:bg-secondary/20',
+    'border-2 border-secondary text-secondary rounded-full w-36 h-10 hover:bg-secondary/10 active:bg-secondary/20',
   circle:
     'bg-surface w-12 h-12 rounded-full border border-surface-elevated hover:bg-surface-elevated active:bg-surface-elevated/80',
 };
@@ -37,6 +38,8 @@ export function Button({
       ].join(' ')}
       {...props}
     >
+      {variant === 'yes' && <Icon name="yesCheck" className="w-5 h-5" />}
+      {variant === 'no'  && <Icon name="noX"      className="w-5 h-5" />}
       {children}
     </button>
   );
