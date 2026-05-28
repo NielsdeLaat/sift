@@ -11,7 +11,7 @@ export function StatusBar({ user }: Props) {
   const xpPct  = getLevelProgress(user.xp);
 
   return (
-    <header className="sticky top-0 z-20 bg-background border-b border-surface flex items-center gap-3 px-4 py-3">
+    <header className="bg-background border-b border-surface flex items-center gap-3 px-4 py-3">
 
       {/* ── Avatar + level badge ─────────────────────────────── */}
       <div className="relative shrink-0">
