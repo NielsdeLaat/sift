@@ -1,0 +1,46 @@
+import type { EvidenceCheckingQuestion } from '@/data/questions';
+import { ArticleCardView } from '@/components/lesson/ArticleCardView';
+import { Button } from '@/components/Button';
+
+interface Props {
+  question: EvidenceCheckingQuestion;
+  selectedOption: number | null;
+  onSelectOption: (i: number) => void;
+  onAnswer: (isCorrect: boolean) => void;
+}
+
+export function EvidenceChecking({ question, selectedOption, onSelectOption, onAnswer }: Props) {
+  return (
+    <div className="space-y-5">
+      <ArticleCardView article={question.article} />
+      <h2 className="text-text font-bold text-xl text-center">
+        What evidence in this article supports the headline?
+      </h2>
+      <div className="space-y-2">
+        {question.snippets.map((snippet, i) => (
+          <button
+            key={i}
+            onClick={() => onSelectOption(i)}
+            className={[
+              'w-full text-left rounded-xl border-2 px-4 py-3 text-sm leading-relaxed transition-colors',
+              selectedOption === i
+                ? 'border-primary bg-primary/15 text-text font-semibold'
+                : 'border-muted/40 bg-surface text-muted-light hover:border-primary/50',
+            ].join(' ')}
+          >
+            &ldquo;{snippet}&rdquo;
+          </button>
+        ))}
+      </div>
+      {selectedOption !== null && (
+        <Button
+          variant="primary"
+          className="w-full"
+          onClick={() => onAnswer(selectedOption === question.correctIndex)}
+        >
+          Confirm Evidence
+        </Button>
+      )}
+    </div>
+  );
+}

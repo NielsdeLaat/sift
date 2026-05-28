@@ -162,6 +162,7 @@ export function RoadmapPath({ sections }: Props) {
           key={node.id}
           node={node}
           style={{ left: `${xFrac * 100}%`, top: y }}
+          href={node.status === 'current' ? `/lesson/${node.id}` : undefined}
         />
       ))}
     </div>

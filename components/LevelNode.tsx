@@ -1,10 +1,12 @@
 import type { CSSProperties } from 'react';
+import Link from 'next/link';
 import type { LevelNode as LevelNodeType, NodeIcon } from '@/data/roadmap';
 import { Icon, type IconName } from '@/components/icons';
 
 interface Props {
   node: LevelNodeType;
   style: CSSProperties;
+  href?: string;
 }
 
 function resolveIcon(icon: NodeIcon): IconName {
@@ -18,7 +20,7 @@ function resolveIcon(icon: NodeIcon): IconName {
   return (map[icon] as IconName) ?? 'lock';
 }
 
-export function LevelNode({ node, style }: Props) {
+export function LevelNode({ node, style, href }: Props) {
   const isActive  = node.status === 'completed' || node.status === 'current';
   const isCurrent = node.status === 'current';
 
@@ -41,18 +43,34 @@ export function LevelNode({ node, style }: Props) {
       )}
 
       {/* Circle */}
-      <div
-        className={[
-          'flex items-center justify-center rounded-full transition-all',
-          sizeClass,
-          bgClass,
-          borderClass,
-          isCurrent  ? 'shadow-glow-primary animate-glow-pulse' : '',
-          isActive && !isCurrent ? 'shadow-glow-primary-sm' : '',
-        ].join(' ')}
-      >
-        <Icon name={resolveIcon(node.icon)} className={`${iconSize} ${iconColor}`} />
-      </div>
+      {href ? (
+        <Link
+          href={href}
+          className={[
+            'flex items-center justify-center rounded-full transition-all',
+            sizeClass,
+            bgClass,
+            borderClass,
+            isCurrent  ? 'shadow-glow-primary animate-glow-pulse' : '',
+            isActive && !isCurrent ? 'shadow-glow-primary-sm' : '',
+          ].join(' ')}
+        >
+          <Icon name={resolveIcon(node.icon)} className={`${iconSize} ${iconColor}`} />
+        </Link>
+      ) : (
+        <div
+          className={[
+            'flex items-center justify-center rounded-full transition-all',
+            sizeClass,
+            bgClass,
+            borderClass,
+            isCurrent  ? 'shadow-glow-primary animate-glow-pulse' : '',
+            isActive && !isCurrent ? 'shadow-glow-primary-sm' : '',
+          ].join(' ')}
+        >
+          <Icon name={resolveIcon(node.icon)} className={`${iconSize} ${iconColor}`} />
+        </div>
+      )}
     </div>
   );
 }
