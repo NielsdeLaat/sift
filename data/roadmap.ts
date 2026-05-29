@@ -27,12 +27,21 @@ export interface Section {
 // The roadmap path and page length update automatically.
 export const roadmap: Section[] = [
   {
+    id: "section-0",
+    title: "Introduction",
+    subtitle: "Test your fact-checking skills",
+    nodes: [
+      { id: "s0-n1", status: "current", icon: "play", xp: 100, label: "Start" },
+      { id: "s0-n2", status: "locked", icon: "lock", xp: 100 },
+      { id: "s0-n3", status: "locked", icon: "flag", xp: 250 },
+    ],
+  },
+  {
     id: "section-1",
     title: "Chapter 1, Section 1",
     subtitle: "The basic skills of fact-checking",
-    badge: "L",
     nodes: [
-      { id: "s1-n1", status: "current", icon: "play", xp: 100, label: "Start" },
+      { id: "s1-n1", status: "locked", icon: "lock", xp: 100 },
       { id: "s1-n2", status: "locked", icon: "lock", xp: 100 },
       { id: "s1-n3", status: "locked", icon: "lock", xp: 100 },
       { id: "s1-n4", status: "locked", icon: "lock", xp: 100 },
