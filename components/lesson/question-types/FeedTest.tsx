@@ -67,13 +67,7 @@ function ExpandedPost({
   onVerdict: (v: FeedVerdict) => void;
   onBack: () => void;
 }) {
-  const [selected, setSelected] = useState<FeedVerdict | undefined>(currentVerdict);
-
-  function pick(v: FeedVerdict) {
-    setSelected(v);
-    onVerdict(v);
-  }
-
+  // No local state — the overlay closes immediately on pick, so currentVerdict prop is the source of truth.
   function verdictButton(
     v: FeedVerdict,
     label: string,
@@ -83,10 +77,10 @@ function ExpandedPost({
     return (
       <button
         key={v}
-        onClick={() => pick(v)}
+        onClick={() => onVerdict(v)}
         className={[
           'flex-1 py-2.5 rounded-full border-2 font-bold text-sm transition-colors',
-          selected === v ? activeClass : idleClass,
+          currentVerdict === v ? activeClass : idleClass,
         ].join(' ')}
       >
         {label}

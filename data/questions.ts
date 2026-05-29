@@ -100,6 +100,8 @@ export interface FeedPost {
 
 export interface FeedTestQuestion extends BaseQuestion {
   type: 'feed-test';
+  /** When set, this question is only served to this specific roadmap node. */
+  nodeId?: string;
   posts: FeedPost[];
 }
 

@@ -1,4 +1,4 @@
-import type { Question } from '@/data/questions';
+import type { Question, FeedTestQuestion } from '@/data/questions';
 import { roadmap } from '@/data/roadmap';
 
 function isFlagNode(nodeId: string): boolean {
@@ -11,6 +11,11 @@ function isFlagNode(nodeId: string): boolean {
 
 export function getLessonQuestions(nodeId: string, all: Question[]): Question[] {
   if (isFlagNode(nodeId)) {
+    // Prefer questions pinned to this exact node; fall back to any feed-test.
+    const pinned = all.filter(
+      (q): q is FeedTestQuestion => q.type === 'feed-test' && (q as FeedTestQuestion).nodeId === nodeId,
+    );
+    if (pinned.length > 0) return pinned;
     return all.filter(q => q.type === 'feed-test');
   }
   const regular = all.filter(q => q.type !== 'feed-test');

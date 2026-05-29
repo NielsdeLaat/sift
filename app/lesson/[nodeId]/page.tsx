@@ -61,6 +61,10 @@ export default function LessonPage() {
     'explanation' in question ? question.explanation      :
     undefined;
 
+  function calcXp(arr: (boolean | null)[]): number {
+    return lessonQuestions.reduce((sum, q, i) => sum + (arr[i] === true ? q.xp : 0), 0);
+  }
+
   function handleAnswer(isCorrect: boolean) {
     const updated = answers.map((a, i) => (i === qIndex ? isCorrect : a));
     setAnswers(updated);
@@ -74,11 +78,7 @@ export default function LessonPage() {
         setPhase('answering');
         setOption(null);
       } else {
-        const finalXp = lessonQuestions.reduce(
-          (sum, q, i) => sum + (updated[i] === true ? q.xp : 0),
-          0,
-        );
-        completeLesson(finalXp);
+        completeLesson(calcXp(updated));
         setPhase('complete');
       }
     } else {
@@ -90,10 +90,7 @@ export default function LessonPage() {
     setPhase('feedback');
   }
 
-  const xpEarned = lessonQuestions.reduce(
-    (sum, q, i) => sum + (answers[i] === true ? q.xp : 0),
-    0,
-  );
+  const xpEarned = calcXp(answers);
 
   function advance() {
     if (qIndex < TOTAL - 1) {
