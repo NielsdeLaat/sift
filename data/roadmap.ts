@@ -17,6 +17,8 @@ export interface Section {
   title: string;
   /** Descriptive subtitle shown in the sticky section banner. */
   subtitle: string;
+  /** One or two sentences describing what this section teaches, shown in the section info modal. */
+  description: string;
   /** Short badge label rendered as a small circle at section start (e.g. "L"). */
   badge?: string;
   nodes: LevelNode[];
@@ -30,6 +32,7 @@ export const roadmap: Section[] = [
     id: "section-0",
     title: "Introduction",
     subtitle: "Test your fact-checking skills",
+    description: "Get your first taste of spotting misinformation. You'll evaluate real news claims, identify AI-generated images, and judge a social media feed — no prior experience needed.",
     nodes: [
       { id: "s0-n1", status: "current", icon: "play", xp: 100, label: "Start" },
       { id: "s0-n2", status: "locked", icon: "lock", xp: 100 },
@@ -40,6 +43,7 @@ export const roadmap: Section[] = [
     id: "section-1",
     title: "Chapter 1, Section 1",
     subtitle: "The basic skills of fact-checking",
+    description: "Build the core toolkit every fact-checker needs. Learn to spot manipulation tactics in headlines, cross-reference evidence claims, and trace stories back to their primary sources.",
     nodes: [
       { id: "s1-n1", status: "locked", icon: "lock", xp: 100 },
       { id: "s1-n2", status: "locked", icon: "lock", xp: 100 },
@@ -52,6 +56,7 @@ export const roadmap: Section[] = [
     id: "section-2",
     title: "Chapter 1, Section 2",
     subtitle: "Identifying misleading sources",
+    description: "Go deeper on source credibility. Practise investigating a website's background, verifying whether images are authentic, and spotting the patterns that separate reliable journalism from noise.",
     nodes: [
       { id: "s2-n1", status: "locked", icon: "lock", xp: 200 },
       { id: "s2-n2", status: "locked", icon: "lock", xp: 200 },
