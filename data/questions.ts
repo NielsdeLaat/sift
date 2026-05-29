@@ -4,7 +4,8 @@ export type QuestionType =
   | 'evidence-checking'
   | 'ai-detection'
   | 'source-investigation'
-  | 'image-verification';
+  | 'image-verification'
+  | 'feed-test';
 
 export interface TellRegion {
   top: number;
@@ -84,13 +85,32 @@ export interface ImageVerificationQuestion extends BaseQuestion {
   tell: TellRegion;
 }
 
+export type FeedVerdict = 'true' | 'false' | 'misleading';
+
+export interface FeedPost {
+  id: string;
+  source: string;
+  timeAgo: string;
+  headline: string;
+  imageUrl: string;
+  body: string;
+  correctVerdict: FeedVerdict;
+  explanation: string;
+}
+
+export interface FeedTestQuestion extends BaseQuestion {
+  type: 'feed-test';
+  posts: FeedPost[];
+}
+
 export type Question =
   | CollaborationQuestion
   | ManipulationTacticsQuestion
   | EvidenceCheckingQuestion
   | AiDetectionQuestion
   | SourceInvestigationQuestion
-  | ImageVerificationQuestion;
+  | ImageVerificationQuestion
+  | FeedTestQuestion;
 
 export const questions: Question[] = [
   // ── 1. Fox News — ICE / Delaney Hall ────────────────────────────────────────
@@ -278,5 +298,86 @@ export const questions: Question[] = [
       height: 58,
       explanation: 'The Philadelphia Inquirer published this summer reading list without adequate human editorial review. Every book title and author pairing in the list is fabricated — none of these books exist. The AI model generated titles that sound like plausible literary fiction and attributed them to real authors, but searching any title in a library catalogue or bookstore returns zero results. One search is enough to confirm the content was hallucinated.',
     },
+  },
+
+  // ── 11. Delaney Hall feed test — section checkpoint ──────────────────────────
+  // 7-post feed covering the Delaney Hall story from multiple angles and sources.
+  // Correct answers are deliberately mixed: true / false / misleading.
+  {
+    id: 'delaney-hall-feed-test',
+    type: 'feed-test',
+    xp: 500,
+    posts: [
+      {
+        id: 'ft-1',
+        source: 'Reuters',
+        timeAgo: '3 hours ago',
+        headline: 'Federal court orders ICE to allow independent health inspectors into Delaney Hall within 72 hours',
+        imageUrl: 'https://picsum.photos/seed/ft-reuters/400/300',
+        body: 'A federal judge issued an emergency order Monday requiring Immigration and Customs Enforcement to permit independent health and safety inspectors access to the Delaney Hall detention facility in Newark within the next three days.\n\nThe ruling came after civil rights attorneys filed an emergency motion alleging the facility denied access to legal observers during last week\'s protests. Judge Maria Alvarez of the U.S. District Court for the District of New Jersey said the order does not restrict ICE operations at the facility.\n\nAn ICE spokesperson said the agency "respects the court\'s authority and will comply fully with the ruling." The inspection is expected to be conducted by staff from the Department of Justice\'s National Institute of Corrections.',
+        correctVerdict: 'true',
+        explanation: 'Court orders requiring independent facility inspections are standard in detainee rights cases and verifiable through public court records. The procedural steps described — emergency motion, federal judge, DOJ inspectors — match standard legal practice.',
+      },
+      {
+        id: 'ft-2',
+        source: '@TruthBombs2026',
+        timeAgo: '1 hour ago',
+        headline: 'LEAKED: Secret DHS memo orders agents to escalate Delaney Hall confrontations to justify 2027 budget request',
+        imageUrl: 'https://picsum.photos/seed/ft-leak/400/300',
+        body: 'A leaked internal Department of Homeland Security memorandum, allegedly dated May 21, 2026, instructed field supervisors at Delaney Hall to "increase visible enforcement activity" in the week preceding the congressional budget hearing on May 28.\n\nThe document, shared exclusively with this account by an anonymous federal employee, appears to bear the signature of Acting ICE Director Todd Lyons. It states: "Heightened perimeter security visibility will strengthen our FY2027 appropriations case."\n\nNeither DHS nor ICE has responded to requests for comment. The memo has not been verified by any major news outlet.',
+        correctVerdict: 'false',
+        explanation: 'No major newsroom verified or reported this memo. The source is anonymous, the document unverified, and the post explicitly admits no outlet confirmed it. A claim this significant would be reported by credentialled journalists if real. The final line is a red flag the post itself provides.',
+      },
+      {
+        id: 'ft-3',
+        source: 'The Sentinel Post',
+        timeAgo: '5 hours ago',
+        headline: 'Most Delaney Hall detainees have criminal records, DHS officials confirm',
+        imageUrl: 'https://picsum.photos/seed/ft-sentinel/400/300',
+        body: 'Department of Homeland Security officials confirmed Monday that a significant proportion of detainees at the Delaney Hall facility have criminal histories, pushing back against advocacy groups who described the detainees as law-abiding individuals.\n\nActing Assistant Secretary Lauren Bis cited ICE\'s internal data, noting the facility holds individuals "with serious criminal histories, including convictions related to homicide and child sexual offences."\n\nAdvocacy groups contend that the vast majority of detainees are non-violent civil immigration cases with no criminal background.',
+        correctVerdict: 'misleading',
+        explanation: 'DHS data shows 73% of Delaney Hall detainees had NO criminal convictions — only 27% had any record. "Most" implies over 50%, which is the opposite of the data. DHS accurately describes serious cases among the 27%, but applying that description to the whole population is misleading.',
+      },
+      {
+        id: 'ft-4',
+        source: 'Associated Press',
+        timeAgo: '2 hours ago',
+        headline: 'Booker claims Delaney Hall detainees refusing meals; DHS denies any hunger strike',
+        imageUrl: 'https://picsum.photos/seed/ft-ap/400/300',
+        body: 'Senator Cory Booker said Monday that immigrants at the Delaney Hall facility were refusing meals to protest conditions they described as inhumane, after visiting the facility alongside other elected officials.\n\n"Immigrants at Delaney Hall are on a hunger strike because they are fighting for their human rights," Booker said in a statement. "The conditions there are deplorable."\n\nThe Department of Homeland Security disputed that account. "There is NO hunger strike at Delaney Hall," Acting Assistant Secretary Lauren Bis said. "Detainees receive three meals daily, clean water, clothing, bedding, and full medical care."\n\nNeither side provided independent corroboration of their account at the time of publication.',
+        correctVerdict: 'true',
+        explanation: 'The article accurately reports both parties\' on-the-record statements. Journalism that presents two conflicting official accounts without taking a side is factually correct. The final line transparently acknowledges that neither claim was independently verified — good editorial practice.',
+      },
+      {
+        id: 'ft-5',
+        source: 'The Patriot Wire',
+        timeAgo: '30 minutes ago',
+        headline: "Andy Kim's pepper spray 'exposure' lasted under 3 minutes; paramedics confirmed he needed no treatment",
+        imageUrl: 'https://picsum.photos/seed/ft-patriot/400/300',
+        body: 'Sources familiar with the situation told The Patriot Wire that Senator Andy Kim\'s reported breathing difficulties lasted fewer than three minutes, and that emergency medical personnel on site confirmed he required no treatment.\n\nKim told reporters he had difficulty breathing after what he described as pepper spray exposure. DHS confirmed pepper spray was deployed but stated that "no individuals were directly struck by pepper ball projectiles."\n\nA spokesperson for Senator Kim declined to respond to questions about the duration of symptoms or any medical assessment.',
+        correctVerdict: 'false',
+        explanation: 'No named paramedic, medical record, or official source confirms that symptoms lasted "under 3 minutes" or that any on-site medic assessed Kim as needing no treatment. The source is anonymous. DHS confirmed pepper spray was used; the specific medical assessment attributed to unnamed paramedics is unverifiable and presented as fact without a named source.',
+      },
+      {
+        id: 'ft-6',
+        source: 'National Crime Digest',
+        timeAgo: '4 hours ago',
+        headline: 'Undocumented immigrants make up 27% of federal prisoners despite being 13% of the U.S. population',
+        imageUrl: 'https://picsum.photos/seed/ft-crime/400/300',
+        body: 'According to Bureau of Prisons data, undocumented immigrants represent approximately 27 percent of the federal prison population, while accounting for roughly 13 percent of the total U.S. population — a share that immigration enforcement advocates say supports stricter border policies.\n\nThe figures have been cited by several prominent politicians in recent weeks as justification for increased ICE operations. The data is sourced from the Department of Justice\'s Bureau of Prisons as of the most recent reporting period.\n\nImmigration researchers note that the federal prison system disproportionately holds immigration-related offences such as illegal re-entry — crimes that are by definition only committed by non-citizens — which significantly skews the comparison.',
+        correctVerdict: 'misleading',
+        explanation: 'The statistic may be accurate, but the comparison is misleading. Federal prisons disproportionately hold immigration violations (illegal entry, re-entry), which are crimes only non-citizens can commit — inflating the share mechanically. Studies using state and local incarceration data consistently show immigrants are incarcerated at lower rates than native-born citizens. The article\'s final paragraph actually says this, but the headline buries it.',
+      },
+      {
+        id: 'ft-7',
+        source: 'ACLU of New Jersey',
+        timeAgo: '6 hours ago',
+        headline: "ACLU files emergency motion citing denial of counsel and 'cruel and unusual' conditions at Delaney Hall",
+        imageUrl: 'https://picsum.photos/seed/ft-aclu/400/300',
+        body: 'The American Civil Liberties Union of New Jersey filed an emergency motion in federal court Monday seeking a temporary restraining order and immediate legal access for attorneys to detainees held at the Delaney Hall ICE facility in Newark.\n\nThe filing, submitted to the U.S. District Court for the District of New Jersey, alleges that detainees have been denied access to attorneys, held in overcrowded conditions, and subjected to treatment the ACLU characterises as "cruel and unusual" under the Eighth Amendment.\n\nThe ACLU published the filing on its website and confirmed the action in a press release Monday afternoon. ICE has 72 hours to respond under court rules. A hearing has been scheduled for Wednesday morning.',
+        correctVerdict: 'true',
+        explanation: 'Legal filings are matters of public record, verifiable through PACER (the federal court records system). The ACLU confirmed this action through their official website and press release. Reporting that an organisation filed a motion is factually accurate regardless of whether the underlying allegations are ultimately proven in court.',
+      },
+    ],
   },
 ];

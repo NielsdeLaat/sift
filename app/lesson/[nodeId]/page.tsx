@@ -12,7 +12,9 @@ import { Icon }             from '@/components/icons';
 import { Button }           from '@/components/Button';
 import { completeLesson }   from '@/lib/store';
 
-const TWO_PAGE_TYPES = new Set(['ai-detection', 'image-verification']);
+const TWO_PAGE_TYPES       = new Set(['ai-detection', 'image-verification']);
+// Types that show their own feedback UI — skip the FeedbackBanner and advance directly.
+const SELF_CONTAINED_TYPES = new Set(['feed-test']);
 
 export default function LessonPage() {
   const router       = useRouter();
@@ -64,6 +66,21 @@ export default function LessonPage() {
     setAnswers(updated);
     if (isTwoPage) {
       setTimeout(() => setPage(1), 400);
+    } else if (SELF_CONTAINED_TYPES.has(question.type)) {
+      // FeedTest shows its own results screen — advance directly without FeedbackBanner.
+      if (qIndex < TOTAL - 1) {
+        setQIndex(qIndex + 1);
+        setPage(0);
+        setPhase('answering');
+        setOption(null);
+      } else {
+        const finalXp = lessonQuestions.reduce(
+          (sum, q, i) => sum + (updated[i] === true ? q.xp : 0),
+          0,
+        );
+        completeLesson(finalXp);
+        setPhase('complete');
+      }
     } else {
       setPhase('feedback');
     }

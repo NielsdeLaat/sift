@@ -5,6 +5,7 @@ import { EvidenceChecking }    from './question-types/EvidenceChecking';
 import { AiDetection }         from './question-types/AiDetection';
 import { SourceInvestigation } from './question-types/SourceInvestigation';
 import { ImageVerification }   from './question-types/ImageVerification';
+import { FeedTest }            from './question-types/FeedTest';
 
 interface Props {
   question: Question;
@@ -62,5 +63,7 @@ export function QuestionRenderer({
           onPageAdvance={onPageAdvance}
         />
       );
+    case 'feed-test':
+      return <FeedTest question={question} onAnswer={onAnswer} />;
   }
 }
