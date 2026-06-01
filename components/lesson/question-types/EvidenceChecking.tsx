@@ -54,7 +54,7 @@ export function EvidenceChecking({ question, locked, onAnswer }: Props) {
       </ExpandableCard>
 
       <h2 className="text-text font-bold text-xl text-center">
-        What evidence in the article supports the headline?
+        {question.question ?? 'What evidence in the article supports the headline?'}
       </h2>
 
       {!locked && (

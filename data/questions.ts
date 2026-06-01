@@ -35,6 +35,8 @@ interface BaseQuestion {
   id: string;
   type: QuestionType;
   xp: number;
+  /** Override the default question prompt shown above the answer controls. */
+  question?: string;
 }
 
 export interface CollaborationQuestion extends BaseQuestion {
@@ -152,6 +154,7 @@ export const questions: Question[] = [
         "Republicans must stop fighting — we can't let Democrats seize the Senate",
       body: "OPINION — Hugh Hewitt\n\nChurchill said the Conservative Party would always recover from its periodic bouts of madness. Disraeli would recognise today's Republican infighting as the same old albatross around the party's neck — familiar, avoidable, and entirely self-inflicted.\n\nAnd yet here we are. Hard-left Democrats are preparing to exploit every fracture, every weird eruption of ego and grievance, to reclaim a Senate they lost and never deserved to hold.\n\nA Democrat-controlled Senate means radical judges confirmed for life. It means treaty ratifications undone. It means every executive action strangled in committee. The American people did not vote for this.\n\nRepublicans have a choice. They can squabble over the next headline and hand the opposition a gift no opposition should receive. Or they can remember what they were sent to Washington to do.\n\nThe moment is here. The question is whether there are enough serious people left in the party to act — before Democrats slam the door shut for a generation.",
     },
+    question: "What manipulation tactic is used in this article?",
     options: [
       "None, It is clearly labelled as opinion and not a news report",
       "It disguises partisan opinion as objective, neutral news reporting",
@@ -171,6 +174,8 @@ export const questions: Question[] = [
     xp: 70,
     headline: "Iranian FM in tears as latest Israeli strikes claim more lives",
     imageUrl: "/images/araghchi-funeral.jpg",
+    question:
+      "Does this image depict the same event described in the headline?",
     correctAnswer: "no",
     tell: {
       top: 75,

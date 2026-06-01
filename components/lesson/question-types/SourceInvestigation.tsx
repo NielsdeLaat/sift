@@ -35,7 +35,7 @@ export function SourceInvestigation({ question, locked, onAnswer }: Props) {
       </ExpandableCard>
 
       <h2 className="text-text font-bold text-xl text-center">
-        Investigate the source, is it trustworthy?
+        {question.question ?? 'Investigate the source, is it trustworthy?'}
       </h2>
       <div className="flex gap-3 justify-center">
         <Button

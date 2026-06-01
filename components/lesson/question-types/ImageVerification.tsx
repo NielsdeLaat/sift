@@ -26,7 +26,7 @@ export function ImageVerification({ question, locked, onAnswer }: Props) {
         <img src={question.imageUrl} alt="" className="w-full h-full object-cover" />
       </div>
       <p className="text-muted-light text-base text-center font-semibold">
-        Does this image support the claim?
+        {question.question ?? 'Does this image support the claim?'}
       </p>
       <div className="flex gap-3 justify-center">
         <Button
