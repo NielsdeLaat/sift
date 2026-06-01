@@ -1,5 +1,8 @@
 'use client';
 
+// TODO(mobile): replace this component's lightbox with a mobile-native design.
+// All expandable images across question types go through this single file.
+
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 
