@@ -9,22 +9,18 @@ import { FeedTest }            from './question-types/FeedTest';
 
 interface Props {
   question: Question;
-  page: number;
   locked: boolean;
   selectedOption: number | null;
   onAnswer: (isCorrect: boolean) => void;
   onSelectOption: (i: number) => void;
-  onPageAdvance: () => void;
 }
 
 export function QuestionRenderer({
   question,
-  page,
   locked,
   selectedOption,
   onAnswer,
   onSelectOption,
-  onPageAdvance,
 }: Props) {
   switch (question.type) {
     case 'collaboration':
@@ -42,27 +38,11 @@ export function QuestionRenderer({
     case 'evidence-checking':
       return <EvidenceChecking question={question} locked={locked} onAnswer={onAnswer} />;
     case 'ai-detection':
-      return (
-        <AiDetection
-          question={question}
-          page={page}
-          locked={locked}
-          onAnswer={onAnswer}
-          onPageAdvance={onPageAdvance}
-        />
-      );
+      return <AiDetection question={question} locked={locked} onAnswer={onAnswer} />;
     case 'source-investigation':
       return <SourceInvestigation question={question} locked={locked} onAnswer={onAnswer} />;
     case 'image-verification':
-      return (
-        <ImageVerification
-          question={question}
-          page={page}
-          locked={locked}
-          onAnswer={onAnswer}
-          onPageAdvance={onPageAdvance}
-        />
-      );
+      return <ImageVerification question={question} locked={locked} onAnswer={onAnswer} />;
     case 'feed-test':
       return <FeedTest question={question} onAnswer={onAnswer} />;
   }

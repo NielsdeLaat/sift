@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { TellRegion } from '@/data/questions';
 import { Button } from '@/components/Button';
 
@@ -9,10 +9,13 @@ interface Pos { x: number; y: number }
 interface Props {
   imageUrl: string;
   tell: TellRegion;
-  onGotIt: () => void;
+  onConfirm: (isCorrect: boolean) => void;
 }
 
-export function TellReveal({ imageUrl, tell, onGotIt }: Props) {
+const CIRCLE_RADIUS = 20; // w-10 = 40px diameter → radius 20px
+
+export function TellReveal({ imageUrl, tell, onConfirm }: Props) {
+  const containerRef            = useRef<HTMLDivElement>(null);
   const [hover, setHover]       = useState<Pos | null>(null);
   const [placed, setPlaced]     = useState<Pos | null>(null);
   const [revealed, setRevealed] = useState(false);
@@ -24,10 +27,30 @@ export function TellReveal({ imageUrl, tell, onGotIt }: Props) {
 
   function handleTouchEnd(e: React.TouchEvent<HTMLDivElement>) {
     if (revealed) return;
-    e.preventDefault(); // suppress the subsequent synthetic click
+    e.preventDefault();
     const rect  = e.currentTarget.getBoundingClientRect();
     const touch = e.changedTouches[0];
     if (touch) setPlaced({ x: touch.clientX - rect.left, y: touch.clientY - rect.top });
+  }
+
+  function handleConfirm() {
+    if (!placed || !containerRef.current) return;
+    const { width, height } = containerRef.current.getBoundingClientRect();
+
+    const rectLeft   = (tell.left  / 100) * width;
+    const rectTop    = (tell.top   / 100) * height;
+    const rectRight  = rectLeft + (tell.width  / 100) * width;
+    const rectBottom = rectTop  + (tell.height / 100) * height;
+
+    // Nearest point on the tell rectangle to the circle center
+    const nearestX = Math.max(rectLeft, Math.min(placed.x, rectRight));
+    const nearestY = Math.max(rectTop,  Math.min(placed.y, rectBottom));
+    const dx = placed.x - nearestX;
+    const dy = placed.y - nearestY;
+    const isOverlapping = dx * dx + dy * dy <= CIRCLE_RADIUS * CIRCLE_RADIUS;
+
+    setRevealed(true);
+    onConfirm(isOverlapping);
   }
 
   return (
@@ -37,6 +60,7 @@ export function TellReveal({ imageUrl, tell, onGotIt }: Props) {
       </h2>
 
       <div
+        ref={containerRef}
         className="relative w-full aspect-video rounded-xl overflow-hidden select-none"
         style={{ cursor: revealed ? 'default' : 'none' }}
         onMouseMove={e => { if (!revealed) setHover(posFromMouse(e)); }}
@@ -47,7 +71,7 @@ export function TellReveal({ imageUrl, tell, onGotIt }: Props) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={imageUrl} alt="" className="w-full h-full object-cover pointer-events-none" draggable={false} />
 
-        {/* Hover circle — follows cursor (hidden after reveal and on touch) */}
+        {/* Hover circle — follows cursor */}
         {hover && !revealed && (
           <div
             className="absolute w-10 h-10 rounded-full pointer-events-none transition-none"
@@ -62,8 +86,8 @@ export function TellReveal({ imageUrl, tell, onGotIt }: Props) {
           />
         )}
 
-        {/* Placed circle — user's guess (hidden after reveal) */}
-        {placed && !revealed && (
+        {/* Placed circle — stays visible after reveal so user can compare */}
+        {placed && (
           <div
             className="absolute w-10 h-10 rounded-full pointer-events-none"
             style={{
@@ -91,23 +115,16 @@ export function TellReveal({ imageUrl, tell, onGotIt }: Props) {
         )}
       </div>
 
-      {revealed ? (
-        <>
-          <p className="text-muted-light text-sm text-center leading-relaxed px-2">
-            {tell.explanation}
-          </p>
-          <Button variant="primary" className="w-full" onClick={onGotIt}>
-            Got It
+      {!revealed && (
+        placed ? (
+          <Button variant="primary" className="w-full" onClick={handleConfirm}>
+            Confirm
           </Button>
-        </>
-      ) : placed ? (
-        <Button variant="primary" className="w-full" onClick={() => setRevealed(true)}>
-          Confirm
-        </Button>
-      ) : (
-        <p className="text-muted-light text-sm text-center">
-          Tap the part of the image that looks off
-        </p>
+        ) : (
+          <p className="text-muted-light text-sm text-center">
+            Tap the part of the image that looks off
+          </p>
+        )
       )}
     </div>
   );

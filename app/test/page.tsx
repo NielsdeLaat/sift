@@ -1,27 +1,21 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, useParams, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { questions as allQuestions } from '@/data/questions';
 import type { Question } from '@/data/questions';
-import { getLessonQuestions } from '@/lib/lesson';
 import { LessonHeader }     from '@/components/lesson/LessonHeader';
 import { QuestionRenderer } from '@/components/lesson/QuestionRenderer';
 import { FeedbackBanner }   from '@/components/lesson/FeedbackBanner';
 import { Icon }             from '@/components/icons';
 import { Button }           from '@/components/Button';
-import { completeLesson }   from '@/lib/store';
 
-// Types that show their own feedback UI — skip the FeedbackBanner and advance directly.
 const SELF_CONTAINED_TYPES = new Set(['feed-test']);
 
-export default function LessonPage() {
+export default function TestPage() {
   const router       = useRouter();
-  const { nodeId }   = useParams<{ nodeId: string }>();
   const searchParams = useSearchParams();
 
-  // Computed client-side only — Math.random() in getLessonQuestions causes
-  // SSR/hydration mismatch if run in useMemo (which executes on the server too).
   const [lessonQuestions, setLessonQuestions] = useState<Question[]>([]);
   const [answers, setAnswers]                 = useState<(boolean | null)[]>([]);
 
@@ -33,11 +27,12 @@ export default function LessonPage() {
       const filtered = ids
         .map(id => allQuestions.find(q => q.id === id))
         .filter((q): q is Question => q !== undefined);
-      questions = filtered.length > 0 ? filtered : getLessonQuestions(nodeId, allQuestions);
+      questions = filtered.length > 0 ? filtered : allQuestions.filter(q => q.type !== 'feed-test').slice(0, 3);
     } else {
-      questions = getLessonQuestions(nodeId, allQuestions);
+      questions = [...allQuestions.filter(q => q.type !== 'feed-test')]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3);
     }
-    // Batch both updates so the component never renders with mismatched lengths
     setLessonQuestions(questions);
     setAnswers(Array(questions.length).fill(null));
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,7 +42,6 @@ export default function LessonPage() {
   const [phase, setPhase]           = useState<'answering' | 'feedback' | 'complete'>('answering');
   const [selectedOption, setOption] = useState<number | null>(null);
 
-  // Don't render until the client has selected questions
   if (lessonQuestions.length === 0) return null;
 
   const TOTAL    = lessonQuestions.length;
@@ -66,13 +60,11 @@ export default function LessonPage() {
     const updated = answers.map((a, i) => (i === qIndex ? isCorrect : a));
     setAnswers(updated);
     if (SELF_CONTAINED_TYPES.has(question.type)) {
-      // FeedTest shows its own results screen — advance directly without FeedbackBanner.
       if (qIndex < TOTAL - 1) {
         setQIndex(qIndex + 1);
         setPhase('answering');
         setOption(null);
       } else {
-        completeLesson(calcXp(updated));
         setPhase('complete');
       }
     } else {
@@ -88,7 +80,6 @@ export default function LessonPage() {
       setPhase('answering');
       setOption(null);
     } else {
-      completeLesson(xpEarned);
       setPhase('complete');
     }
   }
@@ -123,8 +114,8 @@ export default function LessonPage() {
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/95 px-6 gap-6">
           <Icon name="trophy" className="w-16 h-16 text-primary animate-glow-pulse" />
           <div className="text-center space-y-1">
-            <h1 className="text-text font-bold text-3xl">Lesson Complete!</h1>
-            <p className="text-muted-light text-base">Great work on this lesson.</p>
+            <h1 className="text-text font-bold text-3xl">Done!</h1>
+            <p className="text-muted-light text-base">Test run complete.</p>
           </div>
           <div className="flex items-center gap-2 bg-surface rounded-2xl px-6 py-4">
             <Icon name="zap" className="w-7 h-7 text-secondary" />
