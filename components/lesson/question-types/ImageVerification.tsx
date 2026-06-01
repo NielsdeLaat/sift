@@ -1,18 +1,19 @@
+import { useState } from 'react';
 import type { ImageVerificationQuestion } from '@/data/questions';
 import { TellReveal } from '@/components/lesson/TellReveal';
 import { Button } from '@/components/Button';
 
 interface Props {
   question: ImageVerificationQuestion;
-  page: number;
   locked: boolean;
   onAnswer: (isCorrect: boolean) => void;
-  onPageAdvance: () => void;
 }
 
-export function ImageVerification({ question, page, locked, onAnswer, onPageAdvance }: Props) {
-  if (page === 1) {
-    return <TellReveal imageUrl={question.imageUrl} tell={question.tell} onGotIt={onPageAdvance} />;
+export function ImageVerification({ question, locked, onAnswer }: Props) {
+  const [showTell, setShowTell] = useState(false);
+
+  if (showTell) {
+    return <TellReveal imageUrl={question.imageUrl} tell={question.tell} onConfirm={onAnswer} />;
   }
 
   return (
@@ -28,10 +29,24 @@ export function ImageVerification({ question, page, locked, onAnswer, onPageAdva
         Does this image support the claim?
       </p>
       <div className="flex gap-3 justify-center">
-        <Button variant="yes" disabled={locked} onClick={() => onAnswer(question.correctAnswer === 'yes')}>
+        <Button
+          variant="yes"
+          disabled={locked}
+          onClick={() => onAnswer(question.correctAnswer === 'yes')}
+        >
           Yes
         </Button>
-        <Button variant="no" disabled={locked} onClick={() => onAnswer(question.correctAnswer === 'no')}>
+        <Button
+          variant="no"
+          disabled={locked}
+          onClick={() => {
+            if (question.correctAnswer === 'no') {
+              setShowTell(true);
+            } else {
+              onAnswer(false);
+            }
+          }}
+        >
           No
         </Button>
       </div>
