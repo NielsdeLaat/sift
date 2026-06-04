@@ -17,7 +17,7 @@ export function BottomNav() {
   return (
     // fixed to viewport bottom, centred within the 430px phone shell
     <nav
-      className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-30 bg-surface border-t border-surface-elevated"
+      className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-30 bg-neutral-light border-t border-neutral-border"
       aria-label="Main navigation"
     >
       <ul className="flex items-center justify-around h-16 px-2">
@@ -41,7 +41,7 @@ export function BottomNav() {
                     name={tab.icon}
                     className={[
                       'w-6 h-6 transition-colors duration-150',
-                      isActive ? 'text-text' : 'text-muted',
+                      isActive ? 'text-contrast' : 'text-contrast-dark',
                     ].join(' ')}
                   />
                 </div>

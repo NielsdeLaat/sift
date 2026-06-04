@@ -18,7 +18,7 @@ export function ManipulationTactics({ question, locked, selectedOption, onSelect
         <ArticleCardView article={question.article} />
       </ExpandableCard>
 
-      <h2 className="text-text font-bold text-xl text-center">
+      <h2 className="text-contrast font-bold text-xl text-center">
         {question.question ?? 'In what way is this article influencing the reader?'}
       </h2>
       <div className="space-y-2">
@@ -31,8 +31,8 @@ export function ManipulationTactics({ question, locked, selectedOption, onSelect
               'w-full text-left rounded-xl border-2 px-4 py-3 text-sm font-semibold transition-colors',
               'disabled:pointer-events-none',
               selectedOption === i
-                ? 'border-primary bg-primary/15 text-text'
-                : 'border-muted/40 bg-surface text-muted-light hover:border-primary/50',
+                ? 'border-primary bg-primary/15 text-contrast'
+                : 'border-contrast-dark/40 bg-neutral-light text-contrast-dark hover:border-primary/50',
             ].join(' ')}
           >
             {option}

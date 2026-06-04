@@ -39,7 +39,7 @@ export function Collaboration({ question, locked, onAnswer }: Props) {
           </Button>
         </div>
 
-        <h2 className="text-text font-bold text-xl text-center">
+        <h2 className="text-contrast font-bold text-xl text-center">
           {question.question ?? 'Is this article telling the truth?'}
         </h2>
 

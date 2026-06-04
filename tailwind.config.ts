@@ -9,64 +9,42 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ── Primary (teal) ────────────────────────────────────────
+        // ── Primary (blue) ───────────────────────────────────────────
         primary: {
-          DEFAULT: '#16B0A6',
-          50:  '#E6F7F6',
-          100: '#C2EAE8',
-          200: '#85D5D0',
-          300: '#48C0B9',
-          400: '#27B8B0',
-          500: '#16B0A6',
-          600: '#128F87',
-          700: '#0D6E68',
-          800: '#094D49',
-          900: '#042C2A',
+          DEFAULT: '#5B9DF6',
+          light:   '#7DC1F5',
+          lighter: '#A9D3F7',
         },
-        // ── Secondary (coral) ─────────────────────────────────────
-        secondary: {
+        // ── Accent ───────────────────────────────────────────────────
+        accent: {
           DEFAULT: '#FF7A59',
-          50:  '#FFF0EC',
-          100: '#FFD8CE',
-          200: '#FFB19D',
-          300: '#FF8A6B',
-          400: '#FF7A59',
-          500: '#FF6040',
-          600: '#E04027',
-          700: '#BA2C18',
-          800: '#8F1B0E',
-          900: '#640F07',
+          green:   '#3FBE7C',
+          red:     '#F0605F',
         },
-        // ── Tertiary (warm orange) ────────────────────────────────
-        tertiary: {
-          DEFAULT: '#E7835A',
-          light:   '#F0A887',
-          dark:    '#C45F38',
+        // ── Neutral (dark backgrounds) ───────────────────────────────
+        neutral: {
+          base:   '#0C1622',
+          light:  '#16263D',
+          border: '#1F3350',
         },
-        // ── Semantic surface tokens ───────────────────────────────
-        background: '#0F172A',
-        surface: {
-          DEFAULT:  '#1A2436',
-          elevated: '#243447',
-        },
-        // ── Text tokens ───────────────────────────────────────────
-        text: '#F8FAFC',
-        muted: {
-          DEFAULT: '#64748B',
-          light:   '#94A3B8',
+        // ── Contrast (light text / surfaces) ─────────────────────────
+        contrast: {
+          DEFAULT: '#E8EEF5',
+          dark:    '#D9D9D9',
+          blue:    '#C4E2FE',
         },
       },
       fontFamily: {
         sans: ['var(--font-nunito-sans)', 'Nunito Sans', 'sans-serif'],
       },
       boxShadow: {
-        'glow-primary':    '0 0 28px rgba(22, 176, 166, 0.60)',
-        'glow-primary-sm': '0 0 16px rgba(22, 176, 166, 0.45)',
+        'glow-primary':    '0 0 28px rgba(91, 157, 246, 0.60)',
+        'glow-primary-sm': '0 0 16px rgba(91, 157, 246, 0.45)',
       },
       keyframes: {
         pulse_glow: {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(22,176,166,0.5)' },
-          '50%':      { boxShadow: '0 0 36px rgba(22,176,166,0.85)' },
+          '0%, 100%': { boxShadow: '0 0 20px rgba(91,157,246,0.5)' },
+          '50%':      { boxShadow: '0 0 36px rgba(91,157,246,0.85)' },
         },
       },
       animation: {

@@ -16,7 +16,7 @@ export function InAppBrowser({ url, onReturn }: Props) {
         className="flex-1 w-full border-none"
         title="Browser"
       />
-      <div className="px-4 py-3 bg-background border-t border-surface">
+      <div className="px-4 py-3 bg-neutral-base border-t border-neutral-light">
         <Button variant="primary" className="w-full" onClick={onReturn}>
           Return
         </Button>

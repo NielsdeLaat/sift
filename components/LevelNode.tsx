@@ -25,9 +25,9 @@ export function LevelNode({ node, style, href }: Props) {
   const isCurrent = node.status === 'current';
 
   const sizeClass  = isCurrent ? 'w-[72px] h-[72px]' : isActive ? 'w-16 h-16' : 'w-14 h-14';
-  const bgClass    = isActive  ? 'bg-primary' : 'bg-surface';
-  const borderClass = isActive ? '' : 'border-2 border-muted/50';
-  const iconColor  = isActive  ? 'text-text'  : 'text-muted';
+  const bgClass    = isActive  ? 'bg-primary' : 'bg-neutral-light';
+  const borderClass = isActive ? '' : 'border-2 border-contrast-dark/50';
+  const iconColor  = isActive  ? 'text-contrast'  : 'text-contrast-dark';
   const iconSize   = isActive  ? 'w-8 h-8'    : 'w-7 h-7';
 
   return (
@@ -37,7 +37,7 @@ export function LevelNode({ node, style, href }: Props) {
     >
       {/* Tooltip */}
       {isCurrent && node.label && (
-        <div className="mb-2 px-3 py-1.5 bg-surface-elevated text-text text-sm font-semibold rounded-lg shadow-lg whitespace-nowrap">
+        <div className="mb-2 px-3 py-1.5 bg-neutral-border text-contrast text-sm font-semibold rounded-lg shadow-lg whitespace-nowrap">
           {node.label}
         </div>
       )}

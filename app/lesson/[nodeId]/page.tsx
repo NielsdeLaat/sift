@@ -94,7 +94,7 @@ export default function LessonPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-neutral-base">
       <LessonHeader
         totalQuestions={TOTAL}
         answers={answers}
@@ -120,15 +120,15 @@ export default function LessonPage() {
       )}
 
       {phase === 'complete' && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/95 px-6 gap-6">
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-neutral-base/95 px-6 gap-6">
           <Icon name="trophy" className="w-16 h-16 text-primary animate-glow-pulse" />
           <div className="text-center space-y-1">
-            <h1 className="text-text font-bold text-3xl">Lesson Complete!</h1>
-            <p className="text-muted-light text-base">Great work on this lesson.</p>
+            <h1 className="text-contrast font-bold text-3xl">Lesson Complete!</h1>
+            <p className="text-contrast-dark text-base">Great work on this lesson.</p>
           </div>
-          <div className="flex items-center gap-2 bg-surface rounded-2xl px-6 py-4">
-            <Icon name="zap" className="w-7 h-7 text-secondary" />
-            <span className="text-text font-bold text-2xl">+{xpEarned} XP</span>
+          <div className="flex items-center gap-2 bg-neutral-light rounded-2xl px-6 py-4">
+            <Icon name="zap" className="w-7 h-7 text-accent" />
+            <span className="text-contrast font-bold text-2xl">+{xpEarned} XP</span>
           </div>
           <Button variant="primary" className="w-full max-w-xs" onClick={() => router.push('/')}>
             Continue

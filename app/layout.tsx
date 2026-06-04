@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         Inner div: 430 px phone shell, centred horizontally.
       */}
       <body className="bg-neutral-900 font-sans antialiased">
-        <div className="relative mx-auto max-w-[430px] min-h-screen bg-background">
+        <div className="relative mx-auto max-w-[430px] min-h-screen bg-neutral-base">
           {children}
         </div>
       </body>

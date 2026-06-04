@@ -11,11 +11,11 @@ export function StatusBar({ user }: Props) {
   const xpPct  = getLevelProgress(user.xp);
 
   return (
-    <header className="bg-background border-b border-surface flex items-center gap-3 px-4 py-3">
+    <header className="bg-neutral-base border-b border-neutral-light flex items-center gap-3 px-4 py-3">
 
       {/* ── Avatar + level badge ─────────────────────────────── */}
       <div className="relative shrink-0">
-        <div className="w-11 h-11 rounded-full bg-surface border-2 border-surface-elevated flex items-center justify-center overflow-hidden">
+        <div className="w-11 h-11 rounded-full bg-neutral-light border-2 border-neutral-border flex items-center justify-center overflow-hidden">
           {user.avatarUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -24,10 +24,10 @@ export function StatusBar({ user }: Props) {
               className="w-full h-full object-cover"
             />
           ) : (
-            <Icon name="profile" className="w-7 h-7 text-muted" />
+            <Icon name="profile" className="w-7 h-7 text-contrast-dark" />
           )}
         </div>
-        <span className="absolute -bottom-1 -left-1 bg-secondary text-text text-[10px] font-extrabold px-1.5 py-0.5 rounded-full leading-none whitespace-nowrap">
+        <span className="absolute -bottom-1 -left-1 bg-accent text-contrast text-[10px] font-extrabold px-1.5 py-0.5 rounded-full leading-none whitespace-nowrap">
           Lv {level}
         </span>
       </div>
@@ -37,7 +37,7 @@ export function StatusBar({ user }: Props) {
         <span className="text-primary font-extrabold text-lg leading-none tracking-wide">
           {user.xp.toLocaleString()} XP
         </span>
-        <div className="w-full h-2 rounded-full bg-surface-elevated overflow-hidden">
+        <div className="w-full h-2 rounded-full bg-neutral-border overflow-hidden">
           <div
             className="h-full rounded-full bg-primary transition-all duration-500"
             style={{ width: `${xpPct}%` }}
@@ -47,8 +47,8 @@ export function StatusBar({ user }: Props) {
 
       {/* ── Streak ───────────────────────────────────────────── */}
       <div className="shrink-0 flex items-center gap-1">
-        <span className="text-text font-extrabold text-lg leading-none">{user.streak}</span>
-        <Icon name="flame" className="w-6 h-6 text-secondary" />
+        <span className="text-contrast font-extrabold text-lg leading-none">{user.streak}</span>
+        <Icon name="flame" className="w-6 h-6 text-accent" />
       </div>
     </header>
   );
