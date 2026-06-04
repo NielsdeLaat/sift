@@ -281,6 +281,8 @@ export const questions: Question[] = [
       headline: "Illegal Immigrants Crime Statistics in the U.S. 2026",
       body: 'Southwest border apprehensions reached 237,538 in FY 2025 — the lowest since 1970. ICE detained more than 73,000 individuals as of January 2026. Of those in detention, the site reports that 73% had no criminal convictions and only 5% had violent crime convictions.\n\nAmong the figures cited is a conviction rate of 125.7% for certain offence categories — a number the site does not explain. Assault and domestic violence convictions totalled 469 cases, down 56.7% from FY2024. Drug offences fell 58.6%, property crimes 60.1%, and weapons charges 62.1%. No primary source links or methodology are provided for any of these figures.\n\nThe site carries a disclaimer: "Data is based on various sources and the publisher is not liable for financial losses or errors resulting from using the information provided." No named researchers, editorial team, or institutional affiliation are listed.',
     },
+    question:
+      "This article contains false information, what evidence clearly shows that this is the case?",
     correctAnswer: "none",
     explanation:
       'A "conviction rate of 125.7%" is mathematically impossible — a rate cannot exceed 100%. When a dataset contains a number that cannot be real, none of it can be trusted without independent verification. The site\'s own disclaimer ("not liable for errors") confirms this. Primary sources — DOJ, Cato Institute, and Stanford\'s 140-year study — consistently show immigrants are incarcerated at lower rates than native-born citizens.',
