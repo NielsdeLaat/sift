@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ImageVerificationQuestion } from '@/data/questions';
 import { TellReveal } from '@/components/lesson/TellReveal';
+import { ExpandableImage } from '@/components/lesson/ExpandableImage';
 import { Button } from '@/components/Button';
 
 interface Props {
@@ -22,11 +23,10 @@ export function ImageVerification({ question, locked, onAnswer }: Props) {
         {question.headline}
       </h2>
       <div className="relative w-full aspect-video rounded-xl overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={question.imageUrl} alt="" className="w-full h-full object-cover" />
+        <ExpandableImage src={question.imageUrl} className="w-full h-full object-cover" />
       </div>
       <p className="text-muted-light text-base text-center font-semibold">
-        Does this image support the claim?
+        {question.question ?? 'Does this image support the claim?'}
       </p>
       <div className="flex gap-3 justify-center">
         <Button

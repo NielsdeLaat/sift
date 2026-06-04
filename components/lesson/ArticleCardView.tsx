@@ -1,10 +1,10 @@
 import type { ArticleCard } from '@/data/questions';
+import { ExpandableImage } from '@/components/lesson/ExpandableImage';
 
 export function ArticleCardView({ article }: { article: ArticleCard }) {
   return (
     <div className="bg-surface rounded-2xl overflow-hidden">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={article.imageUrl} alt="" className="w-full h-44 object-cover" />
+      <ExpandableImage src={article.imageUrl} className="w-full h-44 object-cover" />
       <div className="p-4 space-y-1.5">
         <span className="text-xs font-bold text-primary uppercase tracking-wider">
           {article.sourceTag}

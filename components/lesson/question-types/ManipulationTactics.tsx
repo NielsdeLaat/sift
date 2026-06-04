@@ -19,7 +19,7 @@ export function ManipulationTactics({ question, locked, selectedOption, onSelect
       </ExpandableCard>
 
       <h2 className="text-text font-bold text-xl text-center">
-        In what way is this article influencing the reader?
+        {question.question ?? 'In what way is this article influencing the reader?'}
       </h2>
       <div className="space-y-2">
         {question.options.map((option, i) => (

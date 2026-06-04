@@ -1,5 +1,6 @@
 import type { SourceInvestigationQuestion } from '@/data/questions';
 import { ExpandableCard } from '@/components/lesson/ExpandableCard';
+import { ExpandableImage } from '@/components/lesson/ExpandableImage';
 import { Button } from '@/components/Button';
 
 interface Props {
@@ -28,14 +29,13 @@ export function SourceInvestigation({ question, locked, onAnswer }: Props) {
           </div>
           <p className="text-text text-sm leading-relaxed">{post.postText}</p>
           {post.postImageUrl && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={post.postImageUrl} alt="" className="w-full rounded-xl object-cover max-h-44" />
+            <ExpandableImage src={post.postImageUrl} className="w-full rounded-xl object-cover max-h-44" />
           )}
         </div>
       </ExpandableCard>
 
       <h2 className="text-text font-bold text-xl text-center">
-        Investigate the source, is it trustworthy?
+        {question.question ?? 'Investigate the source, is it trustworthy?'}
       </h2>
       <div className="flex gap-3 justify-center">
         <Button
