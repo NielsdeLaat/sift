@@ -16,9 +16,10 @@ import { completeLesson }   from '@/lib/store';
 const SELF_CONTAINED_TYPES = new Set(['feed-test']);
 
 export default function LessonPage() {
-  const router       = useRouter();
-  const { nodeId }   = useParams<{ nodeId: string }>();
-  const searchParams = useSearchParams();
+  const router        = useRouter();
+  const { sectionId } = useParams<{ sectionId: string }>();
+  const searchParams  = useSearchParams();
+  const isTest        = searchParams.get('type') === 'test';
 
   // Computed client-side only — Math.random() in getLessonQuestions causes
   // SSR/hydration mismatch if run in useMemo (which executes on the server too).
@@ -33,9 +34,9 @@ export default function LessonPage() {
       const filtered = ids
         .map(id => allQuestions.find(q => q.id === id))
         .filter((q): q is Question => q !== undefined);
-      questions = filtered.length > 0 ? filtered : getLessonQuestions(nodeId, allQuestions);
+      questions = filtered.length > 0 ? filtered : getLessonQuestions(sectionId, isTest, allQuestions);
     } else {
-      questions = getLessonQuestions(nodeId, allQuestions);
+      questions = getLessonQuestions(sectionId, isTest, allQuestions);
     }
     // Batch both updates so the component never renders with mismatched lengths
     setLessonQuestions(questions);
@@ -123,7 +124,9 @@ export default function LessonPage() {
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-neutral-base/95 px-6 gap-6">
           <Icon name="trophy" className="w-16 h-16 text-primary animate-glow-pulse" />
           <div className="text-center space-y-1">
-            <h1 className="text-contrast font-bold text-3xl">Lesson Complete!</h1>
+            <h1 className="text-contrast font-bold text-3xl">
+              {isTest ? 'Section Test Complete!' : 'Lesson Complete!'}
+            </h1>
             <p className="text-contrast-dark text-base">Great work on this lesson.</p>
           </div>
           <div className="flex items-center gap-2 bg-neutral-light rounded-2xl px-6 py-4">

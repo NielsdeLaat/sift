@@ -24,6 +24,7 @@ const SVG_WIDTH = 430;
 
 interface NodeLayout {
   node: LevelNode;
+  sectionId: string;
   xFrac: number; // 0–1
   y: number; // px from top of container
 }
@@ -78,6 +79,7 @@ function layoutSections(sections: Section[]) {
     section.nodes.forEach((node) => {
       nodes.push({
         node,
+        sectionId: section.id,
         xFrac: SERPENTINE_X[nodeIdx % SERPENTINE_X.length],
         y: y + NODE_SPACING / 2,
       });
@@ -136,7 +138,7 @@ export function RoadmapPath({ sections }: Props) {
         <path
           d={buildPath(nodes)}
           fill="none"
-          stroke="var(--color-muted)"
+          stroke="var(--color-neutral-border)"
           strokeOpacity="0.45"
           strokeWidth="3"
           strokeDasharray="10 8"
@@ -161,14 +163,22 @@ export function RoadmapPath({ sections }: Props) {
       ))}
 
       {/* ── Level nodes ──────────────────────────────────────── */}
-      {nodes.map(({ node, xFrac, y }) => (
-        <LevelNodeComponent
-          key={node.id}
-          node={node}
-          style={{ left: `${xFrac * 100}%`, top: y }}
-          href={node.status === "current" ? `/lesson/${node.id}` : undefined}
-        />
-      ))}
+      {nodes.map(({ node, sectionId, xFrac, y }) => {
+        let href: string | undefined;
+        if (node.status === 'current') {
+          href = node.icon === 'flag'
+            ? `/lesson/${sectionId}?type=test`
+            : `/lesson/${sectionId}`;
+        }
+        return (
+          <LevelNodeComponent
+            key={node.id}
+            node={node}
+            style={{ left: `${xFrac * 100}%`, top: y }}
+            href={href}
+          />
+        );
+      })}
     </div>
   );
 }

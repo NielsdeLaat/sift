@@ -35,6 +35,9 @@ interface BaseQuestion {
   id: string;
   type: QuestionType;
   xp: number;
+  /** The earliest section ID in which this question enters the pool.
+   *  Questions are available in this section and every section that follows. */
+  introSection: string;
   /** Override the default question prompt shown above the answer controls. */
   question?: string;
 }
@@ -102,8 +105,8 @@ export interface FeedPost {
 
 export interface FeedTestQuestion extends BaseQuestion {
   type: "feed-test";
-  /** When set, this question is only served to this specific roadmap node. */
-  nodeId?: string;
+  /** When set, this question is only served to this specific roadmap section. */
+  sectionId?: string;
   posts: FeedPost[];
 }
 
@@ -123,6 +126,7 @@ export const questions: Question[] = [
     id: "ice-agitators-framing",
     type: "manipulation-tactics",
     xp: 60,
+    introSection: "section-1",
     article: {
       imageUrl: "/images/Delaney_Hall_ICE.jpg",
       sourceTag: "Fox News · US",
@@ -147,6 +151,7 @@ export const questions: Question[] = [
     id: "hewitt-senate-opinion",
     type: "manipulation-tactics",
     xp: 50,
+    introSection: "section-1",
     article: {
       imageUrl: "/images/james-talarico-and-voters.jpg",
       sourceTag: "Fox News · Opinion",
@@ -172,6 +177,7 @@ export const questions: Question[] = [
     id: "araghchi-photo-false-context",
     type: "image-verification",
     xp: 70,
+    introSection: "section-0",
     headline: "Iranian FM in tears as latest Israeli strikes claim more lives",
     imageUrl: "/images/araghchi-funeral.jpg",
     question:
@@ -193,6 +199,7 @@ export const questions: Question[] = [
     id: "eu-trans-vote-distortion",
     type: "source-investigation",
     xp: 70,
+    introSection: "section-2",
     post: {
       avatarUrl: "https://picsum.photos/seed/roisin-avatar/80/80",
       sourceName: "Róisín Michaux",
@@ -213,6 +220,7 @@ export const questions: Question[] = [
     id: "pope-crowd-ai-generated",
     type: "ai-detection",
     xp: 70,
+    introSection: "section-0",
     imageUrl: "/images/pope-crowd-ai.jpg",
     correctAnswer: "yes",
     tell: {
@@ -231,6 +239,7 @@ export const questions: Question[] = [
     id: "breitbart-delaney-hall-claim",
     type: "collaboration",
     xp: 60,
+    introSection: "section-1",
     article: {
       imageUrl: "https://picsum.photos/seed/breitbart-delaney/800/450",
       sourceTag: "Breitbart · US",
@@ -251,6 +260,7 @@ export const questions: Question[] = [
     id: "breitbart-dhs-debunks",
     type: "manipulation-tactics",
     xp: 60,
+    introSection: "section-1",
     article: {
       imageUrl: "/images/leftist-claim-debunk.png",
       sourceTag: "Breitbart · Politics",
@@ -275,6 +285,7 @@ export const questions: Question[] = [
     id: "global-stats-immigrant-crime",
     type: "evidence-checking",
     xp: 60,
+    introSection: "section-1",
     article: {
       imageUrl: "/images/Illegal-Immigrants-Crime-stats-in-US.jpg",
       sourceTag: "The Global Statistics",
@@ -294,6 +305,7 @@ export const questions: Question[] = [
     id: "wifitalents-immigrant-crime",
     type: "source-investigation",
     xp: 50,
+    introSection: "section-2",
     post: {
       avatarUrl: "https://picsum.photos/seed/wifitalents-avatar/80/80",
       sourceName: "WiFiTalents",
@@ -314,6 +326,7 @@ export const questions: Question[] = [
     id: "inquirer-ai-reading-list",
     type: "ai-detection",
     xp: 60,
+    introSection: "section-0",
     imageUrl: "/images/reading-list.jpg",
     correctAnswer: "yes",
     tell: {
@@ -333,6 +346,7 @@ export const questions: Question[] = [
     id: "delaney-hall-feed-test",
     type: "feed-test",
     xp: 500,
+    introSection: "section-0",
     posts: [
       {
         id: "ft-1",
