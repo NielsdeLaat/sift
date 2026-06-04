@@ -1,4 +1,4 @@
-# Thinking Trainer — First Prototype
+# Sift
 
 A gamified fact-checking trainer built for the **Information Disorder during Crisis** project by the Resilient Society team at Futures Lab.
 
@@ -99,26 +99,6 @@ app/
   test/             — standalone question tester (see URL testing above)
   profile/          — user profile page
 ```
-
----
-
-## Prototype scope
-
-This repository is the **first deliverable** for the _Information Disorder during Crisis_ project — a functional, demo-ready prototype, not a production application.
-
-**In scope**
-
-- Full lesson loop: roadmap → lesson → feedback → XP progression
-- 7 question types covering the core media-literacy skills
-- 13 roadmap nodes across 3 sections, with 11 regular questions and one 7-post feed-test checkpoint
-- All state is client-side (`localStorage`); no backend, no user accounts
-
-**Out of scope / known limitations**
-
-- No server, database, or authentication — progress is lost if `localStorage` is cleared
-- Content is in English only
-- The image lightbox (`ExpandableImage`) is designed for desktop; a mobile-native tap-to-zoom interaction is deferred to a future iteration
-- Leaderboard and Puzzles pages are scaffolded but not yet implemented
 
 ---
 

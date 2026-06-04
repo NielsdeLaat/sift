@@ -1,8 +1,8 @@
 # Changelog
 
-## [0.2.2] — 2026-06-04 — First Prototype
+## [0.1] — 2026-06-04
 
-First complete prototype deliverable for the _Information Disorder during Crisis_ project (Resilient Society / Futures Lab).
+Initial release for the _Information Disorder during Crisis_ project (Resilient Society / Futures Lab).
 
 ### Features
 
@@ -28,21 +28,3 @@ First complete prototype deliverable for the _Information Disorder during Crisis
 - All state is client-side (`localStorage`); no backend or authentication
 - Leaderboard and Puzzles pages are scaffolded but not implemented
 - Image lightbox not optimised for mobile (deferred)
-
----
-
-## [0.2.1] — Feed-test question type and section checkpoints
-
-- Added `feed-test` question type for flag (checkpoint) nodes
-- Added section info modal
-- Bug fixes: TellReveal touch handling, FeedTest state reset, XP deduplication, nodeId routing
-
-## [0.2.0] — Real article content and question improvements
-
-- Replaced placeholder questions with content based on real news articles
-- Added `image-verification` question type
-- Improved roadmap path rendering
-
-## [0.1.0] — Initial prototype
-
-- Core lesson loop, roadmap, and first four question types
