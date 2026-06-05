@@ -1,4 +1,4 @@
-# Sift - Second Prototype
+# Sift
 
 A gamified fact-checking trainer built for the **Information Disorder during Crisis** project by the Resilient Society team at Futures Lab.
 
