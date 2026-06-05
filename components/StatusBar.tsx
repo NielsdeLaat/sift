@@ -33,12 +33,12 @@ export function StatusBar({ user }: Props) {
 
       {/* ── XP label + progress bar ───────────────────────────── */}
       <div className="flex-1 flex flex-col items-center gap-1.5">
-        <span className="text-primary font-extrabold text-lg leading-none tracking-wide">
+        <span className="text-contrast font-extrabold text-lg leading-none tracking-wide">
           {user.xp.toLocaleString()} XP
         </span>
         <div className="w-full h-2 rounded-full bg-neutral-border overflow-hidden">
           <div
-            className="h-full rounded-full bg-primary transition-all duration-500"
+            className="h-full rounded-full bg-accent transition-all duration-500"
             style={{ width: `${xpPct}%` }}
           />
         </div>

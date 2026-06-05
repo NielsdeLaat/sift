@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Icon, type IconName } from '@/components/icons';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Icon, type IconName } from "@/components/icons";
 
 const TABS: { icon: IconName; label: string; href: string }[] = [
-  { icon: 'home',        label: 'Home',         href: '/'            },
-  { icon: 'puzzle',      label: 'Daily Puzzle',  href: '/puzzles'     },
-  { icon: 'leaderboard', label: 'Leaderboard',   href: '/leaderboard' },
-  { icon: 'profile',     label: 'Profile',       href: '/profile'     },
+  { icon: "home", label: "Home", href: "/" },
+  { icon: "puzzle", label: "Daily Puzzle", href: "/puzzles" },
+  { icon: "leaderboard", label: "Leaderboard", href: "/leaderboard" },
+  { icon: "profile", label: "Profile", href: "/profile" },
 ];
 
 export function BottomNav() {
@@ -21,28 +21,28 @@ export function BottomNav() {
       aria-label="Main navigation"
     >
       <ul className="flex items-center justify-around h-16 px-2">
-        {TABS.map(tab => {
+        {TABS.map((tab) => {
           const isActive = pathname === tab.href;
           return (
             <li key={tab.href} className="flex-1">
               <Link
                 href={tab.href}
                 aria-label={tab.label}
-                aria-current={isActive ? 'page' : undefined}
+                aria-current={isActive ? "page" : undefined}
                 className="flex items-center justify-center h-16"
               >
                 <div
                   className={[
-                    'w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-150',
-                    isActive ? 'bg-primary' : '',
-                  ].join(' ')}
+                    "w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-150",
+                    isActive ? "bg-primary" : "",
+                  ].join(" ")}
                 >
                   <Icon
                     name={tab.icon}
                     className={[
-                      'w-6 h-6 transition-colors duration-150',
-                      isActive ? 'text-contrast' : 'text-contrast-dark',
-                    ].join(' ')}
+                      "w-6 h-6 transition-colors duration-150",
+                      "text-contrast",
+                    ].join(" ")}
                   />
                 </div>
               </Link>

@@ -10,11 +10,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    'bg-primary text-contrast rounded-full px-8 py-3 hover:bg-primary/90 active:bg-primary/80',
+    'bg-primary text-contrast rounded-full px-8 py-3 shadow-inner-top hover:bg-primary/90 active:bg-primary/80',
   outlined:
     'border-2 border-primary text-primary rounded-full w-36 h-10 hover:bg-primary/10 active:bg-primary/20',
   yes:
-    'bg-primary text-contrast rounded-full w-36 h-10 hover:bg-primary/90 active:bg-primary/80',
+    'bg-primary text-contrast rounded-full w-36 h-10 shadow-inner-top hover:bg-primary/90 active:bg-primary/80',
   no:
     'border-2 border-accent text-accent rounded-full w-36 h-10 hover:bg-accent/10 active:bg-accent/20',
   circle:

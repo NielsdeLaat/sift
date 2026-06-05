@@ -38,13 +38,22 @@ const config: Config = {
         sans: ["var(--font-nunito-sans)", "Nunito Sans", "sans-serif"],
       },
       boxShadow: {
-        "glow-primary": "0 0 28px rgba(91, 157, 246, 0.60)",
-        "glow-primary-sm": "0 0 16px rgba(91, 157, 246, 0.45)",
+        "glow-primary":
+          "0 0 28px rgba(91, 157, 246, 0.60), inset 0 -4px 4px 0 rgba(26, 36, 56, 0.25)",
+        "glow-primary-sm":
+          "0 0 16px rgba(91, 157, 246, 0.45), inset 0 -4px 4px 0 rgba(26, 36, 56, 0.25)",
+        "inner-top": "inset 0 -4px 8px 0 rgba(26, 36, 56, 0.50)",
       },
       keyframes: {
         pulse_glow: {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(91,157,246,0.5)" },
-          "50%": { boxShadow: "0 0 36px rgba(91,157,246,0.85)" },
+          "0%, 100%": {
+            boxShadow:
+              "0 0 20px rgba(91,157,246,0.5), inset 0 -4px 4px 0 rgba(26, 36, 56, 0.25)",
+          },
+          "50%": {
+            boxShadow:
+              "0 0 36px rgba(91,157,246,0.85), inset 0 -4px 4px 0 rgba(26, 36, 56, 0.25)",
+          },
         },
       },
       animation: {

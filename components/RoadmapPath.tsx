@@ -51,9 +51,9 @@ function layoutSections(sections: Section[]) {
   let y = TOP_PAD;
   let nodeIdx = 0;
 
-  const nodes: NodeLayout[]         = [];
-  const dividers: DividerLayout[]   = [];
-  const badges: BadgeLayout[]       = [];
+  const nodes: NodeLayout[] = [];
+  const dividers: DividerLayout[] = [];
+  const badges: BadgeLayout[] = [];
   const sentinels: SentinelLayout[] = [];
 
   sections.forEach((section, si) => {
@@ -121,7 +121,8 @@ interface Props {
 }
 
 export function RoadmapPath({ sections }: Props) {
-  const { nodes, dividers, badges, sentinels, totalHeight } = layoutSections(sections);
+  const { nodes, dividers, badges, sentinels, totalHeight } =
+    layoutSections(sections);
 
   return (
     <div className="relative w-full" style={{ height: totalHeight }}>
@@ -138,7 +139,7 @@ export function RoadmapPath({ sections }: Props) {
         <path
           d={buildPath(nodes)}
           fill="none"
-          stroke="var(--color-neutral-border)"
+          stroke="var(--color-primary-lighter)"
           strokeOpacity="0.45"
           strokeWidth="3"
           strokeDasharray="10 8"
@@ -165,10 +166,11 @@ export function RoadmapPath({ sections }: Props) {
       {/* ── Level nodes ──────────────────────────────────────── */}
       {nodes.map(({ node, sectionId, xFrac, y }) => {
         let href: string | undefined;
-        if (node.status === 'current') {
-          href = node.icon === 'flag'
-            ? `/lesson/${sectionId}?type=test`
-            : `/lesson/${sectionId}`;
+        if (node.status === "current") {
+          href =
+            node.icon === "flag"
+              ? `/lesson/${sectionId}?type=test`
+              : `/lesson/${sectionId}`;
         }
         return (
           <LevelNodeComponent
