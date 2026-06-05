@@ -45,18 +45,18 @@ export function Collaboration({ question, locked, onAnswer }: Props) {
 
         <div className="flex gap-3 justify-center">
           <Button
-            variant="no"
-            disabled={!hasOpened || locked}
-            onClick={() => onAnswer(question.correctAnswer === 'no')}
-          >
-            No
-          </Button>
-          <Button
             variant="yes"
             disabled={!hasOpened || locked}
             onClick={() => onAnswer(question.correctAnswer === 'yes')}
           >
             Yes
+          </Button>
+          <Button
+            variant="no"
+            disabled={!hasOpened || locked}
+            onClick={() => onAnswer(question.correctAnswer === 'no')}
+          >
+            No
           </Button>
         </div>
       </div>

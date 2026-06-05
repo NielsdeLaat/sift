@@ -1,4 +1,4 @@
-import { Icon } from '@/components/icons';
+import { Icon } from "@/components/icons";
 
 interface Props {
   totalQuestions: number;
@@ -22,9 +22,9 @@ export function LessonHeader({ totalQuestions, answers, onClose }: Props) {
           <div
             key={i}
             className={[
-              'h-2 flex-1 rounded-full transition-colors duration-300',
-              answers[i] !== null ? 'bg-primary' : 'bg-contrast-dark/30',
-            ].join(' ')}
+              "h-2 flex-1 rounded-full transition-colors duration-300",
+              answers[i] !== null ? "bg-accent" : "bg-contrast-dark/30",
+            ].join(" ")}
           />
         ))}
       </div>

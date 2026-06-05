@@ -16,7 +16,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   yes:
     'bg-primary text-contrast rounded-full w-36 h-10 shadow-inner-top hover:bg-primary/90 active:bg-primary/80',
   no:
-    'border-2 border-accent text-accent rounded-full w-36 h-10 hover:bg-accent/10 active:bg-accent/20',
+    'bg-primary text-contrast rounded-full w-36 h-10 hover:bg-primary/90 active:bg-primary/80',
   circle:
     'bg-neutral-light w-12 h-12 rounded-full border border-neutral-border hover:bg-neutral-border active:bg-neutral-border/80',
 };
