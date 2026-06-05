@@ -1,18 +1,17 @@
-import type { UserState } from '@/data/user';
-import { getLevelFromXP, getLevelProgress } from '@/lib/levels';
-import { Icon } from '@/components/icons';
+import type { UserState } from "@/data/user";
+import { getLevelFromXP, getLevelProgress } from "@/lib/levels";
+import { Icon } from "@/components/icons";
 
 interface Props {
   user: UserState;
 }
 
 export function StatusBar({ user }: Props) {
-  const level  = getLevelFromXP(user.xp);
-  const xpPct  = getLevelProgress(user.xp);
+  const level = getLevelFromXP(user.xp);
+  const xpPct = getLevelProgress(user.xp);
 
   return (
     <header className="bg-neutral-base border-b border-neutral-light flex items-center gap-3 px-4 py-3">
-
       {/* ── Avatar + level badge ─────────────────────────────── */}
       <div className="relative shrink-0">
         <div className="w-11 h-11 rounded-full bg-neutral-light border-2 border-neutral-border flex items-center justify-center overflow-hidden">
@@ -27,7 +26,7 @@ export function StatusBar({ user }: Props) {
             <Icon name="profile" className="w-7 h-7 text-contrast-dark" />
           )}
         </div>
-        <span className="absolute -bottom-1 -left-1 bg-accent text-contrast text-[10px] font-extrabold px-1.5 py-0.5 rounded-full leading-none whitespace-nowrap">
+        <span className="absolute -bottom-1 -left-1 bg-accent text-neutral-base text-[10px] font-extrabold px-1.5 py-0.5 rounded-full leading-none whitespace-nowrap">
           Lv {level}
         </span>
       </div>
@@ -47,7 +46,9 @@ export function StatusBar({ user }: Props) {
 
       {/* ── Streak ───────────────────────────────────────────── */}
       <div className="shrink-0 flex items-center gap-1">
-        <span className="text-contrast font-extrabold text-lg leading-none">{user.streak}</span>
+        <span className="text-contrast font-extrabold text-lg leading-none">
+          {user.streak}
+        </span>
         <Icon name="flame" className="w-6 h-6 text-accent" />
       </div>
     </header>
