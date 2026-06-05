@@ -2,23 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design-system CSS variables ─────────────────────────────────────────────
-   Mirrors tailwind.config.ts tokens so SVG stroke / fill attributes and
-   arbitrary CSS can reference them without hardcoded hex values.
-   If you change a colour in tailwind.config.ts, update it here too.     */
 :root {
-  --color-primary:          theme(colors.primary.DEFAULT);
-  --color-secondary:        theme(colors.secondary.DEFAULT);
-  --color-tertiary:         theme(colors.tertiary.DEFAULT);
-  --color-background:       theme(colors.background);
-  --color-surface:          theme(colors.surface.DEFAULT);
-  --color-surface-elevated: theme(colors.surface.elevated);
-  --color-text:             theme(colors.text);
-  --color-muted:            theme(colors.muted.DEFAULT);
-  --color-muted-light:      theme(colors.muted.light);
+  --color-primary: theme(colors.primary.DEFAULT);
+  --color-primary-light: theme(colors.primary.light);
+  --color-primary-lighter: theme(colors.primary.lighter);
+  --color-accent: theme(colors.accent.DEFAULT);
+  --color-accent-green: theme(colors.accent.green);
+  --color-accent-red: theme(colors.accent.red);
+  --color-neutral-base: theme(colors.neutral.base);
+  --color-neutral-light: theme(colors.neutral.light);
+  --color-neutral-border: theme(colors.neutral.border);
+  --color-contrast: theme(colors.contrast.DEFAULT);
+  --color-contrast-dark: theme(colors.contrast.dark);
+  --color-contrast-blue: theme(colors.contrast.blue);
 }
 
-/* Smooth scrolling for the roadmap */
 html {
   scroll-behavior: smooth;
 }

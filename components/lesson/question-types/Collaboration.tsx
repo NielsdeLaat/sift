@@ -39,24 +39,24 @@ export function Collaboration({ question, locked, onAnswer }: Props) {
           </Button>
         </div>
 
-        <h2 className="text-text font-bold text-xl text-center">
+        <h2 className="text-contrast font-bold text-xl text-center">
           {question.question ?? 'Is this article telling the truth?'}
         </h2>
 
         <div className="flex gap-3 justify-center">
-          <Button
-            variant="no"
-            disabled={!hasOpened || locked}
-            onClick={() => onAnswer(question.correctAnswer === 'no')}
-          >
-            No
-          </Button>
           <Button
             variant="yes"
             disabled={!hasOpened || locked}
             onClick={() => onAnswer(question.correctAnswer === 'yes')}
           >
             Yes
+          </Button>
+          <Button
+            variant="no"
+            disabled={!hasOpened || locked}
+            onClick={() => onAnswer(question.correctAnswer === 'no')}
+          >
+            No
           </Button>
         </div>
       </div>

@@ -53,7 +53,7 @@ export function EvidenceChecking({ question, locked, onAnswer }: Props) {
         <ArticleCardView article={question.article} />
       </ExpandableCard>
 
-      <h2 className="text-text font-bold text-xl text-center">
+      <h2 className="text-contrast font-bold text-xl text-center">
         {question.question ?? 'What evidence in the article supports the headline?'}
       </h2>
 
@@ -71,13 +71,13 @@ export function EvidenceChecking({ question, locked, onAnswer }: Props) {
       {/* ── Selecting overlay ─────────────────────────────────────── */}
       {selecting && (
         <div
-          className="fixed left-1/2 -translate-x-1/2 w-full max-w-[430px] z-40 bg-background flex flex-col"
+          className="fixed left-1/2 -translate-x-1/2 w-full max-w-[430px] z-40 bg-neutral-base flex flex-col"
           style={{ top: 45, bottom: 0 }}
         >
           {/* Top bar */}
-          <div className="shrink-0 flex justify-end px-3 py-2 bg-background/95 backdrop-blur-sm border-b border-surface">
+          <div className="shrink-0 flex justify-end px-3 py-2 bg-neutral-base/95 backdrop-blur-sm border-b border-neutral-light">
             <button
-              className="w-8 h-8 rounded-full bg-surface flex items-center justify-center text-text hover:bg-surface-elevated transition-colors"
+              className="w-8 h-8 rounded-full bg-neutral-light flex items-center justify-center text-contrast hover:bg-neutral-border transition-colors"
               onClick={closeSelecting}
               aria-label="Close"
             >
@@ -91,7 +91,7 @@ export function EvidenceChecking({ question, locked, onAnswer }: Props) {
           </div>
 
           {/* Sticky bottom action bar */}
-          <div className="shrink-0 flex gap-3 px-4 py-4 bg-background border-t border-surface">
+          <div className="shrink-0 flex gap-3 px-4 py-4 bg-neutral-base border-t border-neutral-light">
             <Button variant="outlined" className="flex-1" onClick={closeSelecting}>
               Stop Selecting
             </Button>

@@ -40,13 +40,13 @@ export function SectionBanner({ sections }: Props) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="w-full text-left bg-surface border-b border-primary/30 px-4 py-2.5 flex items-center gap-3 hover:bg-surface-elevated active:bg-surface-elevated transition-colors"
+        className="w-full text-left bg-neutral-light border-b border-primary/30 px-4 py-2.5 flex items-center gap-3 hover:bg-neutral-border active:bg-neutral-border transition-colors"
       >
         <div className="flex-1 min-w-0">
           <p className="text-primary text-xs font-bold uppercase tracking-wider leading-none mb-0.5">
             {section.title}
           </p>
-          <p className="text-text text-sm font-semibold leading-tight truncate">
+          <p className="text-contrast text-sm font-semibold leading-tight truncate">
             {section.subtitle}
           </p>
         </div>

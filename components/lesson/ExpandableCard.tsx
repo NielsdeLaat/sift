@@ -22,7 +22,7 @@ export function ExpandableCard({ children }: { children: ReactNode }) {
 
         {/* Expand button */}
         <button
-          className="absolute top-2 right-2 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-text hover:bg-background/80 transition-colors"
+          className="absolute top-2 right-2 w-8 h-8 rounded-full bg-neutral-base/60 backdrop-blur-sm flex items-center justify-center text-contrast hover:bg-neutral-base/80 transition-colors"
           onClick={() => setExpanded(true)}
           aria-label="Expand"
         >
@@ -34,16 +34,16 @@ export function ExpandableCard({ children }: { children: ReactNode }) {
       <div
         className={[
           'fixed left-1/2 -translate-x-1/2 w-full max-w-[430px] z-40',
-          'bg-background overflow-y-auto',
+          'bg-neutral-base overflow-y-auto',
           'transition-transform duration-300 ease-out',
           expanded ? 'translate-y-0' : 'translate-y-full pointer-events-none',
         ].join(' ')}
         style={{ top: 45, bottom: 0 }}
       >
         {/* Sticky shrink bar */}
-        <div className="sticky top-0 z-10 flex justify-end px-3 py-2 bg-background/95 backdrop-blur-sm">
+        <div className="sticky top-0 z-10 flex justify-end px-3 py-2 bg-neutral-base/95 backdrop-blur-sm">
           <button
-            className="w-8 h-8 rounded-full bg-surface flex items-center justify-center text-text hover:bg-surface-elevated transition-colors"
+            className="w-8 h-8 rounded-full bg-neutral-light flex items-center justify-center text-contrast hover:bg-neutral-border transition-colors"
             onClick={() => setExpanded(false)}
             aria-label="Collapse"
           >

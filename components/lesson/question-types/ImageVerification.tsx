@@ -19,13 +19,13 @@ export function ImageVerification({ question, locked, onAnswer }: Props) {
 
   return (
     <div className="space-y-5">
-      <h2 className="text-text font-bold text-xl text-center leading-snug">
+      <h2 className="text-contrast font-bold text-xl text-center leading-snug">
         {question.headline}
       </h2>
       <div className="relative w-full aspect-video rounded-xl overflow-hidden">
         <ExpandableImage src={question.imageUrl} className="w-full h-full object-cover" />
       </div>
-      <p className="text-muted-light text-base text-center font-semibold">
+      <p className="text-contrast-dark text-base text-center font-semibold">
         {question.question ?? 'Does this image support the claim?'}
       </p>
       <div className="flex gap-3 justify-center">

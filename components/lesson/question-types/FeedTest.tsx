@@ -15,8 +15,8 @@ interface Props {
 function VerdictChip({ verdict }: { verdict: FeedVerdict }) {
   const styles: Record<FeedVerdict, string> = {
     true:       'bg-primary/20 text-primary border border-primary/40',
-    false:      'bg-secondary/20 text-secondary border border-secondary/40',
-    misleading: 'bg-tertiary/20 text-tertiary border border-tertiary/40',
+    false:      'bg-accent/20 text-accent border border-accent/40',
+    misleading: 'bg-accent/20 text-accent border border-accent/40',
   };
   const labels: Record<FeedVerdict, string> = {
     true: 'True', false: 'False', misleading: 'Misleading',
@@ -36,16 +36,16 @@ function FeedCard({
   return (
     <button
       onClick={onClick}
-      className="w-full text-left bg-surface rounded-2xl p-3 flex gap-3 items-start hover:bg-surface-elevated active:bg-surface-elevated transition-colors"
+      className="w-full text-left bg-neutral-light rounded-2xl p-3 flex gap-3 items-start hover:bg-neutral-border active:bg-neutral-border transition-colors"
     >
       <div className="flex-1 min-w-0 space-y-1.5">
         <div className="flex items-center justify-between gap-2">
-          <p className="text-muted text-xs font-semibold truncate">
+          <p className="text-contrast-dark text-xs font-semibold truncate">
             {post.source} · {post.timeAgo}
           </p>
           {verdict && <VerdictChip verdict={verdict} />}
         </div>
-        <p className="text-text font-bold text-sm leading-snug line-clamp-3">{post.headline}</p>
+        <p className="text-contrast font-bold text-sm leading-snug line-clamp-3">{post.headline}</p>
       </div>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -90,19 +90,19 @@ function ExpandedPost({
 
   return (
     <div
-      className="fixed left-1/2 -translate-x-1/2 w-full max-w-[430px] z-40 bg-background flex flex-col"
+      className="fixed left-1/2 -translate-x-1/2 w-full max-w-[430px] z-40 bg-neutral-base flex flex-col"
       style={{ top: 45, bottom: 0 }}
     >
       {/* Header bar */}
-      <div className="shrink-0 flex items-center gap-2 px-3 py-2 border-b border-surface bg-background/95 backdrop-blur-sm">
+      <div className="shrink-0 flex items-center gap-2 px-3 py-2 border-b border-neutral-light bg-neutral-base/95 backdrop-blur-sm">
         <button
           onClick={onBack}
-          className="w-8 h-8 rounded-full bg-surface flex items-center justify-center text-text hover:bg-surface-elevated transition-colors"
+          className="w-8 h-8 rounded-full bg-neutral-light flex items-center justify-center text-contrast hover:bg-neutral-border transition-colors"
           aria-label="Back to feed"
         >
           <Icon name="shrink" className="w-4 h-4" />
         </button>
-        <p className="text-muted text-xs font-semibold truncate">
+        <p className="text-contrast-dark text-xs font-semibold truncate">
           {post.source} · {post.timeAgo}
         </p>
       </div>
@@ -110,7 +110,7 @@ function ExpandedPost({
       {/* Scrollable article body */}
       <div className="flex-1 overflow-y-auto">
         <div className="p-4 space-y-3">
-          <h2 className="text-text font-bold text-lg leading-snug">{post.headline}</h2>
+          <h2 className="text-contrast font-bold text-lg leading-snug">{post.headline}</h2>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={post.imageUrl}
@@ -119,7 +119,7 @@ function ExpandedPost({
           />
           <div className="space-y-3">
             {post.body.split('\n\n').map((para, i) => (
-              <p key={i} className="text-muted-light text-sm leading-relaxed">{para}</p>
+              <p key={i} className="text-contrast-dark text-sm leading-relaxed">{para}</p>
             ))}
           </div>
         </div>
@@ -128,21 +128,21 @@ function ExpandedPost({
       </div>
 
       {/* Verdict bar */}
-      <div className="shrink-0 flex gap-2 px-4 py-4 bg-background border-t border-surface">
+      <div className="shrink-0 flex gap-2 px-4 py-4 bg-neutral-base border-t border-neutral-light">
         {verdictButton(
           'false', 'False',
-          'bg-secondary border-secondary text-text',
-          'border-secondary text-secondary hover:bg-secondary/10',
+          'bg-accent border-accent text-contrast',
+          'border-accent text-accent hover:bg-accent/10',
         )}
         {verdictButton(
           'true', 'True',
-          'bg-primary border-primary text-background',
+          'bg-primary border-primary text-neutral-base',
           'border-primary text-primary hover:bg-primary/10',
         )}
         {verdictButton(
           'misleading', 'Mislead.',
-          'bg-tertiary border-tertiary text-text',
-          'border-tertiary text-tertiary hover:bg-tertiary/10',
+          'bg-accent border-accent text-contrast',
+          'border-accent text-accent hover:bg-accent/10',
         )}
       </div>
     </div>
@@ -162,9 +162,9 @@ function ResultsView({
   return (
     <div className="space-y-4">
       <div className="text-center space-y-1">
-        <p className="text-muted-light text-xs font-bold uppercase tracking-widest">Results</p>
-        <p className="text-text font-bold text-4xl">{score} / {posts.length}</p>
-        <p className="text-muted-light text-sm">
+        <p className="text-contrast-dark text-xs font-bold uppercase tracking-widest">Results</p>
+        <p className="text-contrast font-bold text-4xl">{score} / {posts.length}</p>
+        <p className="text-contrast-dark text-sm">
           {score === posts.length
             ? 'Perfect — you caught them all!'
             : `${posts.length - score} incorrect`}
@@ -179,30 +179,30 @@ function ResultsView({
             <div
               key={post.id}
               className={[
-                'bg-surface rounded-2xl p-4 space-y-2 border',
-                correct ? 'border-primary/30' : 'border-secondary/30',
+                'bg-neutral-light rounded-2xl p-4 space-y-2 border',
+                correct ? 'border-primary/30' : 'border-accent/30',
               ].join(' ')}
             >
               <div className="flex items-start gap-2">
                 <Icon
                   name={correct ? 'yesCheck' : 'noX'}
-                  className={`w-5 h-5 flex-shrink-0 mt-0.5 ${correct ? 'text-primary' : 'text-secondary'}`}
+                  className={`w-5 h-5 flex-shrink-0 mt-0.5 ${correct ? 'text-primary' : 'text-accent'}`}
                 />
-                <p className="text-text font-bold text-sm leading-snug">{post.headline}</p>
+                <p className="text-contrast font-bold text-sm leading-snug">{post.headline}</p>
               </div>
 
               <div className="flex items-center gap-2 flex-wrap pl-7">
-                <span className="text-muted text-xs">You:</span>
+                <span className="text-contrast-dark text-xs">You:</span>
                 {userVerdict && <VerdictChip verdict={userVerdict} />}
                 {!correct && (
                   <>
-                    <span className="text-muted text-xs">→ Correct:</span>
+                    <span className="text-contrast-dark text-xs">→ Correct:</span>
                     <VerdictChip verdict={post.correctVerdict} />
                   </>
                 )}
               </div>
 
-              <p className="text-muted-light text-xs leading-relaxed pl-7">
+              <p className="text-contrast-dark text-xs leading-relaxed pl-7">
                 {post.explanation}
               </p>
             </div>
@@ -257,7 +257,7 @@ export function FeedTest({ question, onAnswer }: Props) {
       )}
 
       <div className="space-y-3">
-        <h2 className="text-text font-bold text-xl text-center">
+        <h2 className="text-contrast font-bold text-xl text-center">
           Read each post and judge it
         </h2>
         <div className="space-y-2">

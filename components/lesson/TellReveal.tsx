@@ -55,7 +55,7 @@ export function TellReveal({ imageUrl, tell, onConfirm }: Props) {
 
   return (
     <div className="space-y-5">
-      <h2 className="text-text font-bold text-xl text-center">
+      <h2 className="text-contrast font-bold text-xl text-center">
         {revealed ? "Here's the tell" : 'Select the tell'}
       </h2>
 
@@ -121,7 +121,7 @@ export function TellReveal({ imageUrl, tell, onConfirm }: Props) {
             Confirm
           </Button>
         ) : (
-          <p className="text-muted-light text-sm text-center">
+          <p className="text-contrast-dark text-sm text-center">
             Tap the part of the image that looks off
           </p>
         )
