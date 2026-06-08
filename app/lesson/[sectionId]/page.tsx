@@ -15,6 +15,9 @@ import { completeLesson }   from '@/lib/store';
 // Types that show their own feedback UI — skip the FeedbackBanner and advance directly.
 const SELF_CONTAINED_TYPES = new Set(['feed-test']);
 
+// A test score below this fraction shows "Try Again" instead of completing the section.
+const PASS_THRESHOLD = 0.6;
+
 export default function LessonPage() {
   const router        = useRouter();
   const { sectionId } = useParams<{ sectionId: string }>();
@@ -24,7 +27,7 @@ export default function LessonPage() {
   // Computed client-side only — Math.random() in getLessonQuestions causes
   // SSR/hydration mismatch if run in useMemo (which executes on the server too).
   const [lessonQuestions, setLessonQuestions] = useState<Question[]>([]);
-  const [answers, setAnswers]                 = useState<(boolean | null)[]>([]);
+  const [answers, setAnswers]                 = useState<(number | null)[]>([]);
 
   useEffect(() => {
     const qParam = searchParams.get('q');
@@ -45,7 +48,7 @@ export default function LessonPage() {
   }, []);
 
   const [qIndex, setQIndex]         = useState(0);
-  const [phase, setPhase]           = useState<'answering' | 'feedback' | 'complete'>('answering');
+  const [phase, setPhase]           = useState<'answering' | 'feedback' | 'complete' | 'failed'>('answering');
   const [selectedOption, setOption] = useState<number | null>(null);
 
   // Don't render until the client has selected questions
@@ -55,16 +58,15 @@ export default function LessonPage() {
   const question = lessonQuestions[qIndex];
   const locked   = answers[qIndex] !== null;
   const explanation: string | undefined =
-    'tell' in question        ? question.tell.explanation :
-    'explanation' in question ? question.explanation      :
-    undefined;
+    'explanation' in question ? (question as { explanation: string }).explanation : undefined;
 
-  function calcXp(arr: (boolean | null)[]): number {
-    return lessonQuestions.reduce((sum, q, i) => sum + (arr[i] === true ? q.xp : 0), 0);
+  function calcXp(arr: (number | null)[]): number {
+    return lessonQuestions.reduce((sum, q, i) => sum + Math.round(q.xp * (arr[i] ?? 0)), 0);
   }
 
-  function handleAnswer(isCorrect: boolean) {
-    const updated = answers.map((a, i) => (i === qIndex ? isCorrect : a));
+  function handleAnswer(score: boolean | number) {
+    const numScore = typeof score === 'boolean' ? (score ? 1 : 0) : score;
+    const updated = answers.map((a, i) => (i === qIndex ? numScore : a));
     setAnswers(updated);
     if (SELF_CONTAINED_TYPES.has(question.type)) {
       // FeedTest shows its own results screen — advance directly without FeedbackBanner.
@@ -73,11 +75,27 @@ export default function LessonPage() {
         setPhase('answering');
         setOption(null);
       } else {
-        completeLesson(calcXp(updated));
-        setPhase('complete');
+        finishLesson(updated);
       }
     } else {
       setPhase('feedback');
+    }
+  }
+
+  function finishLesson(finalAnswers: (number | null)[]) {
+    const xp = calcXp(finalAnswers);
+    const totalPossible = lessonQuestions.reduce((sum, q) => sum + q.xp, 0);
+    if (isTest) {
+      const passed = totalPossible > 0 && xp / totalPossible >= PASS_THRESHOLD;
+      if (passed) {
+        completeLesson(xp);
+        setPhase('complete');
+      } else {
+        setPhase('failed');
+      }
+    } else {
+      completeLesson(xp);
+      setPhase('complete');
     }
   }
 
@@ -89,8 +107,7 @@ export default function LessonPage() {
       setPhase('answering');
       setOption(null);
     } else {
-      completeLesson(xpEarned);
-      setPhase('complete');
+      finishLesson(answers);
     }
   }
 
@@ -104,6 +121,7 @@ export default function LessonPage() {
 
       <main className="flex-1 overflow-y-auto px-4 pt-5 pb-36">
         <QuestionRenderer
+          key={question.id}
           question={question}
           locked={locked}
           selectedOption={selectedOption}
@@ -114,7 +132,7 @@ export default function LessonPage() {
 
       {phase === 'feedback' && (
         <FeedbackBanner
-          isCorrect={answers[qIndex] as boolean}
+          isCorrect={(answers[qIndex] ?? 0) > 0}
           explanation={explanation}
           onContinue={advance}
         />
@@ -135,6 +153,21 @@ export default function LessonPage() {
           </div>
           <Button variant="primary" className="w-full max-w-xs" onClick={() => router.push('/')}>
             Continue
+          </Button>
+        </div>
+      )}
+
+      {phase === 'failed' && (
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-neutral-base/95 px-6 gap-6">
+          <Icon name="close" className="w-16 h-16 text-accent animate-glow-pulse" />
+          <div className="text-center space-y-1">
+            <h1 className="text-contrast font-bold text-3xl">Not quite</h1>
+            <p className="text-contrast-dark text-base">
+              You need {Math.round(PASS_THRESHOLD * 100)}% to pass this test. Try again!
+            </p>
+          </div>
+          <Button variant="primary" className="w-full max-w-xs" onClick={() => router.push('/')}>
+            Try Again
           </Button>
         </div>
       )}

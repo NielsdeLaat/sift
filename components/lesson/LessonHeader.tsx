@@ -2,7 +2,7 @@ import { Icon } from "@/components/icons";
 
 interface Props {
   totalQuestions: number;
-  answers: (boolean | null)[];
+  answers: (number | null)[];
   onClose: () => void;
 }
 
