@@ -1,0 +1,67 @@
+import type { WhoSaysQuestion } from '@/data/questions';
+import { Button } from '@/components/Button';
+
+interface Props {
+  question: WhoSaysQuestion;
+  locked: boolean;
+  selectedOption: number | null;
+  onSelectOption: (i: number) => void;
+  onAnswer: (isCorrect: boolean) => void;
+}
+
+function highlightSource(excerpt: string, source: string): React.ReactNode {
+  const idx = excerpt.indexOf(source);
+  if (idx === -1) return excerpt;
+  return (
+    <>
+      {excerpt.slice(0, idx)}
+      <mark className="bg-primary/20 text-primary rounded px-0.5 not-italic">{source}</mark>
+      {excerpt.slice(idx + source.length)}
+    </>
+  );
+}
+
+export function WhoSays({ question, locked, selectedOption, onSelectOption, onAnswer }: Props) {
+  return (
+    <div className="space-y-5">
+      <div className="bg-neutral-light rounded-2xl p-4 border-l-4 border-primary/40">
+        <p className="text-contrast text-sm leading-relaxed italic">
+          {highlightSource(question.excerpt, question.highlightedSource)}
+        </p>
+      </div>
+
+      <h2 className="text-contrast font-bold text-xl text-center">
+        {question.question ?? 'How reliable is this source?'}
+      </h2>
+
+      <div className="space-y-2">
+        {question.options.map((option, i) => (
+          <button
+            key={i}
+            disabled={locked}
+            onClick={() => onSelectOption(i)}
+            className={[
+              'w-full text-left rounded-xl border-2 px-4 py-3 text-sm font-semibold transition-colors',
+              'disabled:pointer-events-none',
+              selectedOption === i
+                ? 'border-primary bg-primary/15 text-contrast'
+                : 'border-contrast-dark/40 bg-neutral-light text-contrast-dark hover:border-primary/50',
+            ].join(' ')}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+
+      {!locked && selectedOption !== null && (
+        <Button
+          variant="primary"
+          className="w-full"
+          onClick={() => onAnswer(selectedOption === question.correctIndex)}
+        >
+          Confirm
+        </Button>
+      )}
+    </div>
+  );
+}

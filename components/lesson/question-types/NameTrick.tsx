@@ -1,26 +1,45 @@
-import type { ManipulationTacticsQuestion } from '@/data/questions';
-import { ArticleCardView } from '@/components/lesson/ArticleCardView';
-import { ExpandableCard }  from '@/components/lesson/ExpandableCard';
+import type { NameTrickQuestion } from '@/data/questions';
+import { ExpandableCard } from '@/components/lesson/ExpandableCard';
 import { Button } from '@/components/Button';
 
 interface Props {
-  question: ManipulationTacticsQuestion;
+  question: NameTrickQuestion;
   locked: boolean;
   selectedOption: number | null;
   onSelectOption: (i: number) => void;
   onAnswer: (isCorrect: boolean) => void;
 }
 
-export function ManipulationTactics({ question, locked, selectedOption, onSelectOption, onAnswer }: Props) {
+export function NameTrick({ question, locked, selectedOption, onSelectOption, onAnswer }: Props) {
+  const { post } = question;
   return (
     <div className="space-y-5">
       <ExpandableCard>
-        <ArticleCardView article={question.article} />
+        <div className="bg-neutral-light rounded-2xl p-4 space-y-3">
+          <div className="flex items-center gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={post.avatarUrl}
+              alt=""
+              className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+            />
+            <div className="min-w-0">
+              <p className="text-contrast font-bold text-sm leading-tight truncate">{post.sourceName}</p>
+              <p className="text-contrast-dark text-xs">{post.handle} · {post.followerCount}</p>
+            </div>
+          </div>
+          <p className="text-contrast text-sm leading-relaxed">{post.postText}</p>
+          {post.postImageUrl && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={post.postImageUrl} alt="" className="w-full rounded-xl object-cover max-h-44" />
+          )}
+        </div>
       </ExpandableCard>
 
       <h2 className="text-contrast font-bold text-xl text-center">
-        {question.question ?? 'In what way is this article influencing the reader?'}
+        {question.question ?? 'Which technique is this post using?'}
       </h2>
+
       <div className="space-y-2">
         {question.options.map((option, i) => (
           <button
@@ -39,6 +58,7 @@ export function ManipulationTactics({ question, locked, selectedOption, onSelect
           </button>
         ))}
       </div>
+
       {!locked && selectedOption !== null && (
         <Button
           variant="primary"

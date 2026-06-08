@@ -1,17 +1,18 @@
 import type { Question } from '@/data/questions';
-import { Collaboration }       from './question-types/Collaboration';
-import { ManipulationTactics } from './question-types/ManipulationTactics';
-import { EvidenceChecking }    from './question-types/EvidenceChecking';
-import { AiDetection }         from './question-types/AiDetection';
-import { SourceInvestigation } from './question-types/SourceInvestigation';
-import { ImageVerification }   from './question-types/ImageVerification';
-import { FeedTest }            from './question-types/FeedTest';
+import { NameTrick }      from './question-types/NameTrick';
+import { RealOrAi }       from './question-types/RealOrAi';
+import { LeaveThePage }   from './question-types/LeaveThePage';
+import { WhoSays }        from './question-types/WhoSays';
+import { UnderTheHood }   from './question-types/UnderTheHood';
+import { WhenOrWhere }    from './question-types/WhenOrWhere';
+import { WeakLink }       from './question-types/WeakLink';
+import { FeedTest }       from './question-types/FeedTest';
 
 interface Props {
   question: Question;
   locked: boolean;
   selectedOption: number | null;
-  onAnswer: (isCorrect: boolean) => void;
+  onAnswer: (score: boolean | number) => void;
   onSelectOption: (i: number) => void;
 }
 
@@ -23,11 +24,9 @@ export function QuestionRenderer({
   onSelectOption,
 }: Props) {
   switch (question.type) {
-    case 'collaboration':
-      return <Collaboration question={question} locked={locked} onAnswer={onAnswer} />;
-    case 'manipulation-tactics':
+    case 'name-trick':
       return (
-        <ManipulationTactics
+        <NameTrick
           question={question}
           locked={locked}
           selectedOption={selectedOption}
@@ -35,14 +34,50 @@ export function QuestionRenderer({
           onAnswer={onAnswer}
         />
       );
-    case 'evidence-checking':
-      return <EvidenceChecking question={question} locked={locked} onAnswer={onAnswer} />;
-    case 'ai-detection':
-      return <AiDetection question={question} locked={locked} onAnswer={onAnswer} />;
-    case 'source-investigation':
-      return <SourceInvestigation question={question} locked={locked} onAnswer={onAnswer} />;
-    case 'image-verification':
-      return <ImageVerification question={question} locked={locked} onAnswer={onAnswer} />;
+    case 'real-or-ai':
+      return <RealOrAi question={question} locked={locked} onAnswer={onAnswer} />;
+    case 'leave-the-page':
+      return (
+        <LeaveThePage
+          question={question}
+          locked={locked}
+          selectedOption={selectedOption}
+          onSelectOption={onSelectOption}
+          onAnswer={onAnswer}
+        />
+      );
+    case 'who-says':
+      return (
+        <WhoSays
+          question={question}
+          locked={locked}
+          selectedOption={selectedOption}
+          onSelectOption={onSelectOption}
+          onAnswer={onAnswer}
+        />
+      );
+    case 'under-the-hood':
+      return (
+        <UnderTheHood
+          question={question}
+          locked={locked}
+          selectedOption={selectedOption}
+          onSelectOption={onSelectOption}
+          onAnswer={onAnswer}
+        />
+      );
+    case 'when-or-where':
+      return (
+        <WhenOrWhere
+          question={question}
+          locked={locked}
+          selectedOption={selectedOption}
+          onSelectOption={onSelectOption}
+          onAnswer={onAnswer}
+        />
+      );
+    case 'weak-link':
+      return <WeakLink question={question} locked={locked} onAnswer={onAnswer} />;
     case 'feed-test':
       return <FeedTest question={question} onAnswer={onAnswer} />;
   }
