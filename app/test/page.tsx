@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { questions as allQuestions } from '@/data/questions';
 import type { Question } from '@/data/questions';
+import { LESSON_SIZE }      from '@/lib/lesson';
 import { LessonHeader }     from '@/components/lesson/LessonHeader';
 import { QuestionRenderer } from '@/components/lesson/QuestionRenderer';
 import { FeedbackBanner }   from '@/components/lesson/FeedbackBanner';
@@ -17,7 +18,7 @@ export default function TestPage() {
   const searchParams = useSearchParams();
 
   const [lessonQuestions, setLessonQuestions] = useState<Question[]>([]);
-  const [answers, setAnswers]                 = useState<(boolean | null)[]>([]);
+  const [answers, setAnswers]                 = useState<(number | null)[]>([]);
 
   useEffect(() => {
     const qParam = searchParams.get('q');
@@ -27,11 +28,11 @@ export default function TestPage() {
       const filtered = ids
         .map(id => allQuestions.find(q => q.id === id))
         .filter((q): q is Question => q !== undefined);
-      questions = filtered.length > 0 ? filtered : allQuestions.filter(q => q.type !== 'feed-test').slice(0, 3);
+      questions = filtered.length > 0 ? filtered : allQuestions.filter(q => q.type !== 'feed-test').slice(0, LESSON_SIZE);
     } else {
       questions = [...allQuestions.filter(q => q.type !== 'feed-test')]
         .sort(() => Math.random() - 0.5)
-        .slice(0, 3);
+        .slice(0, LESSON_SIZE);
     }
     setLessonQuestions(questions);
     setAnswers(Array(questions.length).fill(null));
@@ -48,16 +49,15 @@ export default function TestPage() {
   const question = lessonQuestions[qIndex];
   const locked   = answers[qIndex] !== null;
   const explanation: string | undefined =
-    'tell' in question        ? question.tell.explanation :
-    'explanation' in question ? question.explanation      :
-    undefined;
+    'explanation' in question ? (question as { explanation: string }).explanation : undefined;
 
-  function calcXp(arr: (boolean | null)[]): number {
-    return lessonQuestions.reduce((sum, q, i) => sum + (arr[i] === true ? q.xp : 0), 0);
+  function calcXp(arr: (number | null)[]): number {
+    return lessonQuestions.reduce((sum, q, i) => sum + Math.round(q.xp * (arr[i] ?? 0)), 0);
   }
 
-  function handleAnswer(isCorrect: boolean) {
-    const updated = answers.map((a, i) => (i === qIndex ? isCorrect : a));
+  function handleAnswer(score: boolean | number) {
+    const numScore = typeof score === 'boolean' ? (score ? 1 : 0) : score;
+    const updated = answers.map((a, i) => (i === qIndex ? numScore : a));
     setAnswers(updated);
     if (SELF_CONTAINED_TYPES.has(question.type)) {
       if (qIndex < TOTAL - 1) {
@@ -94,6 +94,7 @@ export default function TestPage() {
 
       <main className="flex-1 overflow-y-auto px-4 pt-5 pb-36">
         <QuestionRenderer
+          key={question.id}
           question={question}
           locked={locked}
           selectedOption={selectedOption}
@@ -104,7 +105,7 @@ export default function TestPage() {
 
       {phase === 'feedback' && (
         <FeedbackBanner
-          isCorrect={answers[qIndex] as boolean}
+          isCorrect={(answers[qIndex] ?? 0) > 0}
           explanation={explanation}
           onContinue={advance}
         />
