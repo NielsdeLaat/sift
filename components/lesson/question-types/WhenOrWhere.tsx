@@ -23,9 +23,9 @@ export function WhenOrWhere({ question, locked, selectedOption, onSelectOption, 
         </div>
       )}
 
-      {question.postText && (
+      {question.text && (
         <div className="bg-neutral-light rounded-2xl p-4">
-          <p className="text-contrast text-sm leading-relaxed">{question.postText}</p>
+          <p className="text-contrast text-sm leading-relaxed">{question.text}</p>
         </div>
       )}
 

@@ -1,7 +1,16 @@
 'use client';
 import { useState } from 'react';
-import type { WeakLinkQuestion } from '@/data/questions';
+import type { WeakLinkQuestion, WeakPillar } from '@/data/questions';
+
+const PILLARS: { pillar: WeakPillar; label: string }[] = [
+  { pillar: 'who',   label: 'Who?'   },
+  { pillar: 'what',  label: 'What?'  },
+  { pillar: 'when',  label: 'When?'  },
+  { pillar: 'where', label: 'Where?' },
+  { pillar: 'why',   label: 'Why?'   },
+];
 import { ExpandableCard } from '@/components/lesson/ExpandableCard';
+import { ContentCard } from '@/components/lesson/ContentCard';
 import { Button } from '@/components/Button';
 
 interface Props {
@@ -11,45 +20,33 @@ interface Props {
 }
 
 export function WeakLink({ question, locked, onAnswer }: Props) {
-  const [step, setStep] = useState<'pillar' | 'verdict'>('pillar');
+  const [step, setStep] = useState<'pillar' | 'explain'>('pillar');
   const [selectedPillar, setSelectedPillar] = useState<number | null>(null);
-  const [selectedVerdict, setSelectedVerdict] = useState<number | null>(null);
-
-  const { post } = question;
+  const [explanationText, setExplanationText] = useState('');
 
   function handlePillarTap(i: number) {
     if (locked || selectedPillar !== null) return;
     setSelectedPillar(i);
-    if (question.pillars[i].pillar === question.correctPillar) {
-      setStep('verdict');
-    } else {
+    const correct = PILLARS[i].pillar === question.correctPillar;
+    if (!correct) {
       onAnswer(0);
+      return;
+    }
+    if (question.difficulty === 1) {
+      onAnswer(1);
+    } else {
+      setStep('explain');
     }
   }
 
-  function handleVerdictConfirm() {
-    if (selectedVerdict === null) return;
-    onAnswer(selectedVerdict === question.correctVerdictIndex ? 1 : 0.5);
+  function handleExplainConfirm() {
+    onAnswer(1);
   }
 
   return (
     <div className="space-y-5">
       <ExpandableCard>
-        <div className="bg-neutral-light rounded-2xl p-4 space-y-3">
-          <div className="flex items-center gap-3">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={post.avatarUrl}
-              alt=""
-              className="w-10 h-10 rounded-full object-cover flex-shrink-0"
-            />
-            <div className="min-w-0">
-              <p className="text-contrast font-bold text-sm leading-tight truncate">{post.sourceName}</p>
-              <p className="text-contrast-dark text-xs">{post.handle} · {post.followerCount}</p>
-            </div>
-          </div>
-          <p className="text-contrast text-sm leading-relaxed">{post.postText}</p>
-        </div>
+        <ContentCard content={question.content} />
       </ExpandableCard>
 
       {step === 'pillar' ? (
@@ -59,9 +56,9 @@ export function WeakLink({ question, locked, onAnswer }: Props) {
           </h2>
 
           <div className="space-y-2">
-            {question.pillars.map((pillar, i) => (
+            {PILLARS.map((pillar, i) => (
               <button
-                key={i}
+                key={pillar.pillar}
                 disabled={locked || selectedPillar !== null}
                 onClick={() => handlePillarTap(i)}
                 className={[
@@ -79,38 +76,22 @@ export function WeakLink({ question, locked, onAnswer }: Props) {
         </>
       ) : (
         <>
-          <div className="bg-primary/10 rounded-2xl p-4 border border-primary/30">
-            <p className="text-primary text-sm font-semibold leading-relaxed">
-              {question.pillarExplanation}
-            </p>
-          </div>
-
           <h2 className="text-contrast font-bold text-xl text-center">
-            So what&apos;s your verdict?
+            Why is this pillar the weak link?
           </h2>
 
-          <div className="space-y-2">
-            {question.verdictOptions.map((option, i) => (
-              <button
-                key={i}
-                disabled={locked}
-                onClick={() => setSelectedVerdict(i)}
-                className={[
-                  'w-full text-left rounded-xl border-2 px-4 py-3 text-sm font-semibold transition-colors',
-                  'disabled:pointer-events-none',
-                  selectedVerdict === i
-                    ? 'border-primary bg-primary/15 text-contrast'
-                    : 'border-contrast-dark/40 bg-neutral-light text-contrast-dark hover:border-primary/50',
-                ].join(' ')}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
+          <textarea
+            disabled={locked}
+            value={explanationText}
+            onChange={(e) => setExplanationText(e.target.value)}
+            placeholder="Explain in your own words…"
+            rows={4}
+            className="w-full rounded-xl border-2 border-contrast-dark/40 bg-neutral-light px-4 py-3 text-sm text-contrast placeholder:text-contrast-dark/50 focus:border-primary focus:outline-none resize-none disabled:pointer-events-none"
+          />
 
-          {!locked && selectedVerdict !== null && (
-            <Button variant="primary" className="w-full" onClick={handleVerdictConfirm}>
-              Confirm verdict
+          {!locked && explanationText.trim().length > 0 && (
+            <Button variant="primary" className="w-full" onClick={handleExplainConfirm}>
+              Submit
             </Button>
           )}
         </>
