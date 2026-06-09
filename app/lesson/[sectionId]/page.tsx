@@ -33,17 +33,7 @@ export default function LessonPage() {
 
   useEffect(() => {
     const allQuestions = getQuestions(lang);
-    const qParam = searchParams.get('q');
-    let questions: Question[];
-    if (qParam) {
-      const ids      = qParam.split(',').map(s => s.trim());
-      const filtered = ids
-        .map(id => allQuestions.find(q => q.id === id))
-        .filter((q): q is Question => q !== undefined);
-      questions = filtered.length > 0 ? filtered : getLessonQuestions(sectionId, isTest, allQuestions);
-    } else {
-      questions = getLessonQuestions(sectionId, isTest, allQuestions);
-    }
+    const questions = getLessonQuestions(sectionId, isTest, allQuestions);
     // Batch both updates so the component never renders with mismatched lengths
     setLessonQuestions(questions);
     setAnswers(Array(questions.length).fill(null));

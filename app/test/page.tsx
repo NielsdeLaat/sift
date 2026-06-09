@@ -34,16 +34,16 @@ function TestPageContent() {
   useEffect(() => {
     const allQuestions = getQuestions(lang);
     const q = searchParams.get('q') ?? '';
-    const match = q.match(/^(.+)-d(\d+)$/);
-    const type       = match ? match[1] : q || null;
-    const difficulty = match ? parseInt(match[2], 10) : undefined;
 
-    const pool = allQuestions.filter(r =>
-      (!type || r.type === type) &&
-      (difficulty === undefined || r.difficulty === difficulty)
-    );
-    const pick = pool[Math.floor(Math.random() * pool.length)];
-    const questions = pick ? [pick] : [];
+    let questions: Question[];
+    const exact = allQuestions.find(r => r.id === q);
+    if (exact) {
+      questions = [exact];
+    } else {
+      const pool = allQuestions.filter(r => r.id.startsWith(q + '-'));
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      questions = pick ? [pick] : [];
+    }
 
     setLessonQuestions(questions);
     setAnswers(Array(questions.length).fill(null));
