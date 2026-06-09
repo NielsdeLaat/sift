@@ -26,8 +26,6 @@ export function getCumulativeTypeConfig(sectionId: string): Map<QuestionType, nu
 }
 
 export function getLessonQuestions(sectionId: string, isTest: boolean, all: Question[]): Question[] {
-  const currentIdx = sectionIndex(sectionId);
-
   if (isTest) {
     const pinned = all.filter(
       (q): q is FeedTestQuestion => q.type === 'feed-test' && q.sectionId === sectionId,
@@ -40,11 +38,7 @@ export function getLessonQuestions(sectionId: string, isTest: boolean, all: Ques
   const available = all.filter(q => {
     if (q.type === 'feed-test') return false;
     const maxDifficulty = typeConfig.get(q.type);
-    return (
-      maxDifficulty !== undefined &&
-      sectionIndex(q.introSection) <= currentIdx &&
-      q.difficulty <= maxDifficulty
-    );
+    return maxDifficulty !== undefined && q.difficulty <= maxDifficulty;
   });
 
   return [...available].sort(() => Math.random() - 0.5).slice(0, LESSON_SIZE);
