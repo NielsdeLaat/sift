@@ -1,4 +1,7 @@
+'use client';
+
 import { Icon } from "@/components/icons";
+import { useLanguage } from "@/components/LanguageProvider";
 
 interface Props {
   totalQuestions: number;
@@ -7,12 +10,13 @@ interface Props {
 }
 
 export function LessonHeader({ totalQuestions, answers, onClose }: Props) {
+  const { t } = useLanguage();
   return (
     <div className="sticky top-0 z-20 bg-neutral-base flex items-center gap-3 px-4 py-3 border-b border-neutral-light">
       <button
         onClick={onClose}
         className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-contrast-dark hover:text-contrast transition-colors"
-        aria-label="Exit lesson"
+        aria-label={t.header.exitLesson}
       >
         <Icon name="close" className="w-5 h-5" />
       </button>

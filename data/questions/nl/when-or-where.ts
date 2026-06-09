@@ -1,0 +1,55 @@
+import type { WhenOrWhereQuestion } from '../../questions';
+
+export const whenOrWhereQuestions: WhenOrWhereQuestion[] = [
+  {
+    id: 'wow-d1-1',
+    type: 'when-or-where',
+    xp: 60,
+    difficulty: 1,
+    subtype: 'when',
+    imageUrl: 'https://picsum.photos/seed/wow-d1-1/800/450',
+    text: 'Placeholder tekst voor wanneer-of-waar vraag moeilijkheid 1.',
+    options: [
+      'Vorige week (zoals beweerd)',
+      '2023 - een eerder evenement',
+      '2019 - een ander land',
+      '2015 - een historisch evenement',
+    ],
+    correctIndex: 3,
+    explanation: 'Placeholder uitleg voor moeilijkheid 1.',
+  },
+  {
+    id: 'wow-d2-1',
+    type: 'when-or-where',
+    xp: 70,
+    difficulty: 2,
+    subtype: 'where',
+    imageUrl: 'https://picsum.photos/seed/wow-d2-1/800/450',
+    text: 'Placeholder tekst voor wanneer-of-waar vraag moeilijkheid 2.',
+    options: [
+      'Locatie A (zoals beweerd)',
+      'Locatie B - een andere plek',
+      'Locatie C - een ander land',
+      'Locatie D - een andere regio',
+    ],
+    correctIndex: 2,
+    explanation: 'Placeholder uitleg voor moeilijkheid 2.',
+  },
+  {
+    id: 'wow-d3-1',
+    type: 'when-or-where',
+    xp: 80,
+    difficulty: 3,
+    subtype: 'where',
+    imageUrl: 'https://picsum.photos/seed/wow-d3-1/800/450',
+    text: 'Placeholder tekst voor wanneer-of-waar vraag moeilijkheid 3.',
+    options: [
+      'Locatie A (zoals beweerd)',
+      'Locatie B',
+      'Locatie C',
+      'Locatie D',
+    ],
+    correctIndex: 3,
+    explanation: 'Placeholder uitleg voor moeilijkheid 3.',
+  },
+];

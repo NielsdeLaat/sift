@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import type { Section } from '@/data/roadmap';
 import { Icon } from '@/components/icons';
+import { useLanguage } from '@/components/LanguageProvider';
+import { getSectionText } from '@/lib/i18n';
 
 interface Props {
   sections: Section[];
@@ -20,31 +22,38 @@ function getSectionStatus(section: Section): 'completed' | 'active' | 'locked' {
 }
 
 function StatusBadge({ status }: { status: 'completed' | 'active' | 'locked' }) {
+  const { t } = useLanguage();
   if (status === 'completed') {
     return (
       <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-        Done
+        {t.sectionInfo.done}
       </span>
     );
   }
   if (status === 'active') {
     return (
       <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-        Current
+        {t.sectionInfo.current}
       </span>
     );
   }
   return (
     <span className="text-xs font-bold text-contrast-dark bg-neutral-border px-2 py-0.5 rounded-full">
-      Locked
+      {t.sectionInfo.locked}
     </span>
   );
 }
 
 export function SectionInfoModal({ sections, currentIdx, onClose }: Props) {
+  const { lang, t } = useLanguage();
   const [tab, setTab] = useState<Tab>('this');
   const current = sections[currentIdx];
   const totalXp = current.nodes.reduce((sum, n) => sum + n.xp, 0);
+  const currentText = getSectionText(current.id, lang, {
+    title: current.title,
+    subtitle: current.subtitle,
+    description: current.description,
+  });
 
   return (
     <>
@@ -60,9 +69,9 @@ export function SectionInfoModal({ sections, currentIdx, onClose }: Props) {
         <div className="flex items-start justify-between px-5 pt-4 pb-3">
           <div className="flex-1 min-w-0 pr-3">
             <p className="text-primary text-xs font-bold uppercase tracking-wider leading-none mb-0.5">
-              {current.title}
+              {currentText.title}
             </p>
-            <p className="text-contrast font-bold text-lg leading-tight">{current.subtitle}</p>
+            <p className="text-contrast font-bold text-lg leading-tight">{currentText.subtitle}</p>
           </div>
           <button
             onClick={onClose}
@@ -75,16 +84,16 @@ export function SectionInfoModal({ sections, currentIdx, onClose }: Props) {
 
         {/* Tabs */}
         <div className="flex gap-1 mx-5 p-1 bg-neutral-light rounded-xl mb-4">
-          {(['this', 'all'] as Tab[]).map(t => (
+          {(['this', 'all'] as Tab[]).map(tabKey => (
             <button
-              key={t}
-              onClick={() => setTab(t)}
+              key={tabKey}
+              onClick={() => setTab(tabKey)}
               className={[
                 'flex-1 py-2 rounded-lg text-sm font-semibold transition-colors',
-                tab === t ? 'bg-neutral-base text-contrast shadow-sm' : 'text-contrast-dark hover:text-contrast',
+                tab === tabKey ? 'bg-neutral-base text-contrast shadow-sm' : 'text-contrast-dark hover:text-contrast',
               ].join(' ')}
             >
-              {t === 'this' ? 'This Section' : 'All Sections'}
+              {tabKey === 'this' ? t.sectionInfo.thisSection : t.sectionInfo.allSections}
             </button>
           ))}
         </div>
@@ -93,10 +102,12 @@ export function SectionInfoModal({ sections, currentIdx, onClose }: Props) {
         <div className="px-5 pb-6 overflow-y-auto max-h-[60vh] space-y-3">
           {tab === 'this' ? (
             <>
-              <p className="text-contrast-dark text-sm leading-relaxed">{current.description}</p>
+              <p className="text-contrast-dark text-sm leading-relaxed">{currentText.description}</p>
               <div className="flex items-center gap-2 bg-neutral-light rounded-xl px-4 py-3">
                 <Icon name="zap" className="w-5 h-5 text-accent flex-shrink-0" />
-                <span className="text-contrast font-semibold text-sm">{totalXp} XP available in this section</span>
+                <span className="text-contrast font-semibold text-sm">
+                  {t.sectionInfo.xpAvailable(totalXp)}
+                </span>
               </div>
             </>
           ) : (
@@ -105,6 +116,11 @@ export function SectionInfoModal({ sections, currentIdx, onClose }: Props) {
                 const status = getSectionStatus(section);
                 const sectionXp = section.nodes.reduce((s, n) => s + n.xp, 0);
                 const isActive = status === 'active';
+                const sectionText = getSectionText(section.id, lang, {
+                  title: section.title,
+                  subtitle: section.subtitle,
+                  description: section.description,
+                });
                 return (
                   <div
                     key={section.id}
@@ -115,15 +131,17 @@ export function SectionInfoModal({ sections, currentIdx, onClose }: Props) {
                   >
                     <div className="flex items-center justify-between gap-2">
                       <p className={`text-xs font-bold uppercase tracking-wider ${isActive ? 'text-primary' : 'text-contrast-dark'}`}>
-                        {section.title}
+                        {sectionText.title}
                       </p>
                       <StatusBadge status={status} />
                     </div>
-                    <p className="text-contrast font-semibold text-sm leading-snug">{section.subtitle}</p>
-                    <p className="text-contrast-dark text-xs leading-relaxed">{section.description}</p>
+                    <p className="text-contrast font-semibold text-sm leading-snug">{sectionText.subtitle}</p>
+                    <p className="text-contrast-dark text-xs leading-relaxed">{sectionText.description}</p>
                     <div className="flex items-center gap-1.5 pt-0.5">
                       <Icon name="zap" className="w-3.5 h-3.5 text-accent" />
-                      <span className="text-contrast-dark text-xs font-semibold">{sectionXp} XP</span>
+                      <span className="text-contrast-dark text-xs font-semibold">
+                        {t.sectionInfo.xpShort(sectionXp)}
+                      </span>
                     </div>
                   </div>
                 );

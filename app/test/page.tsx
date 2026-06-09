@@ -2,28 +2,39 @@
 
 export const dynamic = 'force-dynamic';
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { questions as allQuestions } from '@/data/questions';
+import { getQuestions } from '@/data/questions';
 import type { Question } from '@/data/questions';
 import { LessonHeader }     from '@/components/lesson/LessonHeader';
 import { QuestionRenderer } from '@/components/lesson/QuestionRenderer';
 import { FeedbackBanner }   from '@/components/lesson/FeedbackBanner';
 import { Icon }             from '@/components/icons';
 import { Button }           from '@/components/Button';
+import { useLanguage }      from '@/components/LanguageProvider';
 
 const SELF_CONTAINED_TYPES = new Set(['feed-test']);
 
 export default function TestPage() {
+  return (
+    <Suspense>
+      <TestPageContent />
+    </Suspense>
+  );
+}
+
+function TestPageContent() {
   const router       = useRouter();
   const searchParams = useSearchParams();
+  const { lang, t }  = useLanguage();
 
   const [lessonQuestions, setLessonQuestions] = useState<Question[]>([]);
   const [answers, setAnswers]                 = useState<(number | null)[]>([]);
 
   useEffect(() => {
+    const allQuestions = getQuestions(lang);
     const q = searchParams.get('q') ?? '';
-    const match = q.match(/^(.+)-d(\d+)$/) ;
+    const match = q.match(/^(.+)-d(\d+)$/);
     const type       = match ? match[1] : q || null;
     const difficulty = match ? parseInt(match[2], 10) : undefined;
 
@@ -37,7 +48,7 @@ export default function TestPage() {
     setLessonQuestions(questions);
     setAnswers(Array(questions.length).fill(null));
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [lang]);
 
   const [qIndex, setQIndex]         = useState(0);
   const [phase, setPhase]           = useState<'answering' | 'feedback' | 'complete'>('answering');
@@ -115,15 +126,15 @@ export default function TestPage() {
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-neutral-base/95 px-6 gap-6">
           <Icon name="trophy" className="w-16 h-16 text-primary animate-glow-pulse" />
           <div className="text-center space-y-1">
-            <h1 className="text-contrast font-bold text-3xl">Done!</h1>
-            <p className="text-contrast-dark text-base">Test run complete.</p>
+            <h1 className="text-contrast font-bold text-3xl">{t.pages.testDone}</h1>
+            <p className="text-contrast-dark text-base">{t.pages.testRunComplete}</p>
           </div>
           <div className="flex items-center gap-2 bg-neutral-light rounded-2xl px-6 py-4">
             <Icon name="zap" className="w-7 h-7 text-accent" />
             <span className="text-contrast font-bold text-2xl">+{xpEarned} XP</span>
           </div>
           <Button variant="primary" className="w-full max-w-xs" onClick={() => router.push('/')}>
-            Continue
+            {t.lesson.continue}
           </Button>
         </div>
       )}

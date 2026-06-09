@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import type { Section } from '@/data/roadmap';
 import { Icon } from '@/components/icons';
 import { SectionInfoModal } from '@/components/SectionInfoModal';
+import { useLanguage } from '@/components/LanguageProvider';
+import { getSectionText } from '@/lib/i18n';
 
 // Combined height of the sticky block (StatusBar ~56px + this banner ~52px).
 // Sentinels whose getBoundingClientRect().top is below this threshold are
@@ -15,6 +17,7 @@ interface Props {
 }
 
 export function SectionBanner({ sections }: Props) {
+  const { lang } = useLanguage();
   const [currentIdx, setCurrentIdx] = useState(0);
   const [open, setOpen]             = useState(false);
 
@@ -35,6 +38,11 @@ export function SectionBanner({ sections }: Props) {
   }, [sections]);
 
   const section = sections[currentIdx];
+  const sectionText = getSectionText(section.id, lang, {
+    title: section.title,
+    subtitle: section.subtitle,
+    description: section.description,
+  });
 
   return (
     <>
@@ -44,10 +52,10 @@ export function SectionBanner({ sections }: Props) {
       >
         <div className="flex-1 min-w-0">
           <p className="text-primary text-xs font-bold uppercase tracking-wider leading-none mb-0.5">
-            {section.title}
+            {sectionText.title}
           </p>
           <p className="text-contrast text-sm font-semibold leading-tight truncate">
-            {section.subtitle}
+            {sectionText.subtitle}
           </p>
         </div>
         <Icon name="book" className="w-5 h-5 text-primary flex-shrink-0" />

@@ -1,0 +1,55 @@
+import type { WhenOrWhereQuestion } from '../../questions';
+
+export const whenOrWhereQuestions: WhenOrWhereQuestion[] = [
+  {
+    id: 'wow-d1-1',
+    type: 'when-or-where',
+    xp: 60,
+    difficulty: 1,
+    subtype: 'when',
+    imageUrl: 'https://picsum.photos/seed/wow-d1-1/800/450',
+    text: 'Placeholder text for when-or-where question difficulty 1.',
+    options: [
+      'Last week (as claimed)',
+      '2023 — an earlier event',
+      '2019 — a different country',
+      '2015 — a historical event',
+    ],
+    correctIndex: 3,
+    explanation: 'Placeholder explanation for difficulty 1.',
+  },
+  {
+    id: 'wow-d2-1',
+    type: 'when-or-where',
+    xp: 70,
+    difficulty: 2,
+    subtype: 'where',
+    imageUrl: 'https://picsum.photos/seed/wow-d2-1/800/450',
+    text: 'Placeholder text for when-or-where question difficulty 2.',
+    options: [
+      'Location A (as claimed)',
+      'Location B — a different place',
+      'Location C — a different country',
+      'Location D — a different region',
+    ],
+    correctIndex: 2,
+    explanation: 'Placeholder explanation for difficulty 2.',
+  },
+  {
+    id: 'wow-d3-1',
+    type: 'when-or-where',
+    xp: 80,
+    difficulty: 3,
+    subtype: 'where',
+    imageUrl: 'https://picsum.photos/seed/wow-d3-1/800/450',
+    text: 'Placeholder text for when-or-where question difficulty 3.',
+    options: [
+      'Location A (as claimed)',
+      'Location B',
+      'Location C',
+      'Location D',
+    ],
+    correctIndex: 3,
+    explanation: 'Placeholder explanation for difficulty 3.',
+  },
+];

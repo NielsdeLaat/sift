@@ -1,4 +1,4 @@
-import type { WeakLinkQuestion } from "../questions";
+import type { WeakLinkQuestion } from "../../questions";
 
 export const weakLinkQuestions: WeakLinkQuestion[] = [
   // ───────────────────────── DIFFICULTY 1 ─────────────────────────

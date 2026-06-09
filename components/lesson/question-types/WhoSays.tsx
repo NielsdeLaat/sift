@@ -1,5 +1,8 @@
+'use client';
+
 import type { WhoSaysQuestion } from '@/data/questions';
 import { Button } from '@/components/Button';
+import { useLanguage } from '@/components/LanguageProvider';
 
 interface Props {
   question: WhoSaysQuestion;
@@ -22,6 +25,8 @@ function highlightSource(excerpt: string, source: string): React.ReactNode {
 }
 
 export function WhoSays({ question, locked, selectedOption, onSelectOption, onAnswer }: Props) {
+  const { t } = useLanguage();
+
   return (
     <div className="space-y-5">
       <div className="bg-neutral-light rounded-2xl p-4 border-l-4 border-primary/40">
@@ -31,7 +36,7 @@ export function WhoSays({ question, locked, selectedOption, onSelectOption, onAn
       </div>
 
       <h2 className="text-contrast font-bold text-xl text-center">
-        {question.question ?? 'How reliable is this source?'}
+        {question.question ?? t.questions.whoSays.question}
       </h2>
 
       <div className="space-y-2">
@@ -59,7 +64,7 @@ export function WhoSays({ question, locked, selectedOption, onSelectOption, onAn
           className="w-full"
           onClick={() => onAnswer(selectedOption === question.correctIndex)}
         >
-          Confirm
+          {t.questions.whoSays.confirm}
         </Button>
       )}
     </div>

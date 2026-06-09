@@ -1,6 +1,9 @@
+'use client';
+
 import type { UnderTheHoodQuestion } from '@/data/questions';
 import { ExpandableImage } from '@/components/lesson/ExpandableImage';
 import { Button } from '@/components/Button';
+import { useLanguage } from '@/components/LanguageProvider';
 
 interface Props {
   question: UnderTheHoodQuestion;
@@ -11,6 +14,8 @@ interface Props {
 }
 
 export function UnderTheHood({ question, locked, selectedOption, onSelectOption, onAnswer }: Props) {
+  const { t } = useLanguage();
+
   const isMissing = (value: string) =>
     value.startsWith('[NOT FOUND') || value.startsWith('[MISSING');
 
@@ -21,7 +26,7 @@ export function UnderTheHood({ question, locked, selectedOption, onSelectOption,
       </div>
 
       <h2 className="text-contrast font-bold text-xl text-center">
-        {question.question ?? 'Tap the red flag in the evidence below'}
+        {question.question ?? t.questions.underTheHood.question}
       </h2>
 
       <div className="space-y-2">
@@ -54,7 +59,7 @@ export function UnderTheHood({ question, locked, selectedOption, onSelectOption,
           className="w-full"
           onClick={() => onAnswer(selectedOption === question.correctFlagIndex)}
         >
-          That's the red flag
+          {t.questions.underTheHood.button}
         </Button>
       )}
     </div>

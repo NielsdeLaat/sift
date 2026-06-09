@@ -1,6 +1,9 @@
+'use client';
+
 import type { WhenOrWhereQuestion } from '@/data/questions';
 import { ExpandableImage } from '@/components/lesson/ExpandableImage';
 import { Button } from '@/components/Button';
+import { useLanguage } from '@/components/LanguageProvider';
 
 interface Props {
   question: WhenOrWhereQuestion;
@@ -11,9 +14,11 @@ interface Props {
 }
 
 export function WhenOrWhere({ question, locked, selectedOption, onSelectOption, onAnswer }: Props) {
+  const { t } = useLanguage();
+
   const subtypeLabel = question.subtype === 'when'
-    ? 'When was this taken?'
-    : 'Where was this?';
+    ? t.questions.whenOrWhere.whenQuestion
+    : t.questions.whenOrWhere.whereQuestion;
 
   return (
     <div className="space-y-5">
@@ -58,7 +63,7 @@ export function WhenOrWhere({ question, locked, selectedOption, onSelectOption, 
           className="w-full"
           onClick={() => onAnswer(selectedOption === question.correctIndex)}
         >
-          Confirm
+          {t.questions.whenOrWhere.confirm}
         </Button>
       )}
     </div>

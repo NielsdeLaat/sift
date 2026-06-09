@@ -3,16 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icon, type IconName } from "@/components/icons";
-
-const TABS: { icon: IconName; label: string; href: string }[] = [
-  { icon: "home", label: "Home", href: "/" },
-  { icon: "puzzle", label: "Daily Puzzle", href: "/puzzles" },
-  { icon: "leaderboard", label: "Leaderboard", href: "/leaderboard" },
-  { icon: "profile", label: "Profile", href: "/profile" },
-];
+import { useLanguage } from "@/components/LanguageProvider";
 
 export function BottomNav() {
   const pathname = usePathname();
+  const { t } = useLanguage();
+
+  const TABS: { icon: IconName; label: string; href: string }[] = [
+    { icon: "home", label: t.nav.home, href: "/" },
+    { icon: "puzzle", label: t.nav.dailyPuzzle, href: "/puzzles" },
+    { icon: "leaderboard", label: t.nav.leaderboard, href: "/leaderboard" },
+    { icon: "profile", label: t.nav.profile, href: "/profile" },
+  ];
 
   return (
     // fixed to viewport bottom, centred within the 430px phone shell

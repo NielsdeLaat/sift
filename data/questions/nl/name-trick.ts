@@ -1,0 +1,73 @@
+import type { NameTrickQuestion } from '../../questions';
+
+export const nameTrickQuestions: NameTrickQuestion[] = [
+  {
+    id: 'nt-d1-1',
+    type: 'name-trick',
+    xp: 50,
+    difficulty: 1,
+    content: {
+      type: 'social',
+      avatarUrl: 'https://picsum.photos/seed/nt-d1-1/80/80',
+      sourceName: 'Placeholder Source',
+      handle: '@placeholder',
+      followerCount: '10K volgers',
+      text: 'Placeholder bericht voor naamtruc vraag moeilijkheid 1.',
+    },
+    options: [
+      'Emotie — gebruikt paniek en urgentie',
+      'Vals dilemma — presenteert slechts twee keuzes',
+      'Nep-expert — noemt onverifieerbare autoriteiten',
+      'Zondebok — wijst één groep de schuld',
+      'Gewoon vragen stellen — formuleert beschuldigingen als vragen',
+    ],
+    correctIndex: 0,
+    explanation: 'Placeholder uitleg voor moeilijkheid 1.',
+  },
+  {
+    id: 'nt-d2-1',
+    type: 'name-trick',
+    xp: 60,
+    difficulty: 2,
+    content: {
+      type: 'social',
+      avatarUrl: 'https://picsum.photos/seed/nt-d2-1/80/80',
+      sourceName: 'Placeholder Source',
+      handle: '@placeholder',
+      followerCount: '50K volgers',
+      text: 'Placeholder bericht voor naamtruc vraag moeilijkheid 2.',
+    },
+    options: [
+      'Gewoon vragen stellen — plant een implicatie als onschuldige nieuwsgierigheid',
+      'Emotie — gebruikt angst voor manipulatie',
+      'Vals dilemma — impliceert slechts twee opties',
+      'Zondebok — wijst een groep de schuld',
+      'Nep-expert — impliceert voorkennis zonder bron',
+    ],
+    correctIndex: 0,
+    explanation: 'Placeholder uitleg voor moeilijkheid 2.',
+  },
+  {
+    id: 'nt-d3-1',
+    type: 'name-trick',
+    xp: 80,
+    difficulty: 3,
+    content: {
+      type: 'social',
+      avatarUrl: 'https://picsum.photos/seed/nt-d3-1/80/80',
+      sourceName: 'Placeholder Source',
+      handle: '@placeholder',
+      followerCount: '500K volgers',
+      text: 'Placeholder bericht voor naamtruc vraag moeilijkheid 3.',
+    },
+    options: [
+      'Zondebok — schrijft complexe problemen toe aan één groep',
+      'Gewoon vragen stellen — plant een beschuldiging als vraag',
+      'Vals dilemma — impliceert accepteren of onwetend blijven',
+      'Nep-expert — noemt "de data" zonder bron',
+      'Emotie — gebruikt publieke angst om het publiek te primen',
+    ],
+    correctIndex: 0,
+    explanation: 'Placeholder uitleg voor moeilijkheid 3.',
+  },
+];

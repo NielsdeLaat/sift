@@ -1,3 +1,6 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { BottomNav } from "@/components/BottomNav";
 import { Icon } from "@/components/icons";
 import { StatCard } from "@/components/StatCard";
@@ -5,24 +8,28 @@ import { AchievementBadge } from "@/components/AchievementBadge";
 import { Button } from "@/components/Button";
 import { user } from "@/data/user";
 import { getLevelFromXP } from "@/lib/levels";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function ProfilePage() {
+  const router = useRouter();
   const level = getLevelFromXP(user.xp);
+  const { t } = useLanguage();
 
   return (
     <>
       {/* ── Top bar ──────────────────────────────────────────────── */}
       <header className="sticky top-0 z-20 bg-neutral-base flex items-center justify-between px-5 pt-10 pb-4">
-        <h1 className="text-contrast font-bold text-xl">Profile</h1>
+        <h1 className="text-contrast font-bold text-xl">{t.profile.title}</h1>
         <div className="flex items-center gap-4">
           <button
-            aria-label="Edit profile"
+            aria-label={t.profile.editProfile}
             className="text-contrast-dark hover:text-contrast transition-colors"
           >
             <Icon name="edit" className="w-5 h-5" />
           </button>
           <button
-            aria-label="Settings"
+            aria-label={t.profile.settings}
+            onClick={() => router.push('/settings')}
             className="text-contrast-dark hover:text-contrast transition-colors"
           >
             <Icon name="settings" className="w-5 h-5" />
@@ -58,7 +65,7 @@ export default function ProfilePage() {
             <h2 className="text-contrast font-extrabold text-2xl">
               {user.username}
             </h2>
-            <p className="text-contrast-dark text-sm">{user.title}</p>
+            <p className="text-contrast-dark text-sm">{t.profile.userTitle}</p>
           </div>
 
           {/* XP pill */}
@@ -70,32 +77,32 @@ export default function ProfilePage() {
         </section>
 
         {/* ── Stats row ────────────────────────────────────────── */}
-        <section className="grid grid-cols-3 gap-3" aria-label="Stats">
+        <section className="grid grid-cols-3 gap-3" aria-label={t.profile.stats.streak}>
           <StatCard
             icon="flame"
             iconClassName="text-accent"
             value={String(user.streak)}
-            label="Streak"
+            label={t.profile.stats.streak}
           />
           <StatCard
             icon="people"
             value={String(user.friends)}
-            label="Friends"
+            label={t.profile.stats.friends}
           />
-          <StatCard icon="trophy" value={user.league} label="League" />
+          <StatCard icon="trophy" value={user.league} label={t.profile.stats.league} />
         </section>
 
         {/* ── Add Friends ──────────────────────────────────────── */}
         <Button variant="primary" className="w-full py-4">
-          Add Friends
+          {t.profile.addFriends}
         </Button>
 
         {/* ── Achievements ─────────────────────────────────────── */}
         <section
           className="bg-neutral-light border border-neutral-border rounded-2xl p-5"
-          aria-label="Achievements"
+          aria-label={t.profile.achievements}
         >
-          <h3 className="text-contrast font-bold text-lg mb-5">Achievements</h3>
+          <h3 className="text-contrast font-bold text-lg mb-5">{t.profile.achievements}</h3>
           {/* 4-column grid: every 4th badge starts a new row automatically */}
           <div className="grid grid-cols-4 gap-x-2 gap-y-5">
             {user.achievements.map((achievement) => (

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
-import { questions as allQuestions } from '@/data/questions';
+import { getQuestions } from '@/data/questions';
 import type { Question } from '@/data/questions';
 import { getLessonQuestions } from '@/lib/lesson';
 import { LessonHeader }     from '@/components/lesson/LessonHeader';
@@ -11,6 +11,7 @@ import { FeedbackBanner }   from '@/components/lesson/FeedbackBanner';
 import { Icon }             from '@/components/icons';
 import { Button }           from '@/components/Button';
 import { completeLesson }   from '@/lib/store';
+import { useLanguage }      from '@/components/LanguageProvider';
 
 // Types that show their own feedback UI — skip the FeedbackBanner and advance directly.
 const SELF_CONTAINED_TYPES = new Set(['feed-test']);
@@ -23,6 +24,7 @@ export default function LessonPage() {
   const { sectionId } = useParams<{ sectionId: string }>();
   const searchParams  = useSearchParams();
   const isTest        = searchParams.get('type') === 'test';
+  const { lang, t }   = useLanguage();
 
   // Computed client-side only — Math.random() in getLessonQuestions causes
   // SSR/hydration mismatch if run in useMemo (which executes on the server too).
@@ -30,6 +32,7 @@ export default function LessonPage() {
   const [answers, setAnswers]                 = useState<(number | null)[]>([]);
 
   useEffect(() => {
+    const allQuestions = getQuestions(lang);
     const qParam = searchParams.get('q');
     let questions: Question[];
     if (qParam) {
@@ -45,7 +48,7 @@ export default function LessonPage() {
     setLessonQuestions(questions);
     setAnswers(Array(questions.length).fill(null));
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [lang]);
 
   const [qIndex, setQIndex]         = useState(0);
   const [phase, setPhase]           = useState<'answering' | 'feedback' | 'complete' | 'failed'>('answering');
@@ -143,16 +146,16 @@ export default function LessonPage() {
           <Icon name="trophy" className="w-16 h-16 text-primary animate-glow-pulse" />
           <div className="text-center space-y-1">
             <h1 className="text-contrast font-bold text-3xl">
-              {isTest ? 'Section Test Complete!' : 'Lesson Complete!'}
+              {isTest ? t.lesson.sectionTestComplete : t.lesson.complete}
             </h1>
-            <p className="text-contrast-dark text-base">Great work on this lesson.</p>
+            <p className="text-contrast-dark text-base">{t.lesson.greatWork}</p>
           </div>
           <div className="flex items-center gap-2 bg-neutral-light rounded-2xl px-6 py-4">
             <Icon name="zap" className="w-7 h-7 text-accent" />
             <span className="text-contrast font-bold text-2xl">+{xpEarned} XP</span>
           </div>
           <Button variant="primary" className="w-full max-w-xs" onClick={() => router.push('/')}>
-            Continue
+            {t.lesson.continue}
           </Button>
         </div>
       )}
@@ -161,13 +164,13 @@ export default function LessonPage() {
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-neutral-base/95 px-6 gap-6">
           <Icon name="close" className="w-16 h-16 text-accent animate-glow-pulse" />
           <div className="text-center space-y-1">
-            <h1 className="text-contrast font-bold text-3xl">Not quite</h1>
+            <h1 className="text-contrast font-bold text-3xl">{t.lesson.notQuite}</h1>
             <p className="text-contrast-dark text-base">
-              You need {Math.round(PASS_THRESHOLD * 100)}% to pass this test. Try again!
+              {t.lesson.needPercentage(Math.round(PASS_THRESHOLD * 100))}
             </p>
           </div>
           <Button variant="primary" className="w-full max-w-xs" onClick={() => router.push('/')}>
-            Try Again
+            {t.lesson.tryAgain}
           </Button>
         </div>
       )}

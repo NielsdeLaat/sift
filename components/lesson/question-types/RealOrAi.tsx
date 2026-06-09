@@ -1,8 +1,11 @@
+'use client';
+
 import { useState } from 'react';
 import type { RealOrAiQuestion } from '@/data/questions';
 import { TellReveal } from '@/components/lesson/TellReveal';
 import { ExpandableImage } from '@/components/lesson/ExpandableImage';
 import { Button } from '@/components/Button';
+import { useLanguage } from '@/components/LanguageProvider';
 
 interface Props {
   question: RealOrAiQuestion;
@@ -11,6 +14,7 @@ interface Props {
 }
 
 export function RealOrAi({ question, locked, onAnswer }: Props) {
+  const { t } = useLanguage();
   const [showTell, setShowTell] = useState(false);
   const [selected, setSelected] = useState<'real' | 'ai' | null>(null);
 
@@ -40,7 +44,7 @@ export function RealOrAi({ question, locked, onAnswer }: Props) {
       </div>
 
       <h2 className="text-contrast font-bold text-xl text-center">
-        {question.question ?? 'Is this image real or AI-generated?'}
+        {question.question ?? t.questions.realOrAi.question}
       </h2>
 
       <div className="flex gap-3 justify-center">
@@ -50,7 +54,7 @@ export function RealOrAi({ question, locked, onAnswer }: Props) {
           className={selected === 'real' ? 'ring-2 ring-offset-2 ring-primary' : ''}
           onClick={() => pick('real')}
         >
-          Real
+          {t.questions.realOrAi.real}
         </Button>
         <Button
           variant="no"
@@ -58,7 +62,7 @@ export function RealOrAi({ question, locked, onAnswer }: Props) {
           className={selected === 'ai' ? 'ring-2 ring-offset-2 ring-primary' : ''}
           onClick={() => pick('ai')}
         >
-          AI
+          {t.questions.realOrAi.ai}
         </Button>
       </div>
     </div>

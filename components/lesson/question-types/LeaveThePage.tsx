@@ -1,5 +1,8 @@
+'use client';
+
 import type { LeaveThePageQuestion } from '@/data/questions';
 import { Button } from '@/components/Button';
+import { useLanguage } from '@/components/LanguageProvider';
 
 interface Props {
   question: LeaveThePageQuestion;
@@ -10,6 +13,8 @@ interface Props {
 }
 
 export function LeaveThePage({ question, locked, selectedOption, onSelectOption, onAnswer }: Props) {
+  const { t } = useLanguage();
+
   return (
     <div className="space-y-5">
       <div className="bg-neutral-light rounded-2xl p-4">
@@ -17,7 +22,7 @@ export function LeaveThePage({ question, locked, selectedOption, onSelectOption,
       </div>
 
       <h2 className="text-contrast font-bold text-xl text-center">
-        {question.question ?? 'Which result settles this?'}
+        {question.question ?? t.questions.leaveThePage.question}
       </h2>
 
       <div className="space-y-3">
@@ -54,7 +59,7 @@ export function LeaveThePage({ question, locked, selectedOption, onSelectOption,
           className="w-full"
           onClick={() => onAnswer(selectedOption === question.correctCardIndex)}
         >
-          This one settles it
+          {t.questions.leaveThePage.button}
         </Button>
       )}
     </div>

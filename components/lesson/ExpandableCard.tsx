@@ -2,10 +2,12 @@
 
 import { useState, type ReactNode } from 'react';
 import { Icon } from '@/components/icons';
+import { useLanguage } from '@/components/LanguageProvider';
 
 const COLLAPSED_HEIGHT = 272;
 
 export function ExpandableCard({ children }: { children: ReactNode }) {
+  const { t } = useLanguage();
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -24,7 +26,7 @@ export function ExpandableCard({ children }: { children: ReactNode }) {
         <button
           className="absolute top-2 right-2 w-8 h-8 rounded-full bg-neutral-base/60 backdrop-blur-sm flex items-center justify-center text-contrast hover:bg-neutral-base/80 transition-colors"
           onClick={() => setExpanded(true)}
-          aria-label="Expand"
+          aria-label={t.ui.expand}
         >
           <Icon name="expand" className="w-4 h-4" />
         </button>
@@ -45,7 +47,7 @@ export function ExpandableCard({ children }: { children: ReactNode }) {
           <button
             className="w-8 h-8 rounded-full bg-neutral-light flex items-center justify-center text-contrast hover:bg-neutral-border transition-colors"
             onClick={() => setExpanded(false)}
-            aria-label="Collapse"
+            aria-label={t.ui.collapse}
           >
             <Icon name="shrink" className="w-4 h-4" />
           </button>

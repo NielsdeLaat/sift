@@ -1,7 +1,10 @@
+'use client';
+
 import type { NameTrickQuestion } from '@/data/questions';
 import { ExpandableCard } from '@/components/lesson/ExpandableCard';
 import { ContentCard } from '@/components/lesson/ContentCard';
 import { Button } from '@/components/Button';
+import { useLanguage } from '@/components/LanguageProvider';
 
 interface Props {
   question: NameTrickQuestion;
@@ -12,6 +15,8 @@ interface Props {
 }
 
 export function NameTrick({ question, locked, selectedOption, onSelectOption, onAnswer }: Props) {
+  const { t } = useLanguage();
+
   return (
     <div className="space-y-5">
       <ExpandableCard>
@@ -19,7 +24,7 @@ export function NameTrick({ question, locked, selectedOption, onSelectOption, on
       </ExpandableCard>
 
       <h2 className="text-contrast font-bold text-xl text-center">
-        {question.question ?? 'Which technique is this using?'}
+        {question.question ?? t.questions.nameTrick.question}
       </h2>
 
       <div className="space-y-2">
@@ -47,7 +52,7 @@ export function NameTrick({ question, locked, selectedOption, onSelectOption, on
           className="w-full"
           onClick={() => onAnswer(selectedOption === question.correctIndex)}
         >
-          Confirm
+          {t.questions.nameTrick.confirm}
         </Button>
       )}
     </div>
