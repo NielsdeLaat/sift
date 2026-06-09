@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import type { WeakLinkQuestion, WeakPillar } from '@/data/questions';
+import { isCorrect } from '@/data/questions';
 import { ExpandableCard } from '@/components/lesson/ExpandableCard';
 import { ContentCard } from '@/components/lesson/ContentCard';
 import { Button } from '@/components/Button';
@@ -29,7 +30,7 @@ export function WeakLink({ question, locked, selectedOption, onSelectOption, onA
   function handlePillarTap(i: number) {
     if (locked || selectedOption !== null) return;
     onSelectOption(i);
-    const correct = pillars[i].pillar === question.correctPillar;
+    const correct = isCorrect(pillars[i].pillar, question.correctPillar);
     if (!correct) {
       onAnswer(0);
       return;

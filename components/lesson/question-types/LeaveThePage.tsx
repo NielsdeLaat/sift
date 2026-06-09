@@ -1,6 +1,7 @@
 'use client';
 
 import type { LeaveThePageQuestion } from '@/data/questions';
+import { isCorrect } from '@/data/questions';
 import { Button } from '@/components/Button';
 import { useLanguage } from '@/components/LanguageProvider';
 
@@ -57,7 +58,7 @@ export function LeaveThePage({ question, locked, selectedOption, onSelectOption,
         <Button
           variant="primary"
           className="w-full"
-          onClick={() => onAnswer(selectedOption === question.correctCardIndex)}
+          onClick={() => onAnswer(isCorrect(selectedOption, question.correctCardIndex))}
         >
           {t.questions.leaveThePage.button}
         </Button>

@@ -49,7 +49,7 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
       followerCount: "15K volgers",
       text: "⚠️ Het kraanwater in Brabant is besmet en de overheid zwijgt erover. Bescherm je gezin met onze waterfilter. Vandaag 40% korting — alleen de eerste 100 bestellingen! 💧",
     },
-    correctPillar: "why",
+    correctPillar: ["why", "who"],
     explanation:
       "De angst is herkenbaar en de toon klinkt urgent, maar de afzender verkoopt waterfilters. De post bestaat om een product te slijten met kunstmatige urgentie en korting. Als de bron baat heeft bij jouw angst, is het motief de zwakke schakel — check het waarom.",
   },
@@ -63,7 +63,8 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
       sourceName: "Nieuws Alert Nederland",
       domain: "nieuwsalert-nl.com",
       headline: "VIDEO: Dijk bij Roermond bezweken, water stroomt de stad in",
-      excerpt: "Schokkende beelden tonen hoe een dijk het begeeft en een woonwijk in korte tijd onderloopt. Volgens onze redactie gaat het om Roermond, gefilmd in de afgelopen nacht. [video]",
+      excerpt:
+        "Schokkende beelden tonen hoe een dijk het begeeft en een woonwijk in korte tijd onderloopt. Volgens onze redactie gaat het om Roermond, gefilmd in de afgelopen nacht. [video]",
     },
     correctPillar: "what",
     explanation:
@@ -99,7 +100,8 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
       domain: "nos-nieuwsupdate.net",
       headline:
         "RIVM: kraanwater in delen van Noord-Brabant tijdelijk onveilig",
-      excerpt: "Het RIVM waarschuwt dat het kraanwater in meerdere Brabantse gemeenten besmet zou zijn met bacteriën. Inwoners wordt geadviseerd water minstens drie minuten te koken voor gebruik.",
+      excerpt:
+        "Het RIVM waarschuwt dat het kraanwater in meerdere Brabantse gemeenten besmet zou zijn met bacteriën. Inwoners wordt geadviseerd water minstens drie minuten te koken voor gebruik.",
     },
     correctPillar: "who",
     explanation:
@@ -115,7 +117,8 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
       sourceName: "De Vrije Onderzoeker",
       domain: "devrijeonderzoeker.nl",
       headline: "Bewijs: overheid hield waarschuwing Limburg bewust achter",
-      excerpt: "Uit ons onderzoek blijkt dat de overheid de evacuatiewaarschuwing urenlang bewust heeft uitgesteld om een politieke agenda te dienen. De gevestigde media zwijgen hier opvallend over.",
+      excerpt:
+        "Uit ons onderzoek blijkt dat de overheid de evacuatiewaarschuwing urenlang bewust heeft uitgesteld om een politieke agenda te dienen. De gevestigde media zwijgen hier opvallend over.",
     },
     correctPillar: "why",
     explanation:

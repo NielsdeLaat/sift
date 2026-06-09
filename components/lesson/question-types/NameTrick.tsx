@@ -1,6 +1,7 @@
 'use client';
 
 import type { NameTrickQuestion } from '@/data/questions';
+import { isCorrect } from '@/data/questions';
 import { ExpandableCard } from '@/components/lesson/ExpandableCard';
 import { ContentCard } from '@/components/lesson/ContentCard';
 import { Button } from '@/components/Button';
@@ -50,7 +51,7 @@ export function NameTrick({ question, locked, selectedOption, onSelectOption, on
         <Button
           variant="primary"
           className="w-full"
-          onClick={() => onAnswer(selectedOption === question.correctIndex)}
+          onClick={() => onAnswer(isCorrect(selectedOption, question.correctIndex))}
         >
           {t.questions.nameTrick.confirm}
         </Button>

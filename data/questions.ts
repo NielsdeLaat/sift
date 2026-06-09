@@ -69,7 +69,7 @@ export interface NameTrickQuestion extends BaseQuestion {
   type: "name-trick";
   content: ContentItem;
   options: [string, string, string, string, string];
-  correctIndex: 0 | 1 | 2 | 3 | 4;
+  correctIndex: number | number[];
   explanation: string;
 }
 
@@ -86,7 +86,7 @@ export interface LeaveThePageQuestion extends BaseQuestion {
   type: "leave-the-page";
   scenario: string;
   cards: SearchResultCard[];
-  correctCardIndex: number;
+  correctCardIndex: number | number[];
   explanation: string;
 }
 
@@ -95,7 +95,7 @@ export interface WhoSaysQuestion extends BaseQuestion {
   excerpt: string;
   highlightedSource: string;
   options: string[];
-  correctIndex: number;
+  correctIndex: number | number[];
   explanation: string;
 }
 
@@ -104,7 +104,7 @@ export interface UnderTheHoodQuestion extends BaseQuestion {
   imageUrl: string;
   /** All tappable evidence items (metadata rows + reverse-search result). */
   items: EvidenceItem[];
-  correctFlagIndex: number;
+  correctFlagIndex: number | number[];
   explanation: string;
 }
 
@@ -114,14 +114,14 @@ export interface WhenOrWhereQuestion extends BaseQuestion {
   imageUrl?: string;
   text?: string;
   options: string[];
-  correctIndex: number;
+  correctIndex: number | number[];
   explanation: string;
 }
 
 export interface WeakLinkQuestion extends BaseQuestion {
   type: "weak-link";
   content: ContentItem;
-  correctPillar: WeakPillar;
+  correctPillar: WeakPillar | WeakPillar[];
   /** Shown in the FeedbackBanner after the round. */
   explanation: string;
 }
@@ -155,6 +155,11 @@ export type Question =
   | WhenOrWhereQuestion
   | WeakLinkQuestion
   | FeedTestQuestion;
+
+/** Returns true if `value` matches any of the accepted correct answers. */
+export function isCorrect<T>(value: T, correct: T | T[]): boolean {
+  return Array.isArray(correct) ? correct.includes(value) : value === correct;
+}
 
 import type { Lang } from '@/lib/i18n';
 

@@ -1,6 +1,7 @@
 'use client';
 
 import type { WhoSaysQuestion } from '@/data/questions';
+import { isCorrect } from '@/data/questions';
 import { Button } from '@/components/Button';
 import { useLanguage } from '@/components/LanguageProvider';
 
@@ -62,7 +63,7 @@ export function WhoSays({ question, locked, selectedOption, onSelectOption, onAn
         <Button
           variant="primary"
           className="w-full"
-          onClick={() => onAnswer(selectedOption === question.correctIndex)}
+          onClick={() => onAnswer(isCorrect(selectedOption, question.correctIndex))}
         >
           {t.questions.whoSays.confirm}
         </Button>

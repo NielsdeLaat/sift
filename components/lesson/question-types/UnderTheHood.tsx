@@ -1,6 +1,7 @@
 'use client';
 
 import type { UnderTheHoodQuestion } from '@/data/questions';
+import { isCorrect } from '@/data/questions';
 import { ExpandableImage } from '@/components/lesson/ExpandableImage';
 import { Button } from '@/components/Button';
 import { useLanguage } from '@/components/LanguageProvider';
@@ -57,7 +58,7 @@ export function UnderTheHood({ question, locked, selectedOption, onSelectOption,
         <Button
           variant="primary"
           className="w-full"
-          onClick={() => onAnswer(selectedOption === question.correctFlagIndex)}
+          onClick={() => onAnswer(isCorrect(selectedOption, question.correctFlagIndex))}
         >
           {t.questions.underTheHood.button}
         </Button>

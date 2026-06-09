@@ -1,6 +1,7 @@
 'use client';
 
 import type { WhenOrWhereQuestion } from '@/data/questions';
+import { isCorrect } from '@/data/questions';
 import { ExpandableImage } from '@/components/lesson/ExpandableImage';
 import { Button } from '@/components/Button';
 import { useLanguage } from '@/components/LanguageProvider';
@@ -61,7 +62,7 @@ export function WhenOrWhere({ question, locked, selectedOption, onSelectOption, 
         <Button
           variant="primary"
           className="w-full"
-          onClick={() => onAnswer(selectedOption === question.correctIndex)}
+          onClick={() => onAnswer(isCorrect(selectedOption, question.correctIndex))}
         >
           {t.questions.whenOrWhere.confirm}
         </Button>
