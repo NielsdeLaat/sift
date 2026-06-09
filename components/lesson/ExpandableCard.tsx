@@ -13,7 +13,15 @@ export function ExpandableCard({ children }: { children: ReactNode }) {
   return (
     <>
       {/* ── Collapsed preview ── */}
-      <div className="relative rounded-2xl overflow-hidden" style={{ maxHeight: COLLAPSED_HEIGHT }}>
+      <div
+        role="button"
+        tabIndex={0}
+        className="relative rounded-2xl overflow-hidden cursor-pointer"
+        style={{ maxHeight: COLLAPSED_HEIGHT }}
+        onClick={() => setExpanded(true)}
+        onKeyDown={(e) => e.key === 'Enter' || e.key === ' ' ? setExpanded(true) : undefined}
+        aria-label={t.ui.expand}
+      >
         {children}
 
         {/* Fade gradient */}
@@ -22,14 +30,10 @@ export function ExpandableCard({ children }: { children: ReactNode }) {
           style={{ background: 'linear-gradient(to bottom, transparent, var(--color-surface))' }}
         />
 
-        {/* Expand button */}
-        <button
-          className="absolute top-2 right-2 w-8 h-8 rounded-full bg-neutral-base/60 backdrop-blur-sm flex items-center justify-center text-contrast hover:bg-neutral-base/80 transition-colors"
-          onClick={() => setExpanded(true)}
-          aria-label={t.ui.expand}
-        >
+        {/* Expand icon (decorative, whole card is tappable) */}
+        <div className="absolute top-2 right-2 w-8 h-8 rounded-full bg-neutral-base/60 backdrop-blur-sm flex items-center justify-center text-contrast pointer-events-none">
           <Icon name="expand" className="w-4 h-4" />
-        </button>
+        </div>
       </div>
 
       {/* ── Expanded overlay ── */}
