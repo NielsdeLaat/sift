@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { questions as allQuestions } from '@/data/questions';
 import type { Question } from '@/data/questions';
-import { LESSON_SIZE }      from '@/lib/lesson';
 import { LessonHeader }     from '@/components/lesson/LessonHeader';
 import { QuestionRenderer } from '@/components/lesson/QuestionRenderer';
 import { FeedbackBanner }   from '@/components/lesson/FeedbackBanner';
@@ -23,19 +22,18 @@ export default function TestPage() {
   const [answers, setAnswers]                 = useState<(number | null)[]>([]);
 
   useEffect(() => {
-    const qParam = searchParams.get('q');
-    let questions: Question[];
-    if (qParam) {
-      const ids      = qParam.split(',').map(s => s.trim());
-      const filtered = ids
-        .map(id => allQuestions.find(q => q.id === id))
-        .filter((q): q is Question => q !== undefined);
-      questions = filtered.length > 0 ? filtered : allQuestions.filter(q => q.type !== 'feed-test').slice(0, LESSON_SIZE);
-    } else {
-      questions = [...allQuestions.filter(q => q.type !== 'feed-test')]
-        .sort(() => Math.random() - 0.5)
-        .slice(0, LESSON_SIZE);
-    }
+    const q = searchParams.get('q') ?? '';
+    const match = q.match(/^(.+)-d(\d+)$/) ;
+    const type       = match ? match[1] : q || null;
+    const difficulty = match ? parseInt(match[2], 10) : undefined;
+
+    const pool = allQuestions.filter(r =>
+      (!type || r.type === type) &&
+      (difficulty === undefined || r.difficulty === difficulty)
+    );
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    const questions = pick ? [pick] : [];
+
     setLessonQuestions(questions);
     setAnswers(Array(questions.length).fill(null));
   // eslint-disable-next-line react-hooks/exhaustive-deps

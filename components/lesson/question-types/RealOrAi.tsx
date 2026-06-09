@@ -12,9 +12,25 @@ interface Props {
 
 export function RealOrAi({ question, locked, onAnswer }: Props) {
   const [showTell, setShowTell] = useState(false);
+  const [selected, setSelected] = useState<'real' | 'ai' | null>(null);
 
   if (showTell && question.tell) {
     return <TellReveal imageUrl={question.imageUrl} tell={question.tell} onConfirm={onAnswer} />;
+  }
+
+  function pick(choice: 'real' | 'ai') {
+    if (locked || selected !== null) return;
+    setSelected(choice);
+    if (choice === 'real') {
+      onAnswer(question.correctAnswer === 'real');
+    } else {
+      if (question.correctAnswer === 'ai') {
+        if (question.tell) { setShowTell(true); return; }
+        onAnswer(true);
+      } else {
+        onAnswer(false);
+      }
+    }
   }
 
   return (
@@ -30,31 +46,17 @@ export function RealOrAi({ question, locked, onAnswer }: Props) {
       <div className="flex gap-3 justify-center">
         <Button
           variant="yes"
-          disabled={locked}
-          onClick={() => {
-            if (question.correctAnswer === 'real') {
-              onAnswer(true);
-            } else {
-              onAnswer(false);
-            }
-          }}
+          disabled={locked || selected !== null}
+          className={selected === 'real' ? 'ring-2 ring-offset-2 ring-primary' : ''}
+          onClick={() => pick('real')}
         >
           Real
         </Button>
         <Button
           variant="no"
-          disabled={locked}
-          onClick={() => {
-            if (question.correctAnswer === 'ai') {
-              if (question.tell) {
-                setShowTell(true);
-              } else {
-                onAnswer(true);
-              }
-            } else {
-              onAnswer(false);
-            }
-          }}
+          disabled={locked || selected !== null}
+          className={selected === 'ai' ? 'ring-2 ring-offset-2 ring-primary' : ''}
+          onClick={() => pick('ai')}
         >
           AI
         </Button>

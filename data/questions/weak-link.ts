@@ -1,6 +1,7 @@
-import type { WeakLinkQuestion } from '../questions';
+import type { WeakLinkQuestion } from "../questions";
 
 export const weakLinkQuestions: WeakLinkQuestion[] = [
+  // ───────────────────────── DIFFICULTY 1 ─────────────────────────
   {
     id: "wl-d1-1",
     type: "weak-link",
@@ -9,15 +10,14 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/wl-d1-1/80/80",
-      sourceName: "[PLACEHOLDER] BreakingCrisis247",
-      handle: "@BreakingCrisis247",
-      followerCount: "42K followers",
-      text:
-        "[PLACEHOLDER] VIRAL: Footage shows police deploying unknown chemical agent against flood survivors waiting for evacuation. Multiple hospitalised. Mainstream media is silent.",
+      sourceName: "Weeralarm Nederland",
+      handle: "@WeeralarmNL",
+      followerCount: "88K volgers",
+      text: "🚨 NU: Valkenburg staat WEER volledig onder water na het noodweer van vannacht. Blijf weg uit het centrum! 🌊 #hoogwater #Limburg",
     },
-    correctPillar: "who",
+    correctPillar: "when",
     explanation:
-      "[PLACEHOLDER] Before investigating the footage, the source fails. An unaffiliated account created two months ago is not a credible originator of a serious police-misconduct story. Check who made the claim before investigating what it claims.",
+      "De bron is geloofwaardig, de locatie klopt en het is een echte veiligheidswaarschuwing — maar een reverse image search laat zien dat deze foto van juli 2021 is, niet van vannacht. Een echte foto van de juiste plek kan alsnog jaren oud zijn. Controleer wánneer beeld gemaakt is voordat je 'NU' gelooft.",
   },
   {
     id: "wl-d1-2",
@@ -27,15 +27,14 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/wl-d1-2/80/80",
-      sourceName: "[PLACEHOLDER] Global Health Monitor",
-      handle: "@GlobalHealthMon",
-      followerCount: "180K followers",
-      text:
-        "[PLACEHOLDER] NEW STUDY: Scientists confirm that the current outbreak strain was engineered in a laboratory. Preprint posted last night. Authorities expected to respond by end of week.",
+      sourceName: "WakkerBurger040",
+      handle: "@wakkerburger040",
+      followerCount: "1.2K volgers",
+      text: "De nieuwe zendmast in onze wijk maakt mensen ziek. Sinds hij er staat hebben 3 buren corona gehad. Toeval?? Deel dit voordat het verwijderd wordt!! 📡⚠️",
     },
-    correctPillar: "where",
+    correctPillar: "who",
     explanation:
-      "[PLACEHOLDER] Without a link you cannot check the methodology, the authors, or whether the study says what the post claims it says. Citing a study without linking to it is a fundamental evidence problem.",
+      "Voordat je onderzoekt wát er beweerd wordt, valt de bron al weg. Het account is twee weken oud, anoniem en heeft geen enkele medische of technische expertise — geen geloofwaardige afzender voor een claim over ziekte en zendmasten. Kijk eerst wie iets beweert; een gevoel van 'toeval' is geen bewijs.",
   },
   {
     id: "wl-d1-3",
@@ -45,86 +44,81 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/wl-d1-3/80/80",
-      sourceName: "[PLACEHOLDER] EarthquakeReliefNow",
-      handle: "@EQReliefNow",
-      followerCount: "5.1K followers",
-      text:
-        "[PLACEHOLDER] This photo was taken yesterday at the main camp outside Adana. Aid workers are turning people away because supplies have completely run out. The UN is nowhere to be seen.",
+      sourceName: "PureLife Water NL",
+      handle: "@purelifewaternl",
+      followerCount: "15K volgers",
+      text: "⚠️ Het kraanwater in Brabant is besmet en de overheid zwijgt erover. Bescherm je gezin met onze waterfilter. Vandaag 40% korting — alleen de eerste 100 bestellingen! 💧",
     },
-    correctPillar: "when",
+    correctPillar: "why",
     explanation:
-      "[PLACEHOLDER] Recycled crisis imagery is one of the most common forms of cheap fake. A reverse image search is the fastest way to check whether a photo was genuinely taken during the current event.",
+      "De angst is herkenbaar en de toon klinkt urgent, maar de afzender verkoopt waterfilters. De post bestaat om een product te slijten met kunstmatige urgentie en korting. Als de bron baat heeft bij jouw angst, is het motief de zwakke schakel — check het waarom.",
   },
+  {
+    id: "wl-d1-4",
+    type: "weak-link",
+    xp: 80,
+    difficulty: 1,
+    content: {
+      type: "article",
+      sourceName: "Nieuws Alert Nederland",
+      domain: "nieuwsalert-nl.com",
+      headline: "VIDEO: Dijk bij Roermond bezweken, water stroomt de stad in",
+      excerpt: "Schokkende beelden tonen hoe een dijk het begeeft en een woonwijk in korte tijd onderloopt. Volgens onze redactie gaat het om Roermond, gefilmd in de afgelopen nacht. [video]",
+    },
+    correctPillar: "what",
+    explanation:
+      "Bron en toon lijken te kloppen, maar het draait om het beeld zelf: een reverse image search toont dat de video van een overstroming in Duitsland uit 2021 is. Omdat het beeldmateriaal zelf niet klopt, valt de rest van de claim mee om. Controleer altijd de herkomst van het beeld (het 'wat') voordat je de plaats en tijd gelooft.",
+  },
+
+  // ───────────────────────── DIFFICULTY 2 ─────────────────────────
   {
     id: "wl-d2-1",
     type: "weak-link",
-    xp: 100,
+    xp: 120,
     difficulty: 2,
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/wl-d2-1/80/80",
-      sourceName: "[PLACEHOLDER] The Independent Lens",
-      handle: "@IndependentLens",
-      followerCount: "2.1M followers",
-      text:
-        "[PLACEHOLDER] EXCLUSIVE: Leaked hospital data shows the vaccine caused 12,000 deaths that were officially classified as 'unrelated'. Our investigative team has seen the documents. Publishing in full tomorrow.",
+      sourceName: "Frank | Limburg Updates",
+      handle: "@franklimburg",
+      followerCount: "6.7K volgers",
+      text: "Ongelofelijk… de dijk bij Arcen is net doorgebroken, dit is mijn straat NU. Iedereen wegwezen!! 😰 #hoogwater #Limburg",
     },
     correctPillar: "where",
     explanation:
-      "[PLACEHOLDER] Publishing a claim before the supporting evidence is available allows it to spread across social media before any fact-checker can examine the documents. Wait for the evidence before sharing.",
+      "De bron oogt lokaal en de timing past bij het hoogwater, dus dit lijkt te kloppen. Maar in de beelden rijdt een tram en zijn steile beboste heuvels te zien: Arcen heeft geen tramlijn en ligt in vlak rivierengebied. De video is ergens anders gefilmd — de locatie is de zwakke schakel. Zoek altijd naar herkenningspunten (trams, bergen, borden) die de geclaimde plek tegenspreken.",
   },
   {
     id: "wl-d2-2",
     type: "weak-link",
-    xp: 100,
+    xp: 120,
     difficulty: 2,
     content: {
-      type: "social",
-      avatarUrl: "https://picsum.photos/seed/wl-d2-2/80/80",
-      sourceName: "[PLACEHOLDER] EcoWatch Global",
-      handle: "@EcoWatchGlobal",
-      followerCount: "890K followers",
-      text:
-        "[PLACEHOLDER] The wildfires in California this week were deliberately started by energy companies to destroy evidence of illegal dumping. Three firefighters told us off the record. We have their testimony.",
+      type: "article",
+      sourceName: "NOS Nieuwsupdate",
+      domain: "nos-nieuwsupdate.net",
+      headline:
+        "RIVM: kraanwater in delen van Noord-Brabant tijdelijk onveilig",
+      excerpt: "Het RIVM waarschuwt dat het kraanwater in meerdere Brabantse gemeenten besmet zou zijn met bacteriën. Inwoners wordt geadviseerd water minstens drie minuten te koken voor gebruik.",
     },
     correctPillar: "who",
     explanation:
-      "[PLACEHOLDER] Corporate conspiracy allegations require the highest standard of evidence. Anonymous sources can initiate an investigation, but they cannot on their own support publication of a claim that companies committed arson.",
+      "Het artikel ziet er professioneel uit en citeert het RIVM, dus de inhoud lijkt gezaghebbend. Maar het domein is nos-nieuwsupdate.net — de echte NOS publiceert op nos.nl. Dit is een nagemaakte site. Kijk wie de afzender écht is (lateral reading): op nos.nl en rivm.nl staat dit bericht niet. Een betrouwbaar ogend logo of citaat zegt niets over wie er publiceert.",
   },
   {
     id: "wl-d2-3",
     type: "weak-link",
-    xp: 100,
+    xp: 120,
     difficulty: 2,
     content: {
-      type: "social",
-      avatarUrl: "https://picsum.photos/seed/wl-d2-3/80/80",
-      sourceName: "[PLACEHOLDER] PolitiFact EU",
-      handle: "@PolitifactEU",
-      followerCount: "420K followers",
-      text:
-        "[PLACEHOLDER] VERIFIED: The EU Parliament passed a resolution yesterday requiring member states to ban traditional farming methods by 2028. We have the text.",
+      type: "article",
+      sourceName: "De Vrije Onderzoeker",
+      domain: "devrijeonderzoeker.nl",
+      headline: "Bewijs: overheid hield waarschuwing Limburg bewust achter",
+      excerpt: "Uit ons onderzoek blijkt dat de overheid de evacuatiewaarschuwing urenlang bewust heeft uitgesteld om een politieke agenda te dienen. De gevestigde media zwijgen hier opvallend over.",
     },
-    correctPillar: "who",
+    correctPillar: "why",
     explanation:
-      "[PLACEHOLDER] Brand impersonation of fact-checkers is particularly dangerous because it exploits trust in the verification process itself. Always check whether an account claiming to be a fact-checker is actually affiliated with the organisation it names.",
-  },
-  {
-    id: "wl-d3-1",
-    type: "weak-link",
-    xp: 120,
-    difficulty: 3,
-    content: {
-      type: "social",
-      avatarUrl: "https://picsum.photos/seed/wl-d3-1/80/80",
-      sourceName: "[PLACEHOLDER] The Transparency Project",
-      handle: "@TransparencyProject",
-      followerCount: "3.4M followers",
-      text:
-        "[PLACEHOLDER] BREAKING: We have obtained internal CDC documents showing the agency knew in 2020 that masks were ineffective but mandated them anyway to maintain public compliance. Thread incoming.",
-    },
-    correctPillar: "where",
-    explanation:
-      "[PLACEHOLDER] An allegation that a major health agency deliberately deceived the public requires extraordinary evidence. Sharing such a claim before seeing and reviewing the actual documents amplifies potential harm regardless of whether it turns out to be true.",
+      "Het stuk oogt als onderzoek en de vertraagde communicatie in Limburg was deels echt — daarom voelt het overtuigend. Maar de kern­claim ('bewust achtergehouden voor een politieke agenda') rust op geen enkel primair bewijs, en de site publiceert uitsluitend stukken die hetzelfde narratief versterken en framet elke officiële bron als leugenaar. Het motief stuurt de 'feiten', niet andersom — het waarom is de zwakke schakel.",
   },
 ];

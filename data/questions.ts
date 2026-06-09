@@ -29,6 +29,7 @@ export interface SocialPost {
 export interface ArticlePost {
   type: "article";
   sourceName: string;
+  domain?: string;
   sourceLogoUrl?: string;
   headline: string;
   byline?: string;

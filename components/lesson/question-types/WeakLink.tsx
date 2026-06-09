@@ -1,6 +1,9 @@
 'use client';
 import { useState } from 'react';
 import type { WeakLinkQuestion, WeakPillar } from '@/data/questions';
+import { ExpandableCard } from '@/components/lesson/ExpandableCard';
+import { ContentCard } from '@/components/lesson/ContentCard';
+import { Button } from '@/components/Button';
 
 const PILLARS: { pillar: WeakPillar; label: string }[] = [
   { pillar: 'who',   label: 'Who?'   },
@@ -9,24 +12,22 @@ const PILLARS: { pillar: WeakPillar; label: string }[] = [
   { pillar: 'where', label: 'Where?' },
   { pillar: 'why',   label: 'Why?'   },
 ];
-import { ExpandableCard } from '@/components/lesson/ExpandableCard';
-import { ContentCard } from '@/components/lesson/ContentCard';
-import { Button } from '@/components/Button';
 
 interface Props {
   question: WeakLinkQuestion;
   locked: boolean;
+  selectedOption: number | null;
+  onSelectOption: (i: number) => void;
   onAnswer: (score: number) => void;
 }
 
-export function WeakLink({ question, locked, onAnswer }: Props) {
+export function WeakLink({ question, locked, selectedOption, onSelectOption, onAnswer }: Props) {
   const [step, setStep] = useState<'pillar' | 'explain'>('pillar');
-  const [selectedPillar, setSelectedPillar] = useState<number | null>(null);
   const [explanationText, setExplanationText] = useState('');
 
   function handlePillarTap(i: number) {
-    if (locked || selectedPillar !== null) return;
-    setSelectedPillar(i);
+    if (locked || selectedOption !== null) return;
+    onSelectOption(i);
     const correct = PILLARS[i].pillar === question.correctPillar;
     if (!correct) {
       onAnswer(0);
@@ -59,12 +60,12 @@ export function WeakLink({ question, locked, onAnswer }: Props) {
             {PILLARS.map((pillar, i) => (
               <button
                 key={pillar.pillar}
-                disabled={locked || selectedPillar !== null}
+                disabled={locked || selectedOption !== null}
                 onClick={() => handlePillarTap(i)}
                 className={[
                   'w-full text-left rounded-xl border-2 px-4 py-3 transition-colors',
                   'disabled:pointer-events-none',
-                  selectedPillar === i
+                  selectedOption === i
                     ? 'border-primary bg-primary/15'
                     : 'border-contrast-dark/40 bg-neutral-light hover:border-primary/50',
                 ].join(' ')}

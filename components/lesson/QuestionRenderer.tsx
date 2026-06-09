@@ -77,7 +77,15 @@ export function QuestionRenderer({
         />
       );
     case 'weak-link':
-      return <WeakLink question={question} locked={locked} onAnswer={onAnswer} />;
+      return (
+        <WeakLink
+          question={question}
+          locked={locked}
+          selectedOption={selectedOption}
+          onSelectOption={onSelectOption}
+          onAnswer={onAnswer}
+        />
+      );
     case 'feed-test':
       return <FeedTest question={question} onAnswer={onAnswer} />;
   }
