@@ -27,6 +27,17 @@ export function WeakLink({ question, locked, selectedOption, onSelectOption, onA
     label: t.questions.weakLink.pillars[key],
   }));
 
+  function optionClass(i: number): string {
+    if (locked) {
+      if (isCorrect(pillars[i].pillar, question.correctPillar)) return 'border-accent-green bg-accent-green/15';
+      if (selectedOption === i) return 'border-accent-red bg-accent-red/15';
+      return 'border-contrast-dark/20 bg-neutral-light opacity-40';
+    }
+    return selectedOption === i
+      ? 'border-primary bg-primary/15'
+      : 'border-contrast-dark/40 bg-neutral-light hover:border-primary/50';
+  }
+
   function handlePillarTap(i: number) {
     if (locked || selectedOption !== null) return;
     onSelectOption(i);
@@ -67,9 +78,7 @@ export function WeakLink({ question, locked, selectedOption, onSelectOption, onA
                 className={[
                   'w-full text-left rounded-xl border-2 px-4 py-3 transition-colors',
                   'disabled:pointer-events-none',
-                  selectedOption === i
-                    ? 'border-primary bg-primary/15'
-                    : 'border-contrast-dark/40 bg-neutral-light hover:border-primary/50',
+                  optionClass(i),
                 ].join(' ')}
               >
                 <p className="text-contrast font-semibold text-sm">{pillar.label}</p>

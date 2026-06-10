@@ -22,6 +22,15 @@ export function RealOrAi({ question, locked, onAnswer }: Props) {
     return <TellReveal imageUrl={question.imageUrl} tell={question.tell} onConfirm={onAnswer} />;
   }
 
+  function choiceClass(choice: 'real' | 'ai'): string {
+    if (locked) {
+      if (choice === question.correctAnswer) return '!bg-accent-green ring-2 ring-offset-2 ring-accent-green';
+      if (selected === choice) return '!bg-accent-red ring-2 ring-offset-2 ring-accent-red';
+      return 'opacity-40';
+    }
+    return selected === choice ? 'ring-2 ring-offset-2 ring-primary' : '';
+  }
+
   function pick(choice: 'real' | 'ai') {
     if (locked || selected !== null) return;
     setSelected(choice);
@@ -50,16 +59,16 @@ export function RealOrAi({ question, locked, onAnswer }: Props) {
       <div className="flex gap-3 justify-center">
         <Button
           variant="yes"
-          disabled={locked || selected !== null}
-          className={selected === 'real' ? 'ring-2 ring-offset-2 ring-primary' : ''}
+          disabled={!locked && selected !== null}
+          className={choiceClass('real')}
           onClick={() => pick('real')}
         >
           {t.questions.realOrAi.real}
         </Button>
         <Button
           variant="no"
-          disabled={locked || selected !== null}
-          className={selected === 'ai' ? 'ring-2 ring-offset-2 ring-primary' : ''}
+          disabled={!locked && selected !== null}
+          className={choiceClass('ai')}
           onClick={() => pick('ai')}
         >
           {t.questions.realOrAi.ai}

@@ -16,6 +16,17 @@ interface Props {
 export function LeaveThePage({ question, locked, selectedOption, onSelectOption, onAnswer }: Props) {
   const { t } = useLanguage();
 
+  function optionClass(i: number): string {
+    if (locked) {
+      if (isCorrect(i, question.correctCardIndex)) return 'border-accent-green bg-accent-green/15';
+      if (selectedOption === i) return 'border-accent-red bg-accent-red/15';
+      return 'border-contrast-dark/20 bg-neutral-light opacity-40';
+    }
+    return selectedOption === i
+      ? 'border-primary bg-primary/15'
+      : 'border-contrast-dark/40 bg-neutral-light hover:border-primary/50';
+  }
+
   return (
     <div className="space-y-5">
       <div className="bg-neutral-light rounded-2xl p-4">
@@ -35,9 +46,7 @@ export function LeaveThePage({ question, locked, selectedOption, onSelectOption,
             className={[
               'w-full text-left rounded-xl border-2 p-4 transition-colors',
               'disabled:pointer-events-none',
-              selectedOption === i
-                ? 'border-primary bg-primary/15'
-                : 'border-contrast-dark/40 bg-neutral-light hover:border-primary/50',
+              optionClass(i),
             ].join(' ')}
           >
             {/* Search-result card layout */}

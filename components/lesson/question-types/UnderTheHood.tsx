@@ -17,6 +17,17 @@ interface Props {
 export function UnderTheHood({ question, locked, selectedOption, onSelectOption, onAnswer }: Props) {
   const { t } = useLanguage();
 
+  function optionClass(i: number): string {
+    if (locked) {
+      if (isCorrect(i, question.correctFlagIndex)) return 'border-accent-green bg-accent-green/15';
+      if (selectedOption === i) return 'border-accent-red bg-accent-red/15';
+      return 'border-contrast-dark/20 bg-neutral-light opacity-40';
+    }
+    return selectedOption === i
+      ? 'border-primary bg-primary/15'
+      : 'border-contrast-dark/40 bg-neutral-light hover:border-primary/50';
+  }
+
   const isMissing = (value: string) =>
     value.startsWith('[NOT FOUND') || value.startsWith('[MISSING');
 
@@ -39,9 +50,7 @@ export function UnderTheHood({ question, locked, selectedOption, onSelectOption,
             className={[
               'w-full text-left rounded-xl border-2 px-4 py-3 transition-colors',
               'disabled:pointer-events-none',
-              selectedOption === i
-                ? 'border-primary bg-primary/15'
-                : 'border-contrast-dark/40 bg-neutral-light hover:border-primary/50',
+              optionClass(i),
             ].join(' ')}
           >
             <span className="text-contrast-dark text-xs font-semibold uppercase tracking-wide block mb-0.5">

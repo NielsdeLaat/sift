@@ -28,6 +28,17 @@ function highlightSource(excerpt: string, source: string): React.ReactNode {
 export function WhoSays({ question, locked, selectedOption, onSelectOption, onAnswer }: Props) {
   const { t } = useLanguage();
 
+  function optionClass(i: number): string {
+    if (locked) {
+      if (isCorrect(i, question.correctIndex)) return 'border-accent-green bg-accent-green/15 text-contrast';
+      if (selectedOption === i) return 'border-accent-red bg-accent-red/15 text-contrast';
+      return 'border-contrast-dark/20 bg-neutral-light text-contrast-dark opacity-40';
+    }
+    return selectedOption === i
+      ? 'border-primary bg-primary/15 text-contrast'
+      : 'border-contrast-dark/40 bg-neutral-light text-contrast-dark hover:border-primary/50';
+  }
+
   return (
     <div className="space-y-5">
       <div className="bg-neutral-light rounded-2xl p-4 border-l-4 border-primary/40">
@@ -49,9 +60,7 @@ export function WhoSays({ question, locked, selectedOption, onSelectOption, onAn
             className={[
               'w-full text-left rounded-xl border-2 px-4 py-3 text-sm font-semibold transition-colors',
               'disabled:pointer-events-none',
-              selectedOption === i
-                ? 'border-primary bg-primary/15 text-contrast'
-                : 'border-contrast-dark/40 bg-neutral-light text-contrast-dark hover:border-primary/50',
+              optionClass(i),
             ].join(' ')}
           >
             {option}
