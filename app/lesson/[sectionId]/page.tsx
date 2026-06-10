@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import { getQuestions } from '@/data/questions';
 import type { Question } from '@/data/questions';
-import { getLessonQuestions } from '@/lib/lesson';
+import { getLessonQuestions, SELF_CONTAINED_TYPES, calcXp } from '@/lib/lesson';
 import { LessonHeader }     from '@/components/lesson/LessonHeader';
 import { QuestionRenderer } from '@/components/lesson/QuestionRenderer';
 import { FeedbackBanner }   from '@/components/lesson/FeedbackBanner';
@@ -12,9 +12,6 @@ import { Icon }             from '@/components/icons';
 import { Button }           from '@/components/Button';
 import { completeLesson }   from '@/lib/store';
 import { useLanguage }      from '@/components/LanguageProvider';
-
-// Types that show their own feedback UI — skip the FeedbackBanner and advance directly.
-const SELF_CONTAINED_TYPES = new Set(['feed-test']);
 
 // A test score below this fraction shows "Try Again" instead of completing the section.
 const PASS_THRESHOLD = 0.6;
@@ -55,10 +52,6 @@ export default function LessonPage() {
   const explanation: string | undefined =
     'explanation' in question ? (question as { explanation: string }).explanation : undefined;
 
-  function calcXp(arr: (number | null)[]): number {
-    return lessonQuestions.reduce((sum, q, i) => sum + Math.round(q.xp * (arr[i] ?? 0)), 0);
-  }
-
   function handleAnswer(score: boolean | number) {
     const numScore = typeof score === 'boolean' ? (score ? 1 : 0) : score;
     const updated = answers.map((a, i) => (i === qIndex ? numScore : a));
@@ -78,7 +71,7 @@ export default function LessonPage() {
   }
 
   function finishLesson(finalAnswers: (number | null)[]) {
-    const xp = calcXp(finalAnswers);
+    const xp = calcXp(lessonQuestions, finalAnswers);
     const totalPossible = lessonQuestions.reduce((sum, q) => sum + q.xp, 0);
     if (isTest) {
       const passed = totalPossible > 0 && xp / totalPossible >= PASS_THRESHOLD;
@@ -94,7 +87,7 @@ export default function LessonPage() {
     }
   }
 
-  const xpEarned = calcXp(answers);
+  const xpEarned = calcXp(lessonQuestions, answers);
 
   function advance() {
     if (qIndex < TOTAL - 1) {

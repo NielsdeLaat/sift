@@ -1,6 +1,14 @@
 import type { Question, QuestionType, FeedTestQuestion } from '@/data/questions';
 import { roadmap } from '@/data/roadmap';
 
+/** Question types that render their own result screen — skip the shared FeedbackBanner. */
+export const SELF_CONTAINED_TYPES = new Set<QuestionType>(['feed-test']);
+
+/** Total XP earned from a scored answer array. */
+export function calcXp(questions: Question[], scores: (number | null)[]): number {
+  return questions.reduce((sum, q, i) => sum + Math.round(q.xp * (scores[i] ?? 0)), 0);
+}
+
 export const LESSON_SIZE = 5;
 export const TEST_SIZE   = 8;
 

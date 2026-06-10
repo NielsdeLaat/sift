@@ -6,6 +6,7 @@ import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { getQuestions } from '@/data/questions';
 import type { Question } from '@/data/questions';
+import { SELF_CONTAINED_TYPES, calcXp } from '@/lib/lesson';
 import { LessonHeader }     from '@/components/lesson/LessonHeader';
 import { QuestionRenderer } from '@/components/lesson/QuestionRenderer';
 import { FeedbackBanner }   from '@/components/lesson/FeedbackBanner';
@@ -13,7 +14,6 @@ import { Icon }             from '@/components/icons';
 import { Button }           from '@/components/Button';
 import { useLanguage }      from '@/components/LanguageProvider';
 
-const SELF_CONTAINED_TYPES = new Set(['feed-test']);
 
 export default function TestPage() {
   return (
@@ -65,10 +65,6 @@ function TestPageContent() {
   const explanation: string | undefined =
     'explanation' in question ? (question as { explanation: string }).explanation : undefined;
 
-  function calcXp(arr: (number | null)[]): number {
-    return lessonQuestions.reduce((sum, q, i) => sum + Math.round(q.xp * (arr[i] ?? 0)), 0);
-  }
-
   function handleAnswer(score: boolean | number) {
     const numScore = typeof score === 'boolean' ? (score ? 1 : 0) : score;
     const updated = answers.map((a, i) => (i === qIndex ? numScore : a));
@@ -86,7 +82,7 @@ function TestPageContent() {
     }
   }
 
-  const xpEarned = calcXp(answers);
+  const xpEarned = calcXp(lessonQuestions, answers);
 
   function advance() {
     if (qIndex < TOTAL - 1) {

@@ -20,8 +20,6 @@ export function WhoSays({ question, locked, onAnswer }: Props) {
   const [selectedSection, setSelectedSection] = useState<number | null>(null);
   const [noSourceSelected, setNoSourceSelected] = useState(false);
 
-  const hasSelection = selectedSection !== null || noSourceSelected;
-
   const shadow = 'shadow-[0_2px_8px_rgba(0,0,0,0.35)]';
 
   function sectionClass(i: number): string {
