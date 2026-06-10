@@ -1,5 +1,45 @@
 # Changelog
 
+All notable changes to this project are documented here.
+
+---
+
+## [0.2.0] — 2026-06-10
+
+### Added
+
+- **7 new question types** replacing all v0.1 types: `name-trick`, `real-or-ai`, `leave-the-page`, `who-says`, `under-the-hood`, `when-or-where`, `weak-link`
+- **Dutch / English language toggle** — full i18n for all UI strings, question prompts, and section metadata; persisted in `localStorage`; switchable without reloading
+- **Settings page** (`/settings`) for language selection
+- **12-section Chapter 1 roadmap** with per-section difficulty configuration
+- **Difficulty gating** — questions carry a `difficulty` integer; each section's `typeConfig` controls which difficulty tier is unlocked
+- **Numeric scoring** — answer scores are 0–1 floats enabling partial credit; `calcXp` computes weighted XP
+- **Section-test pass threshold** — tests require ≥ 60 % to pass; failing shows a dedicated "Not Quite" screen with a Try Again button
+- **ContentCard** — unified content component rendering both article and social-post stimuli
+- **Demo menu** — replaces the Reset button with a bottom sheet: skip to section start, jump to section test, or wipe progress
+- **Type-variety constraints** in lesson selection — no two identical question types in a row; max 2 of any type per 5-question lesson
+- **Multiple correct answers** — `correctIndex` / `correctFlagIndex` / `correctPillar` accept arrays for questions with more than one valid answer
+- **Answer highlighting** — correct/incorrect options highlighted green/red after confirming
+- Dutch and English question banks for all 7 types (separate files per locale under `data/questions/`)
+- New images for `under-the-hood` questions
+- `ChevronLeft` / `ChevronRight` icons
+
+### Changed
+
+- Lesson size increased from 3 to 5 questions
+- Expandable card tappable across full surface; collapse via shrink icon only
+- `/test?q=` supports prefix matching (e.g. `?q=nt-` picks a random matching question)
+- `answers` state changed from `boolean | null` to `number | null` for numeric scores
+- `SELF_CONTAINED_TYPES` and `calcXp` extracted to `lib/lesson.ts`
+
+### Removed
+
+- Question types: `collaboration`, `manipulation-tactics`, `evidence-checking`, `ai-detection`, `source-investigation`, `image-verification`
+- `ArticleCardView` component (superseded by `ContentCard`)
+- Comma-list `?q=id,id` syntax on the lesson page
+
+---
+
 ## [0.1] — 2026-06-04
 
 Initial release for the _Information Disorder during Crisis_ project (Resilient Society / Futures Lab).
