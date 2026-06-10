@@ -11,8 +11,6 @@ import { useLanguage } from '@/components/LanguageProvider';
 interface Props {
   question: WhoSaysQuestion;
   locked: boolean;
-  selectedOption: number | null;
-  onSelectOption: (i: number) => void;
   onAnswer: (isCorrect: boolean) => void;
 }
 

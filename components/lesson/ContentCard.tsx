@@ -36,7 +36,7 @@ export function ContentCard({ content, children }: Props) {
           </div>
           <p className="text-contrast font-bold text-sm leading-snug">{content.headline}</p>
           {content.byline && (
-            <p className="text-contrast-dark text-xs">By {content.byline}</p>
+            <p className="text-contrast-dark text-xs">{content.byline}</p>
           )}
           {content.excerpt && (
             <p className="text-contrast text-sm leading-relaxed">{content.excerpt}</p>

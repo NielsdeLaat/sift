@@ -77,7 +77,7 @@ export default function ProfilePage() {
         </section>
 
         {/* ── Stats row ────────────────────────────────────────── */}
-        <section className="grid grid-cols-3 gap-3" aria-label={t.profile.stats.streak}>
+        <section className="grid grid-cols-3 gap-3">
           <StatCard
             icon="flame"
             iconClassName="text-accent"

@@ -1,10 +1,8 @@
 import type { Section, NodeStatus } from '@/data/roadmap';
-import type { Lang } from '@/lib/i18n';
 
 const KEYS = {
   XP_BONUS:      'tt_xp_bonus',
   NODE_PROGRESS: 'tt_node_progress',
-  LANG:          'tt_lang',
 } as const;
 
 function read(key: string, fallback: number): number {
@@ -19,16 +17,6 @@ function write(key: string, value: number): void {
 
 export function getXpBonus(): number      { return read(KEYS.XP_BONUS, 0); }
 export function getNodeProgress(): number { return read(KEYS.NODE_PROGRESS, 0); }
-
-export function getLanguage(): Lang {
-  if (typeof window === 'undefined') return 'nl';
-  const v = localStorage.getItem(KEYS.LANG);
-  return v === 'en' ? 'en' : 'nl';
-}
-
-export function setLanguage(lang: Lang): void {
-  localStorage.setItem(KEYS.LANG, lang);
-}
 
 /** Call once when a lesson ends. Persists XP gain + advances the current node. */
 export function completeLesson(xpEarned: number): void {

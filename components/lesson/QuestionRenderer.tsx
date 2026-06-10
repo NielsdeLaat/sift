@@ -47,15 +47,7 @@ export function QuestionRenderer({
         />
       );
     case 'who-says':
-      return (
-        <WhoSays
-          question={question}
-          locked={locked}
-          selectedOption={selectedOption}
-          onSelectOption={onSelectOption}
-          onAnswer={onAnswer}
-        />
-      );
+      return <WhoSays question={question} locked={locked} onAnswer={onAnswer} />;
     case 'under-the-hood':
       return (
         <UnderTheHood

@@ -47,6 +47,9 @@ function TestPageContent() {
 
     setLessonQuestions(questions);
     setAnswers(Array(questions.length).fill(null));
+    setQIndex(0);
+    setPhase('answering');
+    setOption(null);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
