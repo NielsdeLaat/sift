@@ -14,9 +14,9 @@ const nl = {
     addFriends: "Vrienden toevoegen",
     achievements: "Prestaties",
     stats: {
-      streak: "Reeks",
+      streak: "Streak",
       friends: "Vrienden",
-      league: "Liga",
+      league: "Rang",
     },
     userTitle: "Factcheck-beginner",
     achievementLabels: {
@@ -69,7 +69,9 @@ const nl = {
       confirm: "Bevestig",
     },
     whoSays: {
-      question: "Kun je deze bron vertrouwen?",
+      question: "Controleer of dit bericht een bron heeft",
+      cue: "Druk op een de alinea met de bron of druk hieronder als deze er niet is",
+      noSource: "Het bericht heeft geen bron",
       confirm: "Bevestig",
     },
     underTheHood: {
@@ -77,6 +79,8 @@ const nl = {
       button: "Dit klopt niet",
     },
     leaveThePage: {
+      searchQuestion: "Wat zou jij zoeken om dit te controleren?",
+      searchConfirm: "Dit zoek ik",
       question: "Welk resultaat bewijst dit?",
       button: "Deze bewijst het",
     },
@@ -120,10 +124,10 @@ const nl = {
   },
   ui: {
     demoOptions: "Demo-opties",
-    skipToSection: "Spring naar sectie",
-    skipToSectionDesc: "Begin bij het eerste lesje van een sectie",
+    skipToSection: "Ga naar sectie",
+    skipToSectionDesc: "Begin bij de eerste les van een sectie",
     goToSectionTest: "Sectietoets",
-    goToSectionTestDesc: "Spring direct naar de toets van een sectie",
+    goToSectionTestDesc: "Ga direct naar de toets van een sectie",
     resetDemo: "Demo resetten",
     resetDemoDesc: "Wis alle voortgang en begin opnieuw",
     back: "Terug",
@@ -213,7 +217,9 @@ const en: typeof nl = {
       confirm: "Confirm",
     },
     whoSays: {
-      question: "Can you trust this source?",
+      question: "Where is the source?",
+      cue: "Open the article to find the source",
+      noSource: "No source here",
       confirm: "Confirm",
     },
     underTheHood: {
@@ -221,6 +227,8 @@ const en: typeof nl = {
       button: "This doesn't look right",
     },
     leaveThePage: {
+      searchQuestion: "What would you search to check this?",
+      searchConfirm: "That's my search",
       question: "Which result proves this?",
       button: "This one proves it",
     },

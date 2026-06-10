@@ -21,6 +21,7 @@ export interface SocialPost {
   sourceName: string;
   handle: string;
   followerCount: string;
+  publishedAt?: string;
   text: string;
   imageUrl?: string;
 }
@@ -86,7 +87,10 @@ export interface RealOrAiQuestion extends BaseQuestion {
 
 export interface LeaveThePageQuestion extends BaseQuestion {
   type: "leave-the-page";
-  scenario: string;
+  content: ContentItem;
+  searchOptions: [string, string, string, string, ...string[]];
+  correctSearchIndex: number | number[];
+  searchExplanation: string;
   cards: SearchResultCard[];
   correctCardIndex: number | number[];
   explanation: string;
@@ -94,17 +98,15 @@ export interface LeaveThePageQuestion extends BaseQuestion {
 
 export interface WhoSaysQuestion extends BaseQuestion {
   type: "who-says";
-  excerpt: string;
-  highlightedSource: string;
-  options: string[];
-  correctIndex: number | number[];
+  content: ContentItem;
+  sections: string[];
+  correctSectionIndex: number | null;
   explanation: string;
 }
 
 export interface UnderTheHoodQuestion extends BaseQuestion {
   type: "under-the-hood";
-  imageUrl: string;
-  claim: string;
+  content: ContentItem;
   /** All tappable evidence items (metadata rows + reverse-search result). */
   items: EvidenceItem[];
   correctFlagIndex: number | number[];
@@ -114,8 +116,7 @@ export interface UnderTheHoodQuestion extends BaseQuestion {
 export interface WhenOrWhereQuestion extends BaseQuestion {
   type: "when-or-where";
   subtype: "when" | "where";
-  imageUrl?: string;
-  text?: string;
+  content?: ContentItem;
   options: string[];
   correctIndex: number | number[];
   explanation: string;

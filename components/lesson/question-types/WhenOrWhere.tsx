@@ -2,7 +2,7 @@
 
 import type { WhenOrWhereQuestion } from '@/data/questions';
 import { isCorrect } from '@/data/questions';
-import { ExpandableImage } from '@/components/lesson/ExpandableImage';
+import { ContentCard } from '@/components/lesson/ContentCard';
 import { Button } from '@/components/Button';
 import { useLanguage } from '@/components/LanguageProvider';
 
@@ -34,17 +34,7 @@ export function WhenOrWhere({ question, locked, selectedOption, onSelectOption, 
 
   return (
     <div className="space-y-5">
-      {question.imageUrl && (
-        <div className="relative w-full aspect-video rounded-xl overflow-hidden">
-          <ExpandableImage src={question.imageUrl} className="w-full h-full object-cover" />
-        </div>
-      )}
-
-      {question.text && (
-        <div className="bg-neutral-light rounded-2xl p-4">
-          <p className="text-contrast text-sm leading-relaxed">{question.text}</p>
-        </div>
-      )}
+      {question.content && <ContentCard content={question.content} />}
 
       <h2 className="text-contrast font-bold text-xl text-center">
         {question.question ?? subtypeLabel}

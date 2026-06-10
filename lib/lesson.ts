@@ -25,6 +25,26 @@ export function getCumulativeTypeConfig(sectionId: string): Map<QuestionType, nu
   return map;
 }
 
+function pickWithConstraints(available: Question[], size: number): Question[] {
+  const pool = [...available].sort(() => Math.random() - 0.5);
+  const result: Question[] = [];
+  const typeCounts = new Map<QuestionType, number>();
+  let lastType: QuestionType | null = null;
+
+  while (result.length < size && pool.length > 0) {
+    const validIdx = pool.findIndex(
+      q => q.type !== lastType && (typeCounts.get(q.type) ?? 0) < 2,
+    );
+    const idx = validIdx !== -1 ? validIdx : 0;
+    const [picked] = pool.splice(idx, 1);
+    result.push(picked);
+    typeCounts.set(picked.type, (typeCounts.get(picked.type) ?? 0) + 1);
+    lastType = picked.type;
+  }
+
+  return result;
+}
+
 export function getLessonQuestions(sectionId: string, isTest: boolean, all: Question[]): Question[] {
   if (isTest) {
     const pinned = all.filter(
@@ -41,5 +61,5 @@ export function getLessonQuestions(sectionId: string, isTest: boolean, all: Ques
     return maxDifficulty !== undefined && q.difficulty <= maxDifficulty;
   });
 
-  return [...available].sort(() => Math.random() - 0.5).slice(0, LESSON_SIZE);
+  return pickWithConstraints(available, LESSON_SIZE);
 }

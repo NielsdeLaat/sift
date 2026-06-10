@@ -1,16 +1,25 @@
+import type { ReactNode } from 'react';
 import type { ContentItem } from '@/data/questions';
+
+function MediaItem({ url, className }: { url: string; className: string }) {
+  if (/\.(mp4|webm|ogg)(\?|$)/i.test(url)) {
+    return <video src={url} className={className} autoPlay muted loop playsInline />;
+  }
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={url} alt="" className={className} />;
+}
 
 interface Props {
   content: ContentItem;
+  children?: ReactNode;
 }
 
-export function ContentCard({ content }: Props) {
+export function ContentCard({ content, children }: Props) {
   if (content.type === 'article') {
     return (
-      <div className="bg-neutral-light rounded-2xl overflow-hidden space-y-0">
+      <div className="bg-neutral-light rounded-2xl overflow-hidden">
         {content.imageUrl && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={content.imageUrl} alt="" className="w-full object-cover max-h-44" />
+          <MediaItem url={content.imageUrl} className="w-full object-cover max-h-44" />
         )}
         <div className="p-4 space-y-2">
           <div className="flex items-center gap-2">
@@ -29,8 +38,16 @@ export function ContentCard({ content }: Props) {
           {content.byline && (
             <p className="text-contrast-dark text-xs">By {content.byline}</p>
           )}
-          <p className="text-contrast text-sm leading-relaxed">{content.excerpt}</p>
+          {content.excerpt && (
+            <p className="text-contrast text-sm leading-relaxed">{content.excerpt}</p>
+          )}
         </div>
+        {children && (
+          <>
+            <div className="h-px bg-white/8 mx-4" />
+            {children}
+          </>
+        )}
       </div>
     );
   }
@@ -47,13 +64,21 @@ export function ContentCard({ content }: Props) {
         />
         <div className="min-w-0">
           <p className="text-contrast font-bold text-sm leading-tight truncate">{social.sourceName}</p>
-          <p className="text-contrast-dark text-xs">{social.handle} · {social.followerCount}</p>
+          <p className="text-contrast-dark text-xs">
+            {social.handle} · {social.followerCount}
+            {social.publishedAt && <> · {social.publishedAt}</>}
+          </p>
         </div>
       </div>
       <p className="text-contrast text-sm leading-relaxed">{social.text}</p>
       {social.imageUrl && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={social.imageUrl} alt="" className="w-full rounded-xl object-cover max-h-44" />
+        <MediaItem url={social.imageUrl} className="w-full rounded-xl object-cover max-h-44" />
+      )}
+      {children && (
+        <div className="-mx-4 -mb-4 mt-0">
+          <div className="h-px bg-white/8" />
+          {children}
+        </div>
       )}
     </div>
   );

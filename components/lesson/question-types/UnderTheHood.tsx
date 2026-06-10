@@ -2,7 +2,7 @@
 
 import type { UnderTheHoodQuestion } from '@/data/questions';
 import { isCorrect } from '@/data/questions';
-import { ExpandableImage } from '@/components/lesson/ExpandableImage';
+import { ContentCard } from '@/components/lesson/ContentCard';
 import { Button } from '@/components/Button';
 import { useLanguage } from '@/components/LanguageProvider';
 
@@ -29,13 +29,11 @@ export function UnderTheHood({ question, locked, selectedOption, onSelectOption,
   }
 
   const isMissing = (value: string) =>
-    value.startsWith('[NOT FOUND') || value.startsWith('[MISSING');
+    value.startsWith('[NOT FOUND') || value.startsWith('[MISSING') || value.startsWith('[NIET GEVONDEN');
 
   return (
     <div className="space-y-5">
-      <div className="relative w-full aspect-video rounded-xl overflow-hidden">
-        <ExpandableImage src={question.imageUrl} className="w-full h-full object-cover" />
-      </div>
+      <ContentCard content={question.content} />
 
       <h2 className="text-contrast font-bold text-xl text-center">
         {question.question ?? t.questions.underTheHood.question}

@@ -2,7 +2,6 @@ import type { NameTrickQuestion } from "../../questions";
 
 export const nameTrickQuestions: NameTrickQuestion[] = [
   // ─────────────────────────── DIFFICULTY 1 ───────────────────────────
-  // Short posts (1–2 sentences). Plain options — no jargon.
 
   {
     id: "nt-d1-1",
@@ -12,20 +11,21 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/nt-d1-1/80/80",
-      sourceName: "WaterAlert Nederland",
-      handle: "@wateralertnl",
-      followerCount: "3.2K volgers",
-      text: "🚨🚨 HET KRAANWATER IS VERGIFTIGD!! Zet het NU uit!! Je kinderen drinken dit elke dag!! Deel dit voordat het te laat is!! 🚨🚨",
+      sourceName: "Voedselveiligheid Nu",
+      handle: "@voedselnu",
+      followerCount: "5.3K volgers",
+      text: "🚨 STOP MET ETEN!! Spinazie van Albert Heijn BESMET met gevaarlijke E.coli — mijn buurvrouw is al opgenomen!! GOOI HET WEG en waarschuw iedereen in je buurt!! Dit is URGENT!!",
+      imageUrl: undefined,
     },
     options: [
       "Speelt in op angst",
-      "Zegt dat er maar twee keuzes zijn",
-      "Noemt een expert die je niet kunt controleren",
-      "Geeft één groep de schuld",
+      "Zegt dat je maar twee opties hebt",
+      "Wijst één groep aan als schuldige",
+      "Stelt verdachte vragen",
     ],
     correctIndex: 0,
     explanation:
-      "Dit bericht maakt je bang met hoofdletters, uitroeptekens en het woordje 'kinderen'. Er staat geen enkel bewijs bij — alleen alarmbellen. Dat is het kenmerk van emotiemanipulatie: angst vervangt bewijs.",
+      "Dit bericht maakt je bang met hoofdletters, uitroeptekens en een anoniem ooggetuigenverhaal. Er staat geen officiële recall bij, geen naam, geen bron. Angst vervangt bewijs.",
   },
 
   {
@@ -36,20 +36,21 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/nt-d1-2/80/80",
-      sourceName: "Medisch Bewust NL",
-      handle: "@medischbewust",
-      followerCount: "8.9K volgers",
-      text: "Een huisarts vertelde me dat mondkapjes gevaarlijker zijn dan het virus zelf. De overheid laat dit niet zeggen. Doe je eigen onderzoek.",
+      sourceName: "ReizigersRecht NL",
+      handle: "@reizigersrecht",
+      followerCount: "9.1K volgers",
+      text: "Een oud-medewerker van ProRail vertelde mij dat de constante treinvertragingen bewust in stand worden gehouden om extra subsidies te rechtvaardigen. Dit schijnt al jaren zo te gaan. Ze willen niet dat dit uitkomt.",
+      imageUrl: undefined,
     },
     options: [
-      "Speelt in op angst",
-      "Noemt een expert die je niet kunt controleren",
-      "Geeft één groep de schuld",
-      "Stelt vragen in plaats van beschuldigingen",
+      "Maakt je bang",
+      "Beroept zich op iemand die je niet kunt controleren",
+      "Geeft één groep overal de schuld van",
+      "Suggereert dat er maar twee keuzes zijn",
     ],
     correctIndex: 1,
     explanation:
-      'De post noemt "een huisarts" maar geeft geen naam, praktijk of bron. Je kunt niet controleren of deze persoon echt bestaat of dit echt gezegd heeft. Als een claim alleen steunt op een onbekende expert, kun je hem niet beoordelen.',
+      "De post noemt een 'oud-medewerker van ProRail' maar geeft geen naam, functie of bewijs. Je kunt niet controleren of deze persoon echt bestaat of dit echt gezegd heeft. Een onbekende expert is geen bewijs.",
   },
 
   {
@@ -60,20 +61,21 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/nt-d1-3/80/80",
-      sourceName: "Wakker Nederland",
-      handle: "@wakkernederland",
-      followerCount: "14K volgers",
-      text: "Weten jullie waarom de dijken in Limburg het begaven? Omdat de gemeente al het onderhoudsgeld heeft uitgegeven aan azc's. Zo simpel is het.",
+      sourceName: "Zorg voor Nederlanders",
+      handle: "@zorgvnl",
+      followerCount: "16K volgers",
+      text: "Wachtlijsten bij de huisarts zo lang? Simpel: praktijken zitten overvol door mensen die hier nooit premie hebben betaald. Nederlandse patiënten betalen al jaren de prijs. Zo werkt het systeem.",
+      imageUrl: undefined,
     },
     options: [
-      "Speelt in op angst",
-      "Noemt een expert die je niet kunt controleren",
-      "Geeft één groep overal de schuld van",
+      "Wekt angst op",
       "Stelt vragen in plaats van beschuldigingen",
+      "Geeft één groep de schuld van een complex probleem",
+      "Citeert een expert die je niet kunt nagaan",
     ],
     correctIndex: 2,
     explanation:
-      "Dijkonderhoud is afhankelijk van waterschappen, rijksbudgetten en klimaatfactoren — een complex geheel. De post gooit dat in één zin op één groep. Zo werkt schuldaanwijzing: een ingewikkeld probleem krijgt een makkelijk doelwit.",
+      "Wachtlijsten hebben complexe oorzaken: personeelstekort, vergrijzing, budgetten, bureaucratie. De post gooit dat in één zin op één groep. Zo werkt schuldaanwijzing: een ingewikkeld probleem krijgt een makkelijk doelwit.",
   },
 
   {
@@ -84,24 +86,24 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/nt-d1-4/80/80",
-      sourceName: "Crisisnieuws NL",
-      handle: "@crisisnieuwsnl",
-      followerCount: "21K volgers",
-      text: "Kies: vertrouw de overheid en blijf thuis terwijl het water stijgt. Of luister naar je verstand en evacueer NU je gezin. Jij beslist.",
+      sourceName: "Woningmarkt NL",
+      handle: "@woningmarktnl",
+      followerCount: "28K volgers",
+      text: "Kies: je betaalt €1.600 huur per maand en raakt financieel alles kwijt, of je koopt een huis van €450.000 en gaat tientallen jaren diep in de schulden. Dit zijn je enige twee opties in 2025. Succes ermee.",
+      imageUrl: undefined,
     },
     options: [
-      "Speelt in op angst",
-      "Noemt een expert die je niet kunt controleren",
-      "Geeft één groep de schuld",
+      "Speelt in op je gevoel",
+      "Citeert een onbekende expert",
+      "Geeft een groep de schuld",
       "Zegt dat er maar twee keuzes zijn",
     ],
     correctIndex: 3,
     explanation:
-      "De post stelt dat je maar twee opties hebt. Maar in werkelijkheid zijn er altijd meer mogelijkheden — je kunt officiële bronnen raadplegen én spullen pakken. Door een valse tegenstelling te scheppen, dwingt de post je tot paniek.",
+      "De post noemt twee extreme opties als de enige keuzes. Maar er zijn altijd meer mogelijkheden: huurtoeslag, sociale huur, gedeeld eigendom, verhuizen naar een andere regio. Door alternatieven weg te laten, creëert de post een gevoel van hopeloosheid.",
   },
 
   // ─────────────────────────── DIFFICULTY 2 ───────────────────────────
-  // Medium posts (3–4 sentences). 5 options — one theoretical term introduced per question.
 
   {
     id: "nt-d2-1",
@@ -111,21 +113,22 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/nt-d2-1/80/80",
-      sourceName: "Bewuste Buurt 040",
-      handle: "@bewustebuurt040",
-      followerCount: "5.1K volgers",
-      text: "Ik zeg niks hoor, maar is het niet opvallend dat precies na de plaatsing van de nieuwe 5G-masten in onze wijk drie buren binnen een maand ziek zijn geworden? Misschien toeval, misschien niet. Gewoon even nadenken 🤔 #DoJeEigenOnderzoek",
+      sourceName: "Groningen Spreekt",
+      handle: "@groningenspreekt",
+      followerCount: "12K volgers",
+      text: "Ik zeg niet dat het opzet is. Maar is het niet opvallend dat de zwaarste aardbevingen in Groningen precies samenvielen met de piekjaren van de gaswinning? En dat dezelfde politici die de winning goedkeurden nu verklaren dat er 'onvoldoende bewijs' is voor een verband? Ik stel alleen maar vragen. #Groningen #gaswinning 🤔",
+      imageUrl: undefined,
     },
     options: [
       "Stelt beschuldigende vragen zonder iets te hoeven bewijzen",
       "Speelt in op angst en onzekerheid",
-      "Wijst één groep aan als schuldige",
-      "Noemt een expert die je niet kunt controleren",
+      "Wijst één partij als schuldige aan",
+      "Noemt een niet-verifieerbare expert",
       "Schetst een vals dilemma",
     ],
     correctIndex: 0,
     explanation:
-      'De post doet alsof het een onschuldige vraag is, maar plant tegelijk de suggestie dat 5G-masten ziek maken. Door "ik zeg niks hoor" te schrijven, wijst de auteur elke verantwoordelijkheid af — terwijl de beschuldiging al gemaakt is.',
+      "De post stelt alleen vragen en trekt nooit een conclusie. Maar de vragen samen suggereren opzet en bedrog. Door nooit een bewering te doen, hoeft de schrijver niets te bewijzen — de lezer trekt de conclusie zelf.",
   },
 
   {
@@ -136,21 +139,22 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/nt-d2-2/80/80",
-      sourceName: "Stem van de Burger",
-      handle: "@stemvdburger",
-      followerCount: "31K volgers",
-      text: "Wat er in Bodegraven is gebeurd mag NOOIT worden vergeten. Kinderen werden misbruikt en vermoord, en de gemeente WIST het. En toch: complete stilte van de autoriteiten. Terwijl de daders vrij rondlopen, leggen gewone burgers bloemen. Hoe lang laten we dit nog toe??",
+      sourceName: "Klimaat & Recht NL",
+      handle: "@klimaatrecht",
+      followerCount: "23K volgers",
+      text: "Gisteren werden studenten van begin twintig hardhandig van straat gesleurd terwijl ze vredig demonstreerden voor hun toekomst. Ze kregen traangas in het gezicht. Gewone jongeren die niets anders deden dan schreeuwen dat ze willen overleven. Dit is hoe onze overheid hun toekomst beschermt. Schaam je.",
+      imageUrl: undefined,
     },
     options: [
-      "Stelt beschuldigende vragen zonder bewijs",
-      "Wekt verontwaardiging op zonder bewijs te leveren",
-      "Geeft één groep de schuld van een complex probleem",
-      "Schetst een vals dilemma: alsof er maar twee keuzes zijn",
-      "Noemt een expert die je niet kunt controleren",
+      "Wijst de overheid aan als schuldige",
+      "Wekt verontwaardiging op als vervanging voor bewijs",
+      "Citeert een niet-controleerbare getuige",
+      "Schetst een vals dilemma",
+      "Stelt beschuldigende vragen",
     ],
     correctIndex: 1,
     explanation:
-      'Het bericht noemt geen enkel bewijs of bron, maar gebruikt zware woorden ("misbruikt", "vermoord", "WIST het") om verontwaardiging en verdriet op te wekken. De kracht van het gevoel moet het gebrek aan bewijs verbergen.',
+      "Het bericht gebruikt specifieke details om verontwaardiging op te wekken, maar noemt geen bron, officieel rapport of naam. De emotionele kracht van het verhaal is bedoeld om verificatie overbodig te laten lijken.",
   },
 
   {
@@ -161,21 +165,22 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/nt-d2-3/80/80",
-      sourceName: "Nederland Nu",
-      handle: "@nederlandnu_",
-      followerCount: "47K volgers",
-      text: "Al jaren zeggen bewoners van Ter Apel het: de overlast, de criminaliteit, de druk op de voorzieningen. En nu is het hek letterlijk van de dam. De hulpverleners staan erbij te kijken terwijl het systeem instort. We weten allemaal door wie dit komt — de overheid wil het alleen niet toegeven.",
+      sourceName: "Energie Waakhond",
+      handle: "@energiewaakhond",
+      followerCount: "7.8K volgers",
+      text: "Een voormalig directeur van een groot energiebedrijf — die anoniem wil blijven uit angst voor zijn pensioen — liet mij weten dat de energieprijzen de afgelopen drie jaar kunstmatig zijn opgehoogd met minimaal 40%. De winstmarges voor aandeelhouders zijn nog nooit zo hoog geweest. Hij durft niet met zijn naam naar buiten. Dat zegt genoeg.",
+      imageUrl: undefined,
     },
     options: [
-      "Speelt in op angst en gevoel van onrecht",
-      "Schetst een vals dilemma: twee opties, geen middenweg",
-      "Wijst één groep aan als schuldige voor een complex probleem",
-      "Noemt een oncontroleerbare expert",
+      "Speelt in op angst en urgentie",
       "Stelt beschuldigende vragen",
+      "Noemt een anonieme, niet-controleerbare expert",
+      "Schetst een vals dilemma: slechts twee opties",
+      "Wijst één industrie als schuldige aan",
     ],
     correctIndex: 2,
     explanation:
-      'De post beschrijft echte spanningen maar schrijft ze toe aan één vage groep — "door wie dit komt" — zonder dat dit bewezen wordt. Zo werkt schuldaanwijzing: een complex probleem krijgt één makkelijk doelwit.',
+      "De post noemt een 'voormalig directeur' die anoniem wil blijven. Je kunt zijn identiteit, zijn functie en zijn cijfers (40%) niet controleren. Hoe specifieker een anonieme bron klinkt, hoe geloofwaardiger hij lijkt — maar anoniem blijft anoniem.",
   },
 
   {
@@ -186,25 +191,25 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/nt-d2-4/80/80",
-      sourceName: "Gezond & Vrij",
-      handle: "@gezond_en_vrij",
-      followerCount: "26K volgers",
-      text: "Je kiest het vaccin en accepteert onbekende bijwerkingen die pas over jaren zichtbaar worden. Of je kiest voor je eigen immuunsysteem en beschermt wat de natuur je heeft gegeven. Een derde optie bestaat niet — welke kant sta jij op?",
+      sourceName: "Patiënten Stem NL",
+      handle: "@patientenstem",
+      followerCount: "18K volgers",
+      text: "De situatie is helder: óf het kabinet grijpt deze week in en dwingt farmaceutische bedrijven tot directe levering van insuline en andere levensreddende medicijnen, óf er vallen de komende maanden doden onder chronisch zieken. Er is geen derde optie. Politici, de bal ligt bij jullie.",
+      imageUrl: undefined,
     },
     options: [
-      "Speelt in op angst voor bijwerkingen",
+      "Speelt in op angst",
       "Noemt een niet-verifieerbare expert",
-      "Wijst een groep aan als schuldige",
-      "Schetst een vals dilemma: alsof er maar twee opties bestaan",
-      "Stelt beschuldigende vragen zonder antwoord",
+      "Wijst de farmaceutische industrie als schuldige aan",
+      "Schetst een vals dilemma: alsof er maar twee opties zijn",
+      "Stelt beschuldigende vragen",
     ],
     correctIndex: 3,
     explanation:
-      'De post presenteert twee opties als de enige mogelijkheden en sluit actief een derde weg uit ("een derde optie bestaat niet"). Dat is een vals dilemma: de werkelijkheid biedt altijd meer keuzes dan twee tegengestelde extremen.',
+      "De post presenteert twee opties alsof er geen alternatieven zijn: direct ingrijpen of mensen sterven. In werkelijkheid zijn er meer mogelijkheden — noodvoorraden, Europese inkoop, tijdelijke regelingen. Het vals dilemma creëert kunstmatige urgentie.",
   },
 
   // ─────────────────────────── DIFFICULTY 3 ───────────────────────────
-  // Long posts (5–7 sentences). 5 options — full FLICC framing.
 
   {
     id: "nt-d3-1",
@@ -214,21 +219,22 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/nt-d3-1/80/80",
-      sourceName: "Onafhankelijk Nieuws NL",
-      handle: "@onafh_nieuws_nl",
-      followerCount: "19K volgers",
-      text: 'Dr. Hendrik Vos, onafhankelijk luchtvaartanalist en voormalig militair ingenieur, heeft zijn onderzoeksrapport gepubliceerd. Zijn conclusie is onomstotelijk: de raket die MH17 neerschoot was van Oekraïense makelij, niet Russisch. "Het bewijsmateriaal is overduidelijk," aldus Vos. De gevestigde media negeren dit rapport omdat het niet in het politieke plaatje past.',
+      sourceName: "Vrij & Onafhankelijk NL",
+      handle: "@vrijennl",
+      followerCount: "54K volgers",
+      text: "De explosie in energiekosten, de onbetaalbare boodschappen, de woningmarkt die definitief op slot zit: het zijn geen toevalligheden. Ze zijn het rechtstreekse gevolg van een klimaatbeleid dat werd doorgevoerd zonder mandaat en waarvan de rekening bij de gewone burger terechtkomt. Het sluiten van de Groningse gasvelden, de windmolens, de stikstofregels — het zijn schakels in dezelfde keten. Terwijl multinationals miljarden aan subsidie opstrijken, betaalt het modale huishouden de prijs. De politici die dit beleid verdedigen, doen dat omdat hun financiers er baat bij hebben.",
+      imageUrl: undefined,
     },
     options: [
       "Emotionele manipulatie via verontwaardiging",
+      "Scapegoating: meerdere complexe problemen worden aan één agenda toegeschreven",
       "Vals dilemma: slechts twee opties gepresenteerd",
-      "Onverifieerbare expert: autoriteit zonder controleerbare bron",
-      "Scapegoating: één partij als schuldige aangewezen",
       "Just asking questions: beschuldigingen als vragen verpakt",
+      "Onverifieerbare expert geciteerd",
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation:
-      '"Dr. Hendrik Vos" klinkt gezaghebbend, maar je kunt zijn rapport niet vinden, zijn achtergrond niet controleren en zijn instituut bestaat niet aantoonbaar. Het gebruik van een onverifieerbare expert is een klassieke techniek: claims legitimeren zonder echt bewijs te leveren.',
+      "De post verbindt een breed scala aan problemen — energie, voedsel, wonen, stikstof — aan één oorzaak: het klimaatbeleid. Elk van deze problemen heeft zijn eigen oorzaken en context. Als alles wordt teruggebracht tot dezelfde agenda, zonder bewijs per probleem afzonderlijk, is dat scapegoating.",
   },
 
   {
@@ -239,21 +245,22 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/nt-d3-2/80/80",
-      sourceName: "Kritisch Brabant",
-      handle: "@kritischbrabant",
-      followerCount: "11K volgers",
-      text: 'Ik doe geen beschuldigingen, maar ik wil een paar dingen delen die ik heb opgemerkt. Het RIVM bevestigde vorige maand dat er "geen risico\'s" zijn aan het drinkwater in onze regio. Maar waarom is die mededeling pas zes uur na de eerste meldingen van buikklachten gepubliceerd? Waarom werden de meetresultaten niet openbaar gemaakt? En waarom weigerden twee gemeenteraadsleden commentaar te geven toen een journalist ernaar vroeg? Als je de puzzelstukjes samenlegt, begint er toch een patroon zichtbaar te worden... 🤔',
+      sourceName: "Woonrecht Onderzoek",
+      handle: "@woononderzoek",
+      followerCount: "31K volgers",
+      text: "Het woningtekort staat officieel op 400.000 huizen. Maar wie houdt die statistieken bij? Het CBS — dat rapporteert aan dezelfde overheid die het beleid heeft bepaald. Hoe is het mogelijk dat een land dat twintig jaar geleden nog bouwoverschotten kende, nu ineens een half miljoen huizen tekort heeft? Is het toeval dat dit tekort samenvalt met de periode waarin de migratiestroom het sterkst groeide? Ik zeg niet dat er een verband is. Maar waarom worden die vragen niet gesteld in de Tweede Kamer? Wat heeft de overheid hier te verbergen?",
+      imageUrl: undefined,
     },
     options: [
-      "Emotionele manipulatie: angst en verontwaardiging als bewijs",
+      "Emotionele manipulatie: verontwaardiging als bewijs",
+      "Scapegoating: complexe problemen aan één oorzaak toegeschreven",
       "Vals dilemma: slechts twee opties gepresenteerd",
-      "Onverifieerbare expert als bewijs aangevoerd",
-      "Scapegoating: één groep als schuldige aangewezen",
-      "Just asking questions: beschuldigingen als vragen formuleren",
+      "Onverifieerbare expert geciteerd als autoriteit",
+      "Just asking questions: beschuldigingen verpakken als neutrale vragen",
     ],
     correctIndex: 4,
     explanation:
-      'De post stelt uitsluitend vragen en trekt nooit een conclusie — maar de vragen samen planten een duidelijke beschuldiging: de overheid verzwijgt gevaarlijk drinkwater. Door alles als vraag te formuleren hoeft de schrijver niets te bewijzen. Dit heet "just asking questions".',
+      "De post stelt zes retorische vragen maar maakt nooit een directe claim. Elke vraag plant een suggestie — het CBS liegt, de overheid verbergt iets — zonder die te hoeven bewijzen. Het slotwoord 'wat heeft de overheid te verbergen?' is een beschuldiging verpakt als vraag.",
   },
 
   {
@@ -264,21 +271,22 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/nt-d3-3/80/80",
-      sourceName: "IJmond Wakker",
-      handle: "@ijmondwakker",
-      followerCount: "38K volgers",
-      text: 'Bewoners die al jaren klagen over de luchtkwaliteit bij het industrieterrein worden steevast genegeerd. De metingen die het bedrijf zelf uitvoert, worden door de overheid klakkeloos overgenomen. Intussen rapporteren ouders van basisscholen in de omgeving een stijging van luchtwegklachten bij kinderen. Een moeder vertelt: "Mijn dochter heeft elke ochtend hoofdpijn. Wanneer is het genoeg?" Artsen durven niets te zeggen uit angst voor gevolgen. Activisten worden weggezet als extremisten. En de rook blijft maar komen.',
+      sourceName: "Zorgslachtoffer NL",
+      handle: "@zorgslachtoffer",
+      followerCount: "44K volgers",
+      text: "Mijn moeder lag 14 maanden op een wachtlijst voor een heupoperatie. In die tijd is ze drie keer gevallen. Ze kan nu nauwelijks meer lopen. Ze is 73 jaar, heeft 47 jaar lang netjes haar zorgpremie betaald en dit is wat ze terugkrijgt. Intussen mag ik van politici horen dat er 'geen geld' is — terwijl de zorgtoeslag is afgebouwd en de premies elk jaar stijgen. Ze is niet de enige: honderdduizenden ouderen zitten in dezelfde situatie. Ik blijf dit posten totdat iemand in Den Haag wakker wordt.",
+      imageUrl: undefined,
     },
     options: [
+      "Emotionele manipulatie: persoonlijke verhalen als vervanging voor bewijs",
       "Vals dilemma: twee opties, geen middenweg",
-      "Emotionele manipulatie: persoonlijke verhalen en verontwaardiging als bewijs",
-      "Scapegoating: één specifieke groep als schuldige aanwijzen",
+      "Scapegoating: één groep als schuldige aangewezen",
       "Just asking questions: beschuldigingen als vragen stellen",
-      "Onverifieerbare expert geciteerd als gezaghebbende bron",
+      "Onverifieerbare expert geciteerd als autoriteit",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      'Het bericht gebruikt uitsluitend emotioneel materiaal: een anonieme moeder, artsen die "niets durven zeggen", activisten die worden weggezet. Er zijn geen metingen, geen wetenschappelijke bronnen, geen hoor en wederhoor. Emotionele manipulatie werkt zo: persoonlijke verhalen en verontwaardiging vervangen feiten en bronnen.',
+      "Het bericht vertelt een indringend persoonlijk verhaal — herkenbaar, gedetailleerd, emotioneel. Maar er zijn geen officiële wachtlijstcijfers, geen naam, geen medische bron. Het verhaal is oprecht bedoeld, maar de emotionele kracht vervangt hier de verificatie.",
   },
 
   {
@@ -289,20 +297,21 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/nt-d3-4/80/80",
-      sourceName: "Forum Patriot NL",
-      handle: "@forumpatriotnl",
-      followerCount: "62K volgers",
-      text: "Terwijl gewone Nederlanders de energierekening nauwelijks kunnen betalen en de wachtlijsten in de zorg uitlopen, worden miljarden besteed aan klimaatsubsidies, opvanglocaties en internationale verdragen waar niemand op heeft gestemd. De echte reden dat onze infrastructuur het laat afweten? Die middelen zijn jarenlang weggesluisd naar politieke prioriteiten die niets met de gewone burger van doen hebben. Als morgen de stroom uitvalt, weten jullie nu wie daarvoor verantwoordelijk zijn. Het is tijd dat Nederland dit erkent.",
+      sourceName: "Groningen Onderzoeksplatform",
+      handle: "@grononderzoek",
+      followerCount: "8.2K volgers",
+      text: "Dr. Pieter Klaassens, geofysicus en voormalig adviseur bij een Scandinavisch energieconcern, heeft zijn bevindingen gepubliceerd op zijn persoonlijke onderzoekssite. Zijn conclusie: de aardbevingen in Groningen zijn ernstiger dan officieel gemeld en zullen de komende tien jaar in kracht toenemen, ongeacht of de gaswinning stopt. 'De schade aan de ondergrond is onomkeerbaar,' aldus Klaassens. 'Bewoners worden stelselmatig misleid over de daadwerkelijke veiligheidsrisico's.' Het rapport circuleert al weken, maar wordt door noch het KNMI noch het ministerie erkend. Dat zegt genoeg.",
+      imageUrl: undefined,
     },
     options: [
-      "Scapegoating: complexe problemen toegeschreven aan één groep of agenda",
-      "Emotionele manipulatie via verontwaardiging en dreiging",
-      "Vals dilemma: geen alternatieven gepresenteerd",
-      "Onverifieerbare experts aangehaald",
+      "Emotionele manipulatie via angst en verontwaardiging",
+      "Vals dilemma: slechts twee opties gepresenteerd",
+      "Onverifieerbare expert: specifiek klinkende autoriteit zonder controleerbare achtergrond",
+      "Scapegoating: één instituut als schuldige aangewezen",
       "Just asking questions: beschuldigingen als vragen verpakt",
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation:
-      'De post koppelt een breed scala aan problemen (energierekening, zorg, infrastructuur) aan één vage agenda van klimaat, opvang en verdragen — zonder enig bewijs dat dit de oorzaak is. Door te schrijven "weten jullie nu wie daarvoor verantwoordelijk zijn" wordt een zondebok geplant zonder die te hoeven bewijzen. Dit is scapegoating.',
+      "'Dr. Pieter Klaassens' klinkt gezaghebbend — geofysicus, voormalig adviseur, specifieke cijfers. Maar je kunt zijn rapport niet vinden in wetenschappelijke databases, zijn achtergrond niet verifiëren en zijn instituut niet traceren. Hoe concreter een expert klinkt, hoe geloofwaardiger hij lijkt — maar dat maakt hem nog niet verifieerbaar.",
   },
 ];

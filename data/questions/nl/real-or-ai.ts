@@ -58,68 +58,23 @@ export const realOrAiQuestions: RealOrAiQuestion[] = [
     explanation:
       "Dit beeld is AI-gegenereerd. Kijk naar het bord rechtsboven: de tekst imiteert de opmaak van een gemeentelijk informatiebord maar bevat willekeurige letters zonder betekenis. AI-modellen begrijpen tekst niet — ze kopiëren de visuele vorm zonder echte woorden te produceren. Tekst op borden en spandoeken in de achtergrond is een van de betrouwbaarste plekken om AI-beelden te herkennen.",
   },
-
-  // ─────────────────────────── DIFFICULTY 3 ───────────────────────────
-  // D3-1: REAL image that looks cinematic — teaches restraint (anti-overflag).
-  // D3-2: AI image with a small, non-central tell.
-
-  // ── IMAGE BRIEF ──────────────────────────────────────────────────────
-  // TYPE:    FIND (real photo)
-  // SCENE:   Dutch highway at night, blocked by a line of tractors.
-  //          Farmers have placed orange road flares on the asphalt,
-  //          casting warm light across the smoke and silhouetted
-  //          machines. No identifiable faces. Wide-angle, dramatic.
-  //          The orange haze and cinematic composition make it look
-  //          like it could have been AI-generated — but it wasn't.
-  // SOURCE:  Wikimedia Commons — search "boerenblokkade 2022" or
-  //          "Dutch farmers protest highway night". Multiple CC-BY
-  //          images exist from the July–August 2022 nitrogen protests
-  //          when farmers blocked the A28, A1 and other motorways.
-  //          Also try: ANP open archive, or NOS persmateriaal (check
-  //          individual licences — some are CC-BY).
-  // LESSON:  Orange-lit smoke, dramatic silhouettes and sharp night
-  //          photography all read as "AI" to untrained eyes. The
-  //          correct answer is ECHT. Restraint is the skill being tested.
-  // CRISIS:  Boerenprotesten / nitrogen crisis, 2022 (source library #4)
-  // ─────────────────────────────────────────────────────────────────────
   {
     id: "rai-d3-1",
     type: "real-or-ai",
     xp: 80,
     difficulty: 3,
-    imageUrl: "https://picsum.photos/seed/rai-d3-1/800/450",
+    imageUrl: "images/real-farmer-highway-protest-2022.png",
     correctAnswer: "real",
     explanation:
       "Dit is een echte persfoto van de boerenprotesten in 2022. De oranje wegfakkels, de rook en de dramatische nachtopname wekken misschien de indruk van AI, maar alle elementen kloppen fysisch: de lichtval op de tractoren, de rookverspreiding en de schaduwen zijn consistent met echte fotografie. Niet alles wat dramatisch is, is nep — te snel 'AI' roepen is precies de fout die dit spel je wil laten voorkomen.",
   },
 
-  // ── IMAGE BRIEF ──────────────────────────────────────────────────────
-  // TYPE:    GENERATE (AI image)
-  // SCENE:   A quiet Dutch cemetery at dusk. Three or four gravestones
-  //          visible in the foreground, fresh flowers and a few tea-
-  //          light candles laid against them. Bare trees in the
-  //          background, soft fading light. Sombre, still atmosphere.
-  //          The scene looks peaceful and completely plausible — there
-  //          is nothing obviously wrong at first glance.
-  // TELL:    The inscription on the central gravestone contains garbled
-  //          text — random letters and numbers instead of a real name
-  //          and date (e.g. "HRKL VN 1 · WKGD 20RR" instead of a
-  //          proper Dutch name and year). The stone should be clearly
-  //          readable in the frame but the error only apparent on
-  //          close inspection. Keep the surrounding stones legible-
-  //          looking to avoid giving it away immediately.
-  // PROMPT:  "Quiet Dutch cemetery at dusk, three gravestones in
-  //          foreground with fresh flowers and tea-light candles,
-  //          bare trees in background, soft fading light, sombre
-  //          peaceful atmosphere, photorealistic"
-  // CRISIS:  Bodegraven-Reeuwijk grave hoax, 2021 (source library #16)
-  // ─────────────────────────────────────────────────────────────────────
   {
     id: "rai-d3-2",
     type: "real-or-ai",
     xp: 80,
     difficulty: 3,
-    imageUrl: "https://picsum.photos/seed/rai-d3-2/800/450",
+    imageUrl: "/images/ai-graveyard-hoax-2021.jpg",
     correctAnswer: "ai",
     tell: {
       top: 48,

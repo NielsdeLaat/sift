@@ -10,14 +10,15 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
     content: {
       type: "social",
       avatarUrl: "https://picsum.photos/seed/wl-d1-1/80/80",
-      sourceName: "Weeralarm Nederland",
-      handle: "@WeeralarmNL",
-      followerCount: "88K volgers",
-      text: "🚨 NU: Valkenburg staat WEER volledig onder water na het noodweer van vannacht. Blijf weg uit het centrum! 🌊 #hoogwater #Limburg",
+      sourceName: "NOS Breaking",
+      handle: "@NOS_Breaking",
+      followerCount: "1.4K volgers",
+      text: "⚠️ BREAKING: Dijkdoorbraak bij Roermond bevestigd — duizenden woningen lopen gevaar. Bewoners wordt gevraagd direct te evacueren. #Roermond #hoogwater",
+      imageUrl: undefined,
     },
-    correctPillar: "when",
+    correctPillar: "who",
     explanation:
-      "De bron is geloofwaardig, de locatie klopt en het is een echte veiligheidswaarschuwing — maar een reverse image search laat zien dat deze foto van juli 2021 is, niet van vannacht. Een echte foto van de juiste plek kan alsnog jaren oud zijn. Controleer wánneer beeld gemaakt is voordat je 'NU' gelooft.",
+      "Dit account lijkt op de NOS maar heeft slechts 1.400 volgers — de echte NOS heeft er meer dan een miljoen. Bovendien publiceert de NOS op @NOS, niet op @NOS_Breaking. Accounts die bekende mediaorganisaties nabootsen met kleine variaties zijn een veelvoorkomende vorm van misleiding.",
   },
   {
     id: "wl-d1-2",
@@ -31,6 +32,7 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
       handle: "@wakkerburger040",
       followerCount: "1.2K volgers",
       text: "De nieuwe zendmast in onze wijk maakt mensen ziek. Sinds hij er staat hebben 3 buren corona gehad. Toeval?? Deel dit voordat het verwijderd wordt!! 📡⚠️",
+      imageUrl: undefined,
     },
     correctPillar: "who",
     explanation:
@@ -48,6 +50,7 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
       handle: "@purelifewaternl",
       followerCount: "15K volgers",
       text: "⚠️ Het kraanwater in Brabant is besmet en de overheid zwijgt erover. Bescherm je gezin met onze waterfilter. Vandaag 40% korting — alleen de eerste 100 bestellingen! 💧",
+      imageUrl: undefined,
     },
     correctPillar: ["why", "who"],
     explanation:
@@ -62,6 +65,7 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
       type: "article",
       sourceName: "Nieuws Alert Nederland",
       domain: "nieuwsalert-nl.com",
+      imageUrl: "https://picsum.photos/seed/wl-d1-4/800/450",
       headline: "VIDEO: Dijk bij Roermond bezweken, water stroomt de stad in",
       excerpt:
         "Schokkende beelden tonen hoe een dijk het begeeft en een woonwijk in korte tijd onderloopt. Volgens onze redactie gaat het om Roermond, gefilmd in de afgelopen nacht. [video]",
@@ -84,6 +88,7 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
       handle: "@franklimburg",
       followerCount: "6.7K volgers",
       text: "Ongelofelijk… de dijk bij Arcen is net doorgebroken, dit is mijn straat NU. Iedereen wegwezen!! 😰 #hoogwater #Limburg",
+      imageUrl: undefined,
     },
     correctPillar: "where",
     explanation:
@@ -98,6 +103,7 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
       type: "article",
       sourceName: "NOS Nieuwsupdate",
       domain: "nos-nieuwsupdate.net",
+      imageUrl: "https://picsum.photos/seed/wl-d2-2/800/450",
       headline:
         "RIVM: kraanwater in delen van Noord-Brabant tijdelijk onveilig",
       excerpt:
@@ -116,6 +122,7 @@ export const weakLinkQuestions: WeakLinkQuestion[] = [
       type: "article",
       sourceName: "De Vrije Onderzoeker",
       domain: "devrijeonderzoeker.nl",
+      imageUrl: "https://picsum.photos/seed/wl-d2-3/800/450",
       headline: "Bewijs: overheid hield waarschuwing Limburg bewust achter",
       excerpt:
         "Uit ons onderzoek blijkt dat de overheid de evacuatiewaarschuwing urenlang bewust heeft uitgesteld om een politieke agenda te dienen. De gevestigde media zwijgen hier opvallend over.",

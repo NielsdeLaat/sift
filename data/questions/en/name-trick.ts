@@ -13,6 +13,7 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
       handle: '@placeholder',
       followerCount: '10K followers',
       text: 'Placeholder message for name-trick question difficulty 1.',
+      imageUrl: undefined,
     },
     options: [
       'Emotion — uses panic and urgency',
@@ -36,6 +37,7 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
       handle: '@placeholder',
       followerCount: '50K followers',
       text: 'Placeholder message for name-trick question difficulty 2.',
+      imageUrl: undefined,
     },
     options: [
       'Just asking questions — plants an implication as innocent curiosity',
@@ -59,6 +61,7 @@ export const nameTrickQuestions: NameTrickQuestion[] = [
       handle: '@placeholder',
       followerCount: '500K followers',
       text: 'Placeholder message for name-trick question difficulty 3.',
+      imageUrl: undefined,
     },
     options: [
       'Scapegoating — assigns complex problems to one group',

@@ -1,23 +1,30 @@
 import type { WhoSaysQuestion } from "../../questions";
 
 export const whoSaysQuestions: WhoSaysQuestion[] = [
+  // ─────────────────────────── DIFFICULTY 1 ───────────────────────────
+
   {
     id: "ws-d1-1",
     type: "who-says",
     xp: 65,
     difficulty: 1,
-    excerpt:
-      '"Er is absoluut geen gevaar voor omwonenden," zegt een woordvoerder van Chemelot in reactie op zorgen over stikstofuitstoot bij het chemiecomplex in Geleen.',
-    highlightedSource: "Een woordvoerder van Chemelot",
-    options: [
-      "Onafhankelijk veiligheidsexpert",
-      "Iemand die spreekt namens het beoordeelde bedrijf",
-      "Overheidsinstantie voor milieuveiligheid",
-      "Wetenschappelijk onderzoeker",
+    content: {
+      type: "article",
+      sourceName: "NOS Nieuws",
+      domain: "nos.nl",
+      imageUrl: "https://picsum.photos/seed/ws-d1-1/800/450",
+      headline: "Dagelijks koffie drinken verkleint kans op Alzheimer met twintig procent",
+      publishedAt: "14 mei 2024",
+      excerpt: "Nieuwe studie richt zich op de verbanden tussen cafeïnegebruik en cognitieve gezondheid op lange termijn.",
+    },
+    sections: [
+      "Onderzoekers van de Harvard Medical School publiceerden gisteren een studie in het wetenschappelijk tijdschrift The Lancet. Zij volgden 50.000 mensen gedurende tien jaar en keken naar hun koffiegebruik en cognitieve achteruitgang.",
+      "Deelnemers die dagelijks twee tot drie koppen koffie dronken, hadden gemiddeld twintig procent minder kans op de ziekte van Alzheimer dan niet-koffiedrinkers.",
+      "Een woordvoerder van Douwe Egberts liet weten blij te zijn met de uitkomsten en gaf aan verdere studies financieel te willen ondersteunen.",
     ],
-    correctIndex: 1,
+    correctSectionIndex: 0,
     explanation:
-      'Een woordvoerder spreekt namens het bedrijf dat onderzocht wordt — dat bedrijf heeft er direct belang bij dat de uitkomst "geen gevaar" luidt. Je kunt een bedrijf niet beoordelen op basis van wat het zelf over zichzelf zegt. Voor een claim over veiligheid heb je een onafhankelijke partij nodig, zoals de RIVM of een externe inspectie.',
+      "De eerste alinea noemt de bron: onderzoekers van de Harvard Medical School, gepubliceerd in The Lancet. Dat is een gerenommeerd peer-reviewed tijdschrift — dit is de verificeerbare bron van de claim. De woordvoerder van Douwe Egberts heeft er financieel belang bij en is geen onafhankelijke bron.",
   },
 
   {
@@ -25,18 +32,23 @@ export const whoSaysQuestions: WhoSaysQuestion[] = [
     type: "who-says",
     xp: 65,
     difficulty: 1,
-    excerpt:
-      "Volgens een anonieme medewerker van het COA worden incidenten in opvanglocaties stelselmatig niet geregistreerd om de statistieken gunstig te houden.",
-    highlightedSource: "Een anonieme medewerker van het COA",
-    options: [
-      "Klokkenluider met directe toegang",
-      "Ingewijde bron met kennis van zaken",
-      "Niet bij name genoemde enkelbron",
-      "Onafhankelijke waarnemer",
+    content: {
+      type: "social",
+      avatarUrl: "https://api.dicebear.com/7.x/identicon/svg?seed=rtlnieuws",
+      sourceName: "RTL Nieuws",
+      handle: "@rtlnieuws",
+      followerCount: "1,2M volgers",
+      text: "Huizenprijzen stegen in het eerste kwartaal van 2024 met gemiddeld 8,3 procent — het hoogste kwartaalcijfer in drie jaar.",
+      imageUrl: "https://picsum.photos/seed/ws-d1-2/800/400",
+    },
+    sections: [
+      "Dat blijkt uit nieuwe cijfers van het Centraal Bureau voor de Statistiek (CBS), die dinsdag zijn gepubliceerd. Het CBS houdt al decennia de woningmarkt bij via kwartaalrapportages.",
+      "Makelaarsvereniging NVM verwacht dat prijzen de rest van het jaar verder zullen stijgen door een aanhoudend tekort aan woningen in de Randstad.",
+      "De gemeente Amsterdam overweegt nieuwe maatregelen om starters te helpen bij de aankoop van een eerste woning, maar concrete plannen zijn er nog niet.",
     ],
-    correctIndex: 2,
+    correctSectionIndex: 0,
     explanation:
-      'Je kunt een anonieme bron niet verifiëren: je kunt de persoon niet opzoeken, hun functie niet controleren en hun beweringen niet terugvoeren op iemand die aanspreekbaar is. Voor een zware beschuldiging als stelselmatige fraude is dat onvoldoende. "Anoniem" betekent niet automatisch "onbetrouwbaar", maar het betekent wel: je kunt het niet zelf controleren.',
+      "De eerste alinea benoemt de bron expliciet: het CBS, een onafhankelijk statistisch overheidsorgaan. De NVM is een brancheorganisatie van makelaars die er belang bij heeft dat de markt positief klinkt. De gemeente Amsterdam doet uitspraken over beleid, niet over de prijscijfers zelf.",
   },
 
   // ─────────────────────────── DIFFICULTY 2 ───────────────────────────
@@ -46,18 +58,24 @@ export const whoSaysQuestions: WhoSaysQuestion[] = [
     type: "who-says",
     xp: 85,
     difficulty: 2,
-    excerpt:
-      "Uit onderzoek van het Europees Instituut voor Migratie en Veiligheid blijkt dat gemeenten met grote asielzoekerscentra gemiddeld 23% hogere kosten voor openbare orde hebben.",
-    highlightedSource: "Het Europees Instituut voor Migratie en Veiligheid",
-    options: [
-      "Academische onderzoeksinstelling",
-      "Onafhankelijk statistisch bureau",
-      "Europese overheidsinstantie",
-      "Denktank gefinancierd door een politieke organisatie",
+    content: {
+      type: "article",
+      sourceName: "EconomieVandaag",
+      domain: "economievandaag.nl",
+      imageUrl: "https://picsum.photos/seed/ws-d2-1/800/450",
+      headline: "Rapport: goedkope Chinese zonnepanelen schaden Nederlandse maakindustrie",
+      publishedAt: "3 juni 2024",
+      excerpt: "Europese producenten klagen over toenemende concurrentiedruk van Chinese aanbieders op de groene energiemarkt.",
+    },
+    sections: [
+      "Een nieuw rapport concludeert dat de invoer van goedkope zonnepanelen uit China de Nederlandse maakindustrie ernstig schaadt en duizenden banen bedreigt.",
+      "Het rapport is opgesteld door het Verbond van de Nederlandse Maakindustrie (VNM), de branchevereniging die de belangen behartigt van Nederlandse fabrikanten van onder meer zonnepanelen.",
+      "Wetenschappers van de TU Delft ondersteunen de zorgen over eerlijke concurrentie in een apart persbericht, al noemen ze de gehanteerde methode in het rapport 'te beperkt'.",
+      "De Europese Commissie overweegt importtarieven om Europese producenten te beschermen en zou het rapport hebben ontvangen.",
     ],
-    correctIndex: 3,
+    correctSectionIndex: 1,
     explanation:
-      "De naam klinkt neutraal en gezaghebbend, maar een korte zoekopdracht laat zien dat dit instituut gefinancierd wordt door een politieke partijstichting. Een imposante naam en Europese scope zijn geen bewijs van onafhankelijkheid. Dit is de kernles van lateral reading: controleer niet wát een bron zegt, maar wíe er achter zit en wie ze betaalt.",
+      "De tweede alinea onthult wie het rapport heeft opgesteld: het VNM, de brancheorganisatie van dezelfde fabrikanten die door de conclusie worden bevoordeeld. Dat is een directe belangenverstrengeling — de I van IMVAIN (Independent) faalt. De naam 'rapport' klinkt neutraal, maar de afzender bepaalt de betrouwbaarheid.",
   },
 
   {
@@ -65,18 +83,24 @@ export const whoSaysQuestions: WhoSaysQuestion[] = [
     type: "who-says",
     xp: 85,
     difficulty: 2,
-    excerpt:
-      '"Langdurig mondkapjesgebruik veroorzaakt aantoonbare zuurstoftekorten en is schadelijker dan het virus zelf," schrijft internist dr. Annelies Smit op haar persoonlijke gezondheidswebsite.',
-    highlightedSource: "Internist dr. Annelies Smit, via haar eigen website",
-    options: [
-      "Medisch professional met claim buiten peer-reviewed kanaal",
-      "Gecertificeerde medische specialist",
-      "Peer-reviewed onderzoeker",
-      "Onafhankelijke wetenschapper",
+    content: {
+      type: "article",
+      sourceName: "GezondheidNU",
+      domain: "gezondheidnu.nl",
+      imageUrl: "https://picsum.photos/seed/ws-d2-2/800/450",
+      headline: "Arts: mondkapjes gevaarlijker dan het virus zelf",
+      publishedAt: "11 april 2024",
+      excerpt: "De medische wereld is verdeeld over de rol van mondkapjes in de verspreiding van infectieziekten.",
+    },
+    sections: [
+      "Internist dr. Annelies Smit claimt op haar persoonlijke gezondheidswebsite dat langdurig mondkapjesgebruik aantoonbare zuurstoftekorten veroorzaakt en schadelijker is dan het virus zelf.",
+      "Dr. Smit studeerde geneeskunde aan de Erasmus Universiteit en werkte jarenlang als internist in een ziekenhuis in Dordrecht.",
+      "Haar claim is niet gepubliceerd in een medisch tijdschrift en is niet beoordeeld door andere medische experts. Het betreft uitsluitend haar eigen website.",
+      "Verschillende Nederlandse ziekenhuizen en de Inspectie Gezondheidszorg en Jeugd (IGJ) onderschrijven de claim niet.",
     ],
-    correctIndex: 0,
+    correctSectionIndex: 2,
     explanation:
-      "Dr. Smit heeft een medische graad — haar expertise is aanwezig (de A van IMVAIN). Maar haar claim is gepubliceerd op haar eigen website, zonder redactionele toetsing of peer review. Dat betekent dat niemand de methode of het bewijs onafhankelijk heeft gecontroleerd. Een medische titel maakt een claim nog niet geverifieerd.",
+      "De derde alinea is de sleutel: de claim staat alleen op haar eigen website en is nooit peer-reviewed. Dr. Smit heeft wel een medische achtergrond (alinea 2), maar expertise maakt een claim nog niet geverifieerd. Publicatie buiten peer-reviewed kanalen betekent dat niemand de methode onafhankelijk heeft gecontroleerd — de V van IMVAIN (Verifying) faalt.",
   },
 
   // ─────────────────────────── DIFFICULTY 3 ───────────────────────────
@@ -86,19 +110,23 @@ export const whoSaysQuestions: WhoSaysQuestion[] = [
     type: "who-says",
     xp: 110,
     difficulty: 3,
-    excerpt:
-      '"De nieuwe drinkwaternormen zijn technisch onhaalbaar en economisch onevenredig," zegt Pieter van Loon, directeur van Vewin — de branchevereniging van Nederlandse drinkwaterbedrijven — die tevens lid is van de adviescommissie die deze normen beoordeelt.',
-    highlightedSource:
-      "Pieter van Loon, directeur Vewin en lid van de adviescommissie",
-    options: [
-      "Sectorexpert met aantoonbare belangenverstrengeling",
-      "Onafhankelijk technisch adviseur",
-      "Lid van een overheidsadviescommissie",
-      "Branche-informant met relevante sectorkennis",
+    content: {
+      type: "article",
+      sourceName: "FamilieWijzer",
+      domain: "familiewijzer.nl",
+      imageUrl: "https://picsum.photos/seed/ws-d3-1/800/450",
+      headline: "Suiker veroorzaakt ADHD bij kinderen, niet genen",
+      publishedAt: "22 maart 2024",
+      excerpt: "Dieetadviezen voor kinderen met gedragsproblemen leiden tot controverse onder ouders en pedagogen.",
+    },
+    sections: [
+      "Studies tonen aan dat suiker de werkelijke oorzaak is van ADHD bij kinderen. Genetische factoren spelen een veel kleinere rol dan lang werd gedacht.",
+      "Kinderen die minder suiker eten, gedragen zich aantoonbaar rustiger en presteren beter op school.",
+      "Experts raden ouders aan om suiker volledig uit het dieet van jonge kinderen te verwijderen als eerste stap bij gedragsproblemen.",
     ],
-    correctIndex: 0,
+    correctSectionIndex: null,
     explanation:
-      "Van Loon zit op twee stoelen tegelijk: hij vertegenwoordigt de sector die de normen moet halen, én beoordeelt als commissielid of die normen redelijk zijn. Commissielidmaatschap (kaart 2) klinkt onafhankelijk, maar is het niet als je tegelijkertijd directeur bent van de betrokken branche. Dit heet belangenverstrengeling: de I van IMVAIN (Independent) faalt, ook al is de A (Authoritative) volledig aanwezig. Expertise en onafhankelijkheid zijn twee verschillende dingen.",
+      "Geen enkele alinea noemt een specifieke studie, instelling, onderzoeker of publicatie die de claim onderbouwt. 'Studies tonen aan' en 'experts raden aan' zijn loze formuleringen zonder verwijzing — er is simpelweg geen bron. Dit is een teken van onbetrouwbare content: een bewering zonder aantoonbare herkomst.",
   },
 
   {
@@ -106,18 +134,21 @@ export const whoSaysQuestions: WhoSaysQuestion[] = [
     type: "who-says",
     xp: 110,
     difficulty: 3,
-    excerpt:
-      '"Stikstofdeposities op dit niveau vormen geen wetenschappelijk aantoonbare bedreiging voor beschermde Natura 2000-gebieden," concludeert een rapport van het PBL — gepubliceerd in 2017 als onderdeel van een studie naar Europese emissietrends.',
-    highlightedSource:
-      "PBL Planbureau voor de Leefomgeving (rapport 2017, Europese emissietrends)",
-    options: [
-      "Gerenommeerde en onafhankelijke overheidsinstelling",
-      "Onafhankelijk wetenschappelijk planbureau",
-      "Gezaghebbende bron die deze specifieke claim niet verifieert",
-      "Peer-reviewed milieuonderzoek",
+    content: {
+      type: "social",
+      avatarUrl: "https://api.dicebear.com/7.x/identicon/svg?seed=gezondvrij",
+      sourceName: "Gezond & Vrij",
+      handle: "@gezondvrij",
+      followerCount: "84K volgers",
+      text: "BEWEZEN: vaccins veroorzaken autisme. Tienduizenden ouders kunnen het bevestigen. De mainstream media praat er niet over.",
+    },
+    sections: [
+      "Het verband tussen vaccinaties en autisme is volgens de post wetenschappelijk bewezen, al worden de details van het onderzoek niet gedeeld.",
+      "Tienduizenden ouders zouden dit bij hun huisarts hebben gemeld na de vaccinatie van hun kind.",
+      "De mainstream media en de farmaceutische industrie zouden samenwerken om deze informatie verborgen te houden.",
     ],
-    correctIndex: 2,
+    correctSectionIndex: null,
     explanation:
-      "Het PBL is een geloofwaardige, onafhankelijke instelling — de I, A en N van IMVAIN kloppen. Maar het rapport uit 2017 gaat over Europese emissietrends in het algemeen, niet over actuele stikstofschade in specifieke Nederlandse Natura 2000-gebieden. De V van IMVAIN (Verifying) faalt: de bron verifieert deze specifieke claim niet, omdat het onderwerp en de tijdshorizon niet overeenkomen. Een goede bron die de verkeerde vraag beantwoordt, is voor deze claim nog steeds de verkeerde bron.",
+      "Geen enkele alinea verwijst naar een studie, instelling of verifieerbare bron. 'Wetenschappelijk bewezen' zonder bronvermelding is geen bewijs. Anekdotische meldingen van ouders (alinea 2) zijn geen wetenschappelijke data. En een complotclaim (alinea 3) is geen bron — het verklaart juist waarom er geen bronnen zijn. Er is hier geen bron: kies 'Geen bron vermeld'.",
   },
 ];
