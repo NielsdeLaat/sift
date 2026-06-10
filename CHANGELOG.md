@@ -1,28 +1,42 @@
 # Changelog
 
-## [0.1.1] — 2026-06-05
+All notable changes to this project are documented here.
 
-Stable design refresh. No new content or question types; focus is on visual polish and architecture clean-up ahead of further development.
+---
 
-### Design system
+## [0.2.0] — 2026-06-10
 
-- Replaced the previous ad-hoc colour palette with a structured token system: `primary` (blue), `accent` (orange + green/red variants), `neutral` (base / light / border), `contrast` (default / dark / blue)
-- Migrated all 31 component and page files to the new token names
-- Updated glow shadows to match the new primary hue
-- CSS custom properties exposed in `globals.css` for use outside Tailwind
+### Added
 
-### Visual changes
+- **7 new question types** replacing all v0.1 types: `name-trick`, `real-or-ai`, `leave-the-page`, `who-says`, `under-the-hood`, `when-or-where`, `weak-link`
+- **Dutch / English language toggle** — full i18n for all UI strings, question prompts, and section metadata; persisted in `localStorage`; switchable without reloading
+- **Settings page** (`/settings`) for language selection
+- **12-section Chapter 1 roadmap** with per-section difficulty configuration
+- **Difficulty gating** — questions carry a `difficulty` integer; each section's `typeConfig` controls which difficulty tier is unlocked
+- **Numeric scoring** — answer scores are 0–1 floats enabling partial credit; `calcXp` computes weighted XP
+- **Section-test pass threshold** — tests require ≥ 60 % to pass; failing shows a dedicated "Not Quite" screen with a Try Again button
+- **ContentCard** — unified content component rendering both article and social-post stimuli
+- **Demo menu** — replaces the Reset button with a bottom sheet: skip to section start, jump to section test, or wipe progress
+- **Type-variety constraints** in lesson selection — no two identical question types in a row; max 2 of any type per 5-question lesson
+- **Multiple correct answers** — `correctIndex` / `correctFlagIndex` / `correctPillar` accept arrays for questions with more than one valid answer
+- **Answer highlighting** — correct/incorrect options highlighted green/red after confirming
+- Dutch and English question banks for all 7 types (separate files per locale under `data/questions/`)
+- New images for `under-the-hood` questions
+- `ChevronLeft` / `ChevronRight` icons
 
-- **Roadmap nodes** — active/current nodes gain an inner-top shadow; current (play) node enlarged; check icon switched to a bolder stroke style; play icon scaled up
-- **Lesson header** — redesigned progress bar using the new colour tokens
-- **Lesson questions** — Yes/No buttons both use solid primary blue; Yes always left, No always right; correct feedback uses `accent-green`, incorrect uses `accent-red`
-- **Profile page** — stat card icons wrapped in `neutral-border` pill containers; XP pill gains a border; avatar border made subtler; Add Friends button taller
+### Changed
 
-### Under the hood
+- Lesson size increased from 3 to 5 questions
+- Expandable card tappable across full surface; collapse via shrink icon only
+- `/test?q=` supports prefix matching (e.g. `?q=nt-` picks a random matching question)
+- `answers` state changed from `boolean | null` to `number | null` for numeric scores
+- `SELF_CONTAINED_TYPES` and `calcXp` extracted to `lib/lesson.ts`
 
-- Lesson routing changed from `/lesson/[nodeId]` to `/lesson/[sectionId]`; lesson type (regular vs. flag/test) is now explicit via a `?type=test` query param instead of an implicit node-type check
-- Questions now carry an `introSection` field so they only enter the pool once the player has reached that section
-- Removed the `isFlagNode()` helper; dropped corresponding dead code
+### Removed
+
+- Question types: `collaboration`, `manipulation-tactics`, `evidence-checking`, `ai-detection`, `source-investigation`, `image-verification`
+- `ArticleCardView` component (superseded by `ContentCard`)
+- Comma-list `?q=id,id` syntax on the lesson page
 
 ---
 

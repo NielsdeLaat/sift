@@ -1,42 +1,57 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+export const dynamic = 'force-dynamic';
+
+import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { questions as allQuestions } from '@/data/questions';
+import { getQuestions } from '@/data/questions';
 import type { Question } from '@/data/questions';
+import { SELF_CONTAINED_TYPES, calcXp } from '@/lib/lesson';
 import { LessonHeader }     from '@/components/lesson/LessonHeader';
 import { QuestionRenderer } from '@/components/lesson/QuestionRenderer';
 import { FeedbackBanner }   from '@/components/lesson/FeedbackBanner';
 import { Icon }             from '@/components/icons';
 import { Button }           from '@/components/Button';
+import { useLanguage }      from '@/components/LanguageProvider';
 
-const SELF_CONTAINED_TYPES = new Set(['feed-test']);
 
 export default function TestPage() {
+  return (
+    <Suspense>
+      <TestPageContent />
+    </Suspense>
+  );
+}
+
+function TestPageContent() {
   const router       = useRouter();
   const searchParams = useSearchParams();
+  const { lang, t }  = useLanguage();
 
   const [lessonQuestions, setLessonQuestions] = useState<Question[]>([]);
-  const [answers, setAnswers]                 = useState<(boolean | null)[]>([]);
+  const [answers, setAnswers]                 = useState<(number | null)[]>([]);
 
   useEffect(() => {
-    const qParam = searchParams.get('q');
+    const allQuestions = getQuestions(lang);
+    const q = searchParams.get('q') ?? '';
+
     let questions: Question[];
-    if (qParam) {
-      const ids      = qParam.split(',').map(s => s.trim());
-      const filtered = ids
-        .map(id => allQuestions.find(q => q.id === id))
-        .filter((q): q is Question => q !== undefined);
-      questions = filtered.length > 0 ? filtered : allQuestions.filter(q => q.type !== 'feed-test').slice(0, 3);
+    const exact = allQuestions.find(r => r.id === q);
+    if (exact) {
+      questions = [exact];
     } else {
-      questions = [...allQuestions.filter(q => q.type !== 'feed-test')]
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 3);
+      const pool = allQuestions.filter(r => r.id.startsWith(q + '-'));
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      questions = pick ? [pick] : [];
     }
+
     setLessonQuestions(questions);
     setAnswers(Array(questions.length).fill(null));
+    setQIndex(0);
+    setPhase('answering');
+    setOption(null);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [lang]);
 
   const [qIndex, setQIndex]         = useState(0);
   const [phase, setPhase]           = useState<'answering' | 'feedback' | 'complete'>('answering');
@@ -48,16 +63,11 @@ export default function TestPage() {
   const question = lessonQuestions[qIndex];
   const locked   = answers[qIndex] !== null;
   const explanation: string | undefined =
-    'tell' in question        ? question.tell.explanation :
-    'explanation' in question ? question.explanation      :
-    undefined;
+    'explanation' in question ? (question as { explanation: string }).explanation : undefined;
 
-  function calcXp(arr: (boolean | null)[]): number {
-    return lessonQuestions.reduce((sum, q, i) => sum + (arr[i] === true ? q.xp : 0), 0);
-  }
-
-  function handleAnswer(isCorrect: boolean) {
-    const updated = answers.map((a, i) => (i === qIndex ? isCorrect : a));
+  function handleAnswer(score: boolean | number) {
+    const numScore = typeof score === 'boolean' ? (score ? 1 : 0) : score;
+    const updated = answers.map((a, i) => (i === qIndex ? numScore : a));
     setAnswers(updated);
     if (SELF_CONTAINED_TYPES.has(question.type)) {
       if (qIndex < TOTAL - 1) {
@@ -72,7 +82,7 @@ export default function TestPage() {
     }
   }
 
-  const xpEarned = calcXp(answers);
+  const xpEarned = calcXp(lessonQuestions, answers);
 
   function advance() {
     if (qIndex < TOTAL - 1) {
@@ -94,6 +104,7 @@ export default function TestPage() {
 
       <main className="flex-1 overflow-y-auto px-4 pt-5 pb-36">
         <QuestionRenderer
+          key={question.id}
           question={question}
           locked={locked}
           selectedOption={selectedOption}
@@ -104,7 +115,7 @@ export default function TestPage() {
 
       {phase === 'feedback' && (
         <FeedbackBanner
-          isCorrect={answers[qIndex] as boolean}
+          isCorrect={(answers[qIndex] ?? 0) > 0}
           explanation={explanation}
           onContinue={advance}
         />
@@ -114,15 +125,15 @@ export default function TestPage() {
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-neutral-base/95 px-6 gap-6">
           <Icon name="trophy" className="w-16 h-16 text-primary animate-glow-pulse" />
           <div className="text-center space-y-1">
-            <h1 className="text-contrast font-bold text-3xl">Done!</h1>
-            <p className="text-contrast-dark text-base">Test run complete.</p>
+            <h1 className="text-contrast font-bold text-3xl">{t.pages.testDone}</h1>
+            <p className="text-contrast-dark text-base">{t.pages.testRunComplete}</p>
           </div>
           <div className="flex items-center gap-2 bg-neutral-light rounded-2xl px-6 py-4">
             <Icon name="zap" className="w-7 h-7 text-accent" />
             <span className="text-contrast font-bold text-2xl">+{xpEarned} XP</span>
           </div>
           <Button variant="primary" className="w-full max-w-xs" onClick={() => router.push('/')}>
-            Continue
+            {t.lesson.continue}
           </Button>
         </div>
       )}

@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import type { TellRegion } from '@/data/questions';
 import { Button } from '@/components/Button';
+import { useLanguage } from '@/components/LanguageProvider';
 
 interface Pos { x: number; y: number }
 
@@ -15,6 +16,7 @@ interface Props {
 const CIRCLE_RADIUS = 20; // w-10 = 40px diameter → radius 20px
 
 export function TellReveal({ imageUrl, tell, onConfirm }: Props) {
+  const { t } = useLanguage();
   const containerRef            = useRef<HTMLDivElement>(null);
   const [hover, setHover]       = useState<Pos | null>(null);
   const [placed, setPlaced]     = useState<Pos | null>(null);
@@ -56,7 +58,7 @@ export function TellReveal({ imageUrl, tell, onConfirm }: Props) {
   return (
     <div className="space-y-5">
       <h2 className="text-contrast font-bold text-xl text-center">
-        {revealed ? "Here's the tell" : 'Select the tell'}
+        {revealed ? t.questions.tellReveal.hereTell : t.questions.tellReveal.selectTell}
       </h2>
 
       <div
@@ -118,11 +120,11 @@ export function TellReveal({ imageUrl, tell, onConfirm }: Props) {
       {!revealed && (
         placed ? (
           <Button variant="primary" className="w-full" onClick={handleConfirm}>
-            Confirm
+            {t.questions.tellReveal.confirm}
           </Button>
         ) : (
           <p className="text-contrast-dark text-sm text-center">
-            Tap the part of the image that looks off
+            {t.questions.tellReveal.tapInstruction}
           </p>
         )
       )}

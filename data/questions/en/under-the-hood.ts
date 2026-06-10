@@ -1,0 +1,55 @@
+import type { UnderTheHoodQuestion } from '../../questions';
+
+export const underTheHoodQuestions: UnderTheHoodQuestion[] = [
+  {
+    id: 'uth-d1-1',
+    type: 'under-the-hood',
+    xp: 70,
+    difficulty: 1,
+    content: {
+      type: 'social',
+      avatarUrl: 'https://api.dicebear.com/7.x/identicon/svg?seed=farmersalert_en',
+      sourceName: 'Farmers Alert 🚜',
+      handle: '@farmersalert',
+      followerCount: '12.4K followers',
+      publishedAt: '3 Nov 2022',
+      text: 'LIVE on the A28: tractors are blocking the motorway right now! 🚜🚜 #farmersprotest',
+      imageUrl: 'https://picsum.photos/seed/uth-d1-1/800/450',
+    },
+    items: [
+      { label: 'File type', value: 'JPEG' },
+      { label: 'Camera model', value: 'iPhone 14 Pro' },
+      { label: 'Date & time taken', value: '[NOT FOUND — metadata stripped]' },
+      { label: 'GPS location', value: '[NOT FOUND]' },
+      { label: 'Reverse image search', value: 'No prior appearances found' },
+    ],
+    correctFlagIndex: 2,
+    explanation: 'Placeholder explanation for difficulty 1.',
+  },
+  {
+    id: 'uth-d2-1',
+    type: 'under-the-hood',
+    xp: 80,
+    difficulty: 2,
+    content: {
+      type: 'social',
+      avatarUrl: 'https://api.dicebear.com/7.x/identicon/svg?seed=localert_en',
+      sourceName: 'Local Alert',
+      handle: '@localert',
+      followerCount: '34.2K followers',
+      publishedAt: '4 Oct 2024',
+      text: 'Eyewitness photo of the riots near the asylum centre, last night.',
+      imageUrl: 'https://picsum.photos/seed/uth-d2-1/800/450',
+    },
+    items: [
+      { label: 'File type', value: 'JPEG' },
+      { label: 'Camera model', value: 'Samsung Galaxy S23' },
+      { label: 'Date taken', value: '2024-07-14 08:32:11' },
+      { label: 'GPS location', value: '48.8566 N, 2.3522 E (Paris, France)' },
+      { label: 'Editing software', value: 'Lightroom Mobile 8.1' },
+      { label: 'Reverse image search', value: 'Image on 47 sites; earliest: Reuters, 2024-07-14' },
+    ],
+    correctFlagIndex: 5,
+    explanation: 'Placeholder explanation for difficulty 2.',
+  },
+];

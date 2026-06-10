@@ -6,6 +6,7 @@ import { SectionBanner } from '@/components/SectionBanner';
 import { RoadmapPath }  from '@/components/RoadmapPath';
 import { BottomNav }    from '@/components/BottomNav';
 import { ResetButton }  from '@/components/ResetButton';
+import { DemoMenu }     from '@/components/DemoMenu';
 import { user }         from '@/data/user';
 import { roadmap }      from '@/data/roadmap';
 import {
@@ -13,11 +14,13 @@ import {
   getNodeProgress,
   computeLiveRoadmap,
   resetProgress,
+  jumpToNode,
 } from '@/lib/store';
 
 export default function HomePage() {
-  const [xpBonus,      setXpBonus]      = useState(0);
-  const [nodeProgress, setNodeProgress] = useState(0);
+  const [xpBonus,       setXpBonus]       = useState(0);
+  const [nodeProgress,  setNodeProgress]  = useState(0);
+  const [demoMenuOpen,  setDemoMenuOpen]  = useState(false);
 
   // Hydrate from localStorage after mount (avoids SSR mismatch)
   useEffect(() => {
@@ -29,6 +32,12 @@ export default function HomePage() {
     resetProgress();
     setXpBonus(0);
     setNodeProgress(0);
+  }
+
+  function handleJumpTo(progress: number) {
+    jumpToNode(progress);
+    setXpBonus(0);
+    setNodeProgress(progress);
   }
 
   const liveUser    = { ...user, xp: user.xp + xpBonus };
@@ -46,7 +55,16 @@ export default function HomePage() {
       </main>
 
       <BottomNav />
-      <ResetButton onReset={handleReset} />
+      <ResetButton onClick={() => setDemoMenuOpen(true)} />
+
+      {demoMenuOpen && (
+        <DemoMenu
+          sections={liveRoadmap}
+          onJumpTo={handleJumpTo}
+          onReset={handleReset}
+          onClose={() => setDemoMenuOpen(false)}
+        />
+      )}
     </>
   );
 }

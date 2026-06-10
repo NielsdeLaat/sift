@@ -30,7 +30,8 @@ interface NodeLayout {
 }
 
 interface DividerLayout {
-  title: string;
+  sectionId: string;
+  fallbackTitle: string;
   y: number; // centre y of the divider row
 }
 
@@ -63,7 +64,7 @@ function layoutSections(sections: Section[]) {
 
     if (si > 0) {
       // Place section divider between sections
-      dividers.push({ title: section.title, y: y + SECTION_DIV_HEIGHT / 2 });
+      dividers.push({ sectionId: section.id, fallbackTitle: section.title, y: y + SECTION_DIV_HEIGHT / 2 });
       y += SECTION_DIV_HEIGHT;
     }
 
@@ -160,7 +161,7 @@ export function RoadmapPath({ sections }: Props) {
 
       {/* ── Section dividers ─────────────────────────────────── */}
       {dividers.map((d) => (
-        <SectionDivider key={d.title} title={d.title} style={{ top: d.y }} />
+        <SectionDivider key={d.sectionId} sectionId={d.sectionId} fallbackTitle={d.fallbackTitle} style={{ top: d.y }} />
       ))}
 
       {/* ── Level nodes ──────────────────────────────────────── */}

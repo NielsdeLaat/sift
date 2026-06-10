@@ -1,5 +1,8 @@
+'use client';
+
 import { Icon } from '@/components/icons';
 import { Button } from '@/components/Button';
+import { useLanguage } from '@/components/LanguageProvider';
 
 interface Props {
   isCorrect: boolean;
@@ -8,6 +11,7 @@ interface Props {
 }
 
 export function FeedbackBanner({ isCorrect, explanation, onContinue }: Props) {
+  const { t } = useLanguage();
   return (
     <div
       className={[
@@ -25,7 +29,7 @@ export function FeedbackBanner({ isCorrect, explanation, onContinue }: Props) {
         />
         <div className="space-y-0.5">
           <p className={`font-bold text-base leading-tight ${isCorrect ? 'text-accent-green' : 'text-accent-red'}`}>
-            {isCorrect ? 'Correct!' : 'Incorrect'}
+            {isCorrect ? t.feedback.correct : t.feedback.incorrect}
           </p>
           {explanation && (
             <p className="text-contrast-dark text-sm leading-relaxed">{explanation}</p>
@@ -33,7 +37,7 @@ export function FeedbackBanner({ isCorrect, explanation, onContinue }: Props) {
         </div>
       </div>
       <Button variant="primary" className="w-full" onClick={onContinue}>
-        Continue
+        {t.feedback.continue}
       </Button>
     </div>
   );

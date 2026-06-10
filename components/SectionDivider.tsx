@@ -1,11 +1,23 @@
+'use client';
+
 import type { CSSProperties } from 'react';
+import { useLanguage } from '@/components/LanguageProvider';
+import { getSectionText } from '@/lib/i18n';
 
 interface Props {
-  title: string;
+  sectionId: string;
+  fallbackTitle: string;
   style: CSSProperties;
 }
 
-export function SectionDivider({ title, style }: Props) {
+export function SectionDivider({ sectionId, fallbackTitle, style }: Props) {
+  const { lang } = useLanguage();
+  const { title } = getSectionText(sectionId, lang, {
+    title: fallbackTitle,
+    subtitle: '',
+    description: '',
+  });
+
   return (
     <div
       className="absolute left-0 right-0 flex items-center gap-3 px-6"

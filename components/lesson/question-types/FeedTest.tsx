@@ -4,6 +4,8 @@ import { useState } from 'react';
 import type { FeedTestQuestion, FeedPost, FeedVerdict } from '@/data/questions';
 import { Icon } from '@/components/icons';
 import { Button } from '@/components/Button';
+import { useLanguage } from '@/components/LanguageProvider';
+import type { Translations } from '@/lib/i18n';
 
 interface Props {
   question: FeedTestQuestion;
@@ -12,14 +14,16 @@ interface Props {
 
 // ── Verdict chip ──────────────────────────────────────────────────────────────
 
-function VerdictChip({ verdict }: { verdict: FeedVerdict }) {
+function VerdictChip({ verdict, tFeed }: { verdict: FeedVerdict; tFeed: Translations['questions']['feedTest'] }) {
   const styles: Record<FeedVerdict, string> = {
     true:       'bg-primary/20 text-primary border border-primary/40',
     false:      'bg-accent/20 text-accent border border-accent/40',
     misleading: 'bg-accent/20 text-accent border border-accent/40',
   };
   const labels: Record<FeedVerdict, string> = {
-    true: 'True', false: 'False', misleading: 'Misleading',
+    true: tFeed.verdicts.true,
+    false: tFeed.verdicts.false,
+    misleading: tFeed.verdicts.misleading,
   };
   return (
     <span className={`text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${styles[verdict]}`}>
@@ -33,6 +37,7 @@ function VerdictChip({ verdict }: { verdict: FeedVerdict }) {
 function FeedCard({
   post, verdict, onClick,
 }: { post: FeedPost; verdict: FeedVerdict | undefined; onClick: () => void }) {
+  const { t } = useLanguage();
   return (
     <button
       onClick={onClick}
@@ -43,7 +48,7 @@ function FeedCard({
           <p className="text-contrast-dark text-xs font-semibold truncate">
             {post.source} · {post.timeAgo}
           </p>
-          {verdict && <VerdictChip verdict={verdict} />}
+          {verdict && <VerdictChip verdict={verdict} tFeed={t.questions.feedTest} />}
         </div>
         <p className="text-contrast font-bold text-sm leading-snug line-clamp-3">{post.headline}</p>
       </div>
@@ -67,7 +72,9 @@ function ExpandedPost({
   onVerdict: (v: FeedVerdict) => void;
   onBack: () => void;
 }) {
-  // No local state — the overlay closes immediately on pick, so currentVerdict prop is the source of truth.
+  const { t } = useLanguage();
+  const tFeed = t.questions.feedTest;
+
   function verdictButton(
     v: FeedVerdict,
     label: string,
@@ -98,7 +105,7 @@ function ExpandedPost({
         <button
           onClick={onBack}
           className="w-8 h-8 rounded-full bg-neutral-light flex items-center justify-center text-contrast hover:bg-neutral-border transition-colors"
-          aria-label="Back to feed"
+          aria-label={tFeed.backToFeed}
         >
           <Icon name="shrink" className="w-4 h-4" />
         </button>
@@ -130,17 +137,17 @@ function ExpandedPost({
       {/* Verdict bar */}
       <div className="shrink-0 flex gap-2 px-4 py-4 bg-neutral-base border-t border-neutral-light">
         {verdictButton(
-          'false', 'False',
+          'false', tFeed.verdicts.false,
           'bg-accent border-accent text-contrast',
           'border-accent text-accent hover:bg-accent/10',
         )}
         {verdictButton(
-          'true', 'True',
+          'true', tFeed.verdicts.true,
           'bg-primary border-primary text-neutral-base',
           'border-primary text-primary hover:bg-primary/10',
         )}
         {verdictButton(
-          'misleading', 'Mislead.',
+          'misleading', tFeed.verdicts.misleadingShort,
           'bg-accent border-accent text-contrast',
           'border-accent text-accent hover:bg-accent/10',
         )}
@@ -159,15 +166,18 @@ function ResultsView({
   score: number;
   onContinue: () => void;
 }) {
+  const { t } = useLanguage();
+  const tFeed = t.questions.feedTest;
+
   return (
     <div className="space-y-4">
       <div className="text-center space-y-1">
-        <p className="text-contrast-dark text-xs font-bold uppercase tracking-widest">Results</p>
+        <p className="text-contrast-dark text-xs font-bold uppercase tracking-widest">{tFeed.results}</p>
         <p className="text-contrast font-bold text-4xl">{score} / {posts.length}</p>
         <p className="text-contrast-dark text-sm">
           {score === posts.length
-            ? 'Perfect — you caught them all!'
-            : `${posts.length - score} incorrect`}
+            ? tFeed.perfectScore
+            : tFeed.countIncorrect(posts.length - score)}
         </p>
       </div>
 
@@ -192,12 +202,12 @@ function ResultsView({
               </div>
 
               <div className="flex items-center gap-2 flex-wrap pl-7">
-                <span className="text-contrast-dark text-xs">You:</span>
-                {userVerdict && <VerdictChip verdict={userVerdict} />}
+                <span className="text-contrast-dark text-xs">{tFeed.youLabel}</span>
+                {userVerdict && <VerdictChip verdict={userVerdict} tFeed={tFeed} />}
                 {!correct && (
                   <>
-                    <span className="text-contrast-dark text-xs">→ Correct:</span>
-                    <VerdictChip verdict={post.correctVerdict} />
+                    <span className="text-contrast-dark text-xs">{tFeed.correctLabel}</span>
+                    <VerdictChip verdict={post.correctVerdict} tFeed={tFeed} />
                   </>
                 )}
               </div>
@@ -211,7 +221,7 @@ function ResultsView({
       </div>
 
       <Button variant="primary" className="w-full" onClick={onContinue}>
-        Continue
+        {tFeed.continue}
       </Button>
     </div>
   );
@@ -220,6 +230,9 @@ function ResultsView({
 // ── Main component ────────────────────────────────────────────────────────────
 
 export function FeedTest({ question, onAnswer }: Props) {
+  const { t } = useLanguage();
+  const tFeed = t.questions.feedTest;
+
   const [expandedId, setExpandedId]     = useState<string | null>(null);
   const [verdicts, setVerdicts]         = useState<Record<string, FeedVerdict>>({});
   const [showResults, setShowResults]   = useState(false);
@@ -258,7 +271,7 @@ export function FeedTest({ question, onAnswer }: Props) {
 
       <div className="space-y-3">
         <h2 className="text-contrast font-bold text-xl text-center">
-          Read each post and judge it
+          {tFeed.heading}
         </h2>
         <div className="space-y-2">
           {posts.map(post => (
@@ -272,7 +285,7 @@ export function FeedTest({ question, onAnswer }: Props) {
         </div>
         {allMarked && (
           <Button variant="primary" className="w-full" onClick={() => setShowResults(true)}>
-            See Results
+            {tFeed.seeResults}
           </Button>
         )}
       </div>

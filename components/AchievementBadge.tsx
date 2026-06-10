@@ -1,11 +1,17 @@
+'use client';
+
 import type { Achievement } from '@/data/user';
 import { Icon, type IconName } from '@/components/icons';
+import { useLanguage } from '@/components/LanguageProvider';
 
 interface AchievementBadgeProps {
   achievement: Achievement;
 }
 
 export function AchievementBadge({ achievement }: AchievementBadgeProps) {
+  const { t } = useLanguage();
+  const label = t.profile.achievementLabels[achievement.id] ?? achievement.label;
+
   return (
     <div className="flex flex-col items-center gap-2 min-w-[72px]">
       <div
@@ -25,7 +31,7 @@ export function AchievementBadge({ achievement }: AchievementBadgeProps) {
           achievement.earned ? 'text-contrast' : 'text-contrast-dark',
         ].join(' ')}
       >
-        {achievement.label}
+        {label}
       </span>
     </div>
   );
