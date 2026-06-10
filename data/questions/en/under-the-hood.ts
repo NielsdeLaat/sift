@@ -7,6 +7,7 @@ export const underTheHoodQuestions: UnderTheHoodQuestion[] = [
     xp: 70,
     difficulty: 1,
     imageUrl: 'https://picsum.photos/seed/uth-d1-1/800/450',
+    claim: 'LIVE on the A28: tractors are blocking the motorway right now! 🚜🚜 #farmersprotest',
     items: [
       { label: 'File type', value: 'JPEG' },
       { label: 'Camera model', value: 'iPhone 14 Pro' },
@@ -23,6 +24,7 @@ export const underTheHoodQuestions: UnderTheHoodQuestion[] = [
     xp: 80,
     difficulty: 2,
     imageUrl: 'https://picsum.photos/seed/uth-d2-1/800/450',
+    claim: 'Eyewitness photo of the riots near the asylum centre, last night.',
     items: [
       { label: 'File type', value: 'JPEG' },
       { label: 'Camera model', value: 'Samsung Galaxy S23' },

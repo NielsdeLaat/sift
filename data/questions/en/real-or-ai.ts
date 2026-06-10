@@ -13,7 +13,6 @@ export const realOrAiQuestions: RealOrAiQuestion[] = [
       left: 20,
       width: 30,
       height: 25,
-      explanation: 'Placeholder: this area shows a typical AI artefact.',
     },
     explanation: 'Placeholder explanation — this is an AI image (difficulty 1).',
   },

@@ -13,7 +13,6 @@ export interface TellRegion {
   left: number;
   width: number;
   height: number;
-  explanation: string;
 }
 
 export interface SocialPost {
@@ -54,6 +53,9 @@ export interface EvidenceItem {
 
 export type WeakPillar = "who" | "what" | "when" | "where" | "why";
 
+export function isCorrect<T>(selected: T, correct: T | T[]): boolean {
+  return Array.isArray(correct) ? correct.includes(selected) : selected === correct;
+}
 
 interface BaseQuestion {
   id: string;
@@ -68,7 +70,7 @@ interface BaseQuestion {
 export interface NameTrickQuestion extends BaseQuestion {
   type: "name-trick";
   content: ContentItem;
-  options: [string, string, string, string, string];
+  options: [string, string, string, string, ...string[]];
   correctIndex: number | number[];
   explanation: string;
 }
@@ -102,6 +104,7 @@ export interface WhoSaysQuestion extends BaseQuestion {
 export interface UnderTheHoodQuestion extends BaseQuestion {
   type: "under-the-hood";
   imageUrl: string;
+  claim: string;
   /** All tappable evidence items (metadata rows + reverse-search result). */
   items: EvidenceItem[];
   correctFlagIndex: number | number[];
@@ -156,43 +159,50 @@ export type Question =
   | WeakLinkQuestion
   | FeedTestQuestion;
 
-/** Returns true if `value` matches any of the accepted correct answers. */
-export function isCorrect<T>(value: T, correct: T | T[]): boolean {
-  return Array.isArray(correct) ? correct.includes(value) : value === correct;
-}
-
-import type { Lang } from '@/lib/i18n';
+import type { Lang } from "@/lib/i18n";
 
 // ── Dutch question data ────────────────────────────────────────────────────────
-import { nameTrickQuestions as nameTrickNl }    from './questions/nl/name-trick';
-import { realOrAiQuestions as realOrAiNl }      from './questions/nl/real-or-ai';
-import { leaveThePageQuestions as leaveNl }     from './questions/nl/leave-the-page';
-import { whoSaysQuestions as whoSaysNl }        from './questions/nl/who-says';
-import { underTheHoodQuestions as underNl }     from './questions/nl/under-the-hood';
-import { whenOrWhereQuestions as whenWhereNl }  from './questions/nl/when-or-where';
-import { weakLinkQuestions as weakLinkNl }      from './questions/nl/weak-link';
-import { feedTestQuestions as feedTestNl }      from './questions/nl/feed-test';
+import { nameTrickQuestions as nameTrickNl } from "./questions/nl/name-trick";
+import { realOrAiQuestions as realOrAiNl } from "./questions/nl/real-or-ai";
+import { leaveThePageQuestions as leaveNl } from "./questions/nl/leave-the-page";
+import { whoSaysQuestions as whoSaysNl } from "./questions/nl/who-says";
+import { underTheHoodQuestions as underNl } from "./questions/nl/under-the-hood";
+import { whenOrWhereQuestions as whenWhereNl } from "./questions/nl/when-or-where";
+import { weakLinkQuestions as weakLinkNl } from "./questions/nl/weak-link";
+import { feedTestQuestions as feedTestNl } from "./questions/nl/feed-test";
 
 // ── English question data ──────────────────────────────────────────────────────
-import { nameTrickQuestions as nameTrickEn }    from './questions/en/name-trick';
-import { realOrAiQuestions as realOrAiEn }      from './questions/en/real-or-ai';
-import { leaveThePageQuestions as leaveEn }     from './questions/en/leave-the-page';
-import { whoSaysQuestions as whoSaysEn }        from './questions/en/who-says';
-import { underTheHoodQuestions as underEn }     from './questions/en/under-the-hood';
-import { whenOrWhereQuestions as whenWhereEn }  from './questions/en/when-or-where';
-import { weakLinkQuestions as weakLinkEn }      from './questions/en/weak-link';
-import { feedTestQuestions as feedTestEn }      from './questions/en/feed-test';
+import { nameTrickQuestions as nameTrickEn } from "./questions/en/name-trick";
+import { realOrAiQuestions as realOrAiEn } from "./questions/en/real-or-ai";
+import { leaveThePageQuestions as leaveEn } from "./questions/en/leave-the-page";
+import { whoSaysQuestions as whoSaysEn } from "./questions/en/who-says";
+import { underTheHoodQuestions as underEn } from "./questions/en/under-the-hood";
+import { whenOrWhereQuestions as whenWhereEn } from "./questions/en/when-or-where";
+import { weakLinkQuestions as weakLinkEn } from "./questions/en/weak-link";
+import { feedTestQuestions as feedTestEn } from "./questions/en/feed-test";
 
-export function getQuestions(lang: Lang = 'nl'): Question[] {
+export function getQuestions(lang: Lang = "nl"): Question[] {
   const nl = [
-    ...nameTrickNl, ...realOrAiNl, ...leaveNl, ...whoSaysNl,
-    ...underNl, ...whenWhereNl, ...weakLinkNl, ...feedTestNl,
+    ...nameTrickNl,
+    ...realOrAiNl,
+    ...leaveNl,
+    ...whoSaysNl,
+    ...underNl,
+    ...whenWhereNl,
+    ...weakLinkNl,
+    ...feedTestNl,
   ];
   const en = [
-    ...nameTrickEn, ...realOrAiEn, ...leaveEn, ...whoSaysEn,
-    ...underEn, ...whenWhereEn, ...weakLinkEn, ...feedTestEn,
+    ...nameTrickEn,
+    ...realOrAiEn,
+    ...leaveEn,
+    ...whoSaysEn,
+    ...underEn,
+    ...whenWhereEn,
+    ...weakLinkEn,
+    ...feedTestEn,
   ];
-  return lang === 'en' ? en : nl;
+  return lang === "en" ? en : nl;
 }
 
-export const questions: Question[] = getQuestions('nl');
+export const questions: Question[] = getQuestions("nl");

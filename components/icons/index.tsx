@@ -23,6 +23,8 @@ import { SparklesIcon }    from './svgs/SparklesIcon';
 import { ZapIcon }         from './svgs/ZapIcon';
 import { ExpandIcon }      from './svgs/ExpandIcon';
 import { ShrinkIcon }      from './svgs/ShrinkIcon';
+import { ChevronLeftIcon } from './svgs/ChevronLeftIcon';
+import { ChevronRightIcon } from './svgs/ChevronRightIcon';
 
 // ── Registry ─────────────────────────────────────────────────────────────────
 // To swap any icon: replace its .tsx file in svgs/ OR point this line to a
@@ -51,8 +53,10 @@ const registry = {
   badgeCheck:  BadgeCheckIcon,
   sparkles:    SparklesIcon,
   zap:         ZapIcon,
-  expand:      ExpandIcon,
-  shrink:      ShrinkIcon,
+  expand:        ExpandIcon,
+  shrink:        ShrinkIcon,
+  chevronLeft:   ChevronLeftIcon,
+  chevronRight:  ChevronRightIcon,
 } as const;
 
 export type IconName = keyof typeof registry;

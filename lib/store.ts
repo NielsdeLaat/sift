@@ -42,6 +42,12 @@ export function resetProgress(): void {
   write(KEYS.NODE_PROGRESS, 0);
 }
 
+/** Jumps to a specific node index (for demo navigation). Clears XP. */
+export function jumpToNode(n: number): void {
+  write(KEYS.XP_BONUS,      0);
+  write(KEYS.NODE_PROGRESS, n);
+}
+
 /**
  * Derives a live roadmap from the static seed + how many extra nodes have
  * been completed this session. Node icons and labels are updated accordingly.
