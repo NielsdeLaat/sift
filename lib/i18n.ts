@@ -47,8 +47,8 @@ const nl = {
   },
   questions: {
     weakLink: {
-      question: 'Welk pijler is de zwakke schakel?',
-      whyQuestion: 'Waarom is dit de zwakke schakel?',
+      question: 'Wat klopt er niet?',
+      whyQuestion: 'Waarom klopt dit niet?',
       placeholder: 'Leg uit in eigen woorden…',
       submit: 'Verstuur',
       pillars: {
@@ -65,20 +65,20 @@ const nl = {
       ai: 'AI',
     },
     nameTrick: {
-      question: 'Welke techniek wordt hier gebruikt?',
+      question: 'Welke truc wordt hier gebruikt?',
       confirm: 'Bevestig',
     },
     whoSays: {
-      question: 'Hoe betrouwbaar is deze bron?',
+      question: 'Kun je deze bron vertrouwen?',
       confirm: 'Bevestig',
     },
     underTheHood: {
-      question: 'Tik op de rode vlag in het bewijs hieronder',
-      button: 'Dat is de rode vlag',
+      question: 'Tik op wat er niet klopt',
+      button: 'Dit klopt niet',
     },
     leaveThePage: {
-      question: 'Welk resultaat bevestigt dit?',
-      button: 'Deze bevestigt het',
+      question: 'Welk resultaat bewijst dit?',
+      button: 'Deze bewijst het',
     },
     whenOrWhere: {
       whenQuestion: 'Wanneer is dit gemaakt?',
@@ -90,8 +90,8 @@ const nl = {
       verdicts: {
         true: 'Waar',
         false: 'Onwaar',
-        misleading: 'Misleidend',
-        misleadingShort: 'Misleid.',
+        misleading: 'Klopt niet helemaal',
+        misleadingShort: 'Half-waar',
       },
       results: 'Resultaten',
       perfectScore: 'Perfect — je hebt ze allemaal goed!',
@@ -103,7 +103,7 @@ const nl = {
       continue: 'Doorgaan',
     },
     tellReveal: {
-      selectTell: 'Selecteer de aanwijzing',
+      selectTell: 'Kies de aanwijzing',
       hereTell: 'Dit is de aanwijzing',
       tapInstruction: 'Tik op het deel van de afbeelding dat er vreemd uitziet',
       confirm: 'Bevestig',
@@ -191,8 +191,8 @@ const en: typeof nl = {
   },
   questions: {
     weakLink: {
-      question: 'Which pillar is the weak link?',
-      whyQuestion: 'Why is this pillar the weak link?',
+      question: "What doesn't add up?",
+      whyQuestion: "Why doesn't this add up?",
       placeholder: 'Explain in your own words…',
       submit: 'Submit',
       pillars: {
@@ -209,20 +209,20 @@ const en: typeof nl = {
       ai: 'AI',
     },
     nameTrick: {
-      question: 'Which technique is this using?',
+      question: 'What trick is used here?',
       confirm: 'Confirm',
     },
     whoSays: {
-      question: 'How reliable is this source?',
+      question: 'Can you trust this source?',
       confirm: 'Confirm',
     },
     underTheHood: {
-      question: 'Tap the red flag in the evidence below',
-      button: "That's the red flag",
+      question: "Tap what doesn't look right",
+      button: "This doesn't look right",
     },
     leaveThePage: {
-      question: 'Which result settles this?',
-      button: 'This one settles it',
+      question: 'Which result proves this?',
+      button: 'This one proves it',
     },
     whenOrWhere: {
       whenQuestion: 'When was this taken?',
@@ -234,8 +234,8 @@ const en: typeof nl = {
       verdicts: {
         true: 'True',
         false: 'False',
-        misleading: 'Misleading',
-        misleadingShort: 'Mislead.',
+        misleading: 'Not quite true',
+        misleadingShort: 'Half-true',
       },
       results: 'Results',
       perfectScore: 'Perfect — you caught them all!',
@@ -247,8 +247,8 @@ const en: typeof nl = {
       continue: 'Continue',
     },
     tellReveal: {
-      selectTell: 'Select the tell',
-      hereTell: "Here's the tell",
+      selectTell: 'Find the clue',
+      hereTell: "Here's the clue",
       tapInstruction: 'Tap the part of the image that looks off',
       confirm: 'Confirm',
     },
