@@ -49,16 +49,16 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ### Question types
 
-| Type             | Mechanic                                                                     |
-| ---------------- | ---------------------------------------------------------------------------- |
-| `name-trick`     | Pick the rhetorical or naming trick used in a headline or post               |
-| `real-or-ai`     | Decide if an image is real or AI-generated; optionally mark the tell         |
-| `leave-the-page` | Choose the right search query, then pick the result that proves the claim    |
-| `who-says`       | Open the article and tap the sentence that contains (or lacks) a source      |
-| `under-the-hood` | Tap the metadata item or reverse-search result that flags the image as fake  |
-| `when-or-where`  | Given an image or post, select the correct date or location from options     |
-| `weak-link`      | Identify which of the 5W pillars (who/what/when/where/why) is unverified     |
-| `feed-test`      | Multi-post social feed; triage each post as true, misleading, or false       |
+| Type             | Mechanic                                                                    |
+| ---------------- | --------------------------------------------------------------------------- |
+| `name-trick`     | Pick the rhetorical or naming trick used in a headline or post              |
+| `real-or-ai`     | Decide if an image is real or AI-generated; optionally mark the tell        |
+| `leave-the-page` | Choose the right search query, then pick the result that proves the claim   |
+| `who-says`       | Open the article and tap the sentence that contains (or lacks) a source     |
+| `under-the-hood` | Tap the metadata item or reverse-search result that flags the image as fake |
+| `when-or-where`  | Given an image or post, select the correct date or location from options    |
+| `weak-link`      | Identify which of the 5W pillars (who/what/when/where/why) is unverified    |
+| `feed-test`      | Multi-post social feed; triage each post as true, misleading, or false      |
 
 ### Language support
 
@@ -78,9 +78,9 @@ Open [http://localhost:3000](http://localhost:3000).
 Test a specific question type directly without going through the lesson flow:
 
 ```
-/test?q=nt-fox-agitators          — exact question ID
-/test?q=nt-                        — random question whose ID starts with "nt-"
-/test?q=uth-                       — random under-the-hood question
+/test?q=nt-d1-1                    — exact question ID
+/test?q=nt-d2                      — random question of set type (name-trick) and difficulty (2)
+/test?q=uth                        — random under-the-hood question
 ```
 
 The `q` param accepts either an exact question `id` or a prefix followed by `-`; a random match is picked when multiple questions share the prefix.
