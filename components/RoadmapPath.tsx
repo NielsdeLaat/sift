@@ -179,6 +179,7 @@ export function RoadmapPath({ sections }: Props) {
             node={node}
             style={{ left: `${xFrac * 100}%`, top: y }}
             href={href}
+            id={node.status === 'current' ? 'current-node' : undefined}
           />
         );
       })}

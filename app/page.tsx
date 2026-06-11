@@ -28,6 +28,11 @@ export default function HomePage() {
     setNodeProgress(getNodeProgress());
   }, []);
 
+  // Scroll to the current node after hydration or after jumping to a section
+  useEffect(() => {
+    document.getElementById('current-node')?.scrollIntoView({ block: 'center', behavior: 'instant' });
+  }, [nodeProgress]);
+
   function handleReset() {
     resetProgress();
     setXpBonus(0);

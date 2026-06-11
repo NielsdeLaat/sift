@@ -7,6 +7,7 @@ interface Props {
   node: LevelNodeType;
   style: CSSProperties;
   href?: string;
+  id?: string;
 }
 
 function resolveIcon(icon: NodeIcon): IconName {
@@ -20,7 +21,7 @@ function resolveIcon(icon: NodeIcon): IconName {
   return (map[icon] as IconName) ?? "lock";
 }
 
-export function LevelNode({ node, style, href }: Props) {
+export function LevelNode({ node, style, href, id }: Props) {
   const isActive = node.status === "completed" || node.status === "current";
   const isCurrent = node.status === "current";
 
@@ -43,6 +44,7 @@ export function LevelNode({ node, style, href }: Props) {
 
   return (
     <div
+      id={id}
       className="absolute flex flex-col items-center"
       style={{ ...style, transform: "translate(-50%, -50%)" }}
     >
