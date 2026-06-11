@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { getQuestions } from '@/data/questions';
+import { getQuestions } from '@/data/questionBank';
 import type { Question } from '@/data/questions';
 import { SELF_CONTAINED_TYPES, calcXp } from '@/lib/lesson';
 import { LessonHeader }     from '@/components/lesson/LessonHeader';

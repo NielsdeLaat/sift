@@ -1,4 +1,5 @@
 import type { UnderTheHoodQuestion } from '../../questions';
+import { social } from '../helpers';
 
 export const underTheHoodQuestions: UnderTheHoodQuestion[] = [
   {
@@ -6,8 +7,7 @@ export const underTheHoodQuestions: UnderTheHoodQuestion[] = [
     type: 'under-the-hood',
     xp: 70,
     difficulty: 1,
-    content: {
-      type: 'social',
+    content: social('uth-d1-1', {
       avatarUrl: 'https://api.dicebear.com/7.x/identicon/svg?seed=farmersalert_en',
       sourceName: 'Farmers Alert 🚜',
       handle: '@farmersalert',
@@ -15,7 +15,7 @@ export const underTheHoodQuestions: UnderTheHoodQuestion[] = [
       publishedAt: '3 Nov 2022',
       text: 'LIVE on the A28: tractors are blocking the motorway right now! 🚜🚜 #farmersprotest',
       imageUrl: 'https://picsum.photos/seed/uth-d1-1/800/450',
-    },
+    }),
     items: [
       { label: 'File type', value: 'JPEG' },
       { label: 'Camera model', value: 'iPhone 14 Pro' },
@@ -31,8 +31,7 @@ export const underTheHoodQuestions: UnderTheHoodQuestion[] = [
     type: 'under-the-hood',
     xp: 80,
     difficulty: 2,
-    content: {
-      type: 'social',
+    content: social('uth-d2-1', {
       avatarUrl: 'https://api.dicebear.com/7.x/identicon/svg?seed=localert_en',
       sourceName: 'Local Alert',
       handle: '@localert',
@@ -40,7 +39,7 @@ export const underTheHoodQuestions: UnderTheHoodQuestion[] = [
       publishedAt: '4 Oct 2024',
       text: 'Eyewitness photo of the riots near the asylum centre, last night.',
       imageUrl: 'https://picsum.photos/seed/uth-d2-1/800/450',
-    },
+    }),
     items: [
       { label: 'File type', value: 'JPEG' },
       { label: 'Camera model', value: 'Samsung Galaxy S23' },
