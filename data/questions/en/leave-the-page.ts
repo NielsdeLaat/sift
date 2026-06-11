@@ -1,4 +1,5 @@
 import type { LeaveThePageQuestion } from '../../questions';
+import { article } from '../helpers';
 
 export const leaveThePageQuestions: LeaveThePageQuestion[] = [
   {
@@ -6,14 +7,12 @@ export const leaveThePageQuestions: LeaveThePageQuestion[] = [
     type: 'leave-the-page',
     xp: 60,
     difficulty: 1,
-    content: {
-      type: 'article',
+    content: article('ltp-d1-1', {
       sourceName: 'Placeholder News',
       domain: 'placeholder-news.com',
-      imageUrl: 'https://picsum.photos/seed/ltp-d1-1/800/450',
       headline: 'Placeholder headline for leave-the-page question difficulty 1.',
       excerpt: 'Placeholder excerpt for leave-the-page article question difficulty 1.',
-    },
+    }),
     searchOptions: [
       'placeholder topic search A',
       'placeholder-news.com reliable',

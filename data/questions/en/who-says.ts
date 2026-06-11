@@ -1,4 +1,5 @@
 import type { WhoSaysQuestion } from '../../questions';
+import { article } from '../helpers';
 
 export const whoSaysQuestions: WhoSaysQuestion[] = [
   {
@@ -6,15 +7,13 @@ export const whoSaysQuestions: WhoSaysQuestion[] = [
     type: 'who-says',
     xp: 60,
     difficulty: 1,
-    content: {
-      type: 'article',
+    content: article('ws-d1-1', {
       sourceName: 'Health Today',
       domain: 'healthtoday.com',
-      imageUrl: 'https://picsum.photos/seed/ws-d1-1/800/450',
       headline: 'Daily coffee linked to 20% lower Alzheimer\'s risk, study finds',
       publishedAt: 'May 14, 2024',
       excerpt: 'New research examines the long-term relationship between caffeine intake and cognitive health.',
-    },
+    }),
     sections: [
       'Researchers at Harvard Medical School published a study in The Lancet tracking 50,000 people over ten years, examining their coffee consumption and cognitive decline.',
       'Participants who drank two to three cups of coffee per day had on average 20% lower risk of Alzheimer\'s disease compared to non-coffee drinkers.',
@@ -28,15 +27,13 @@ export const whoSaysQuestions: WhoSaysQuestion[] = [
     type: 'who-says',
     xp: 70,
     difficulty: 2,
-    content: {
-      type: 'article',
+    content: article('ws-d2-1', {
       sourceName: 'EconomyWatch',
       domain: 'economywatch.com',
-      imageUrl: 'https://picsum.photos/seed/ws-d2-1/800/450',
       headline: 'Report: cheap Chinese solar panels threaten domestic manufacturing jobs',
       publishedAt: 'June 3, 2024',
       excerpt: 'European producers say competitive pressure from Chinese suppliers is intensifying across the green energy market.',
-    },
+    }),
     sections: [
       'A new report concludes that cheap solar panel imports from China are severely damaging domestic manufacturing and threatening thousands of jobs.',
       'The report was produced by the National Manufacturers Association (NMA), the industry body that represents domestic solar panel producers.',
@@ -51,15 +48,13 @@ export const whoSaysQuestions: WhoSaysQuestion[] = [
     type: 'who-says',
     xp: 80,
     difficulty: 3,
-    content: {
-      type: 'article',
+    content: article('ws-d3-1', {
       sourceName: 'FamilyHealth Blog',
       domain: 'familyhealthblog.com',
-      imageUrl: 'https://picsum.photos/seed/ws-d3-1/800/450',
       headline: 'Sugar — not genes — is the real cause of ADHD in children',
       publishedAt: 'March 22, 2024',
       excerpt: 'Dietary advice for children with behavioural problems is sparking debate among parents and educators.',
-    },
+    }),
     sections: [
       'Studies show that sugar is the true cause of ADHD in children, and that genetic factors play a much smaller role than previously thought.',
       'Children who eat less sugar behave noticeably calmer and perform better in school.',

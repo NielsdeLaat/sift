@@ -4,6 +4,30 @@ All notable changes to this project are documented here.
 
 ---
 
+## [0.2.1] — 2026-06-11
+
+### Added
+
+- **Theory blocks in Section Info Modal** — "This Section" tab now shows a prominent theory explanation in plain language; "All Sections" tab lets users tap any section to read its theory
+- **Favicon** — app icon added across all platforms
+
+### Changed
+
+- **Section metadata updated** — titles, subtitles, and descriptions for all 12 sections revised (NL + EN) to match the Chapter 1 progression table; internal question-type names removed from user-facing text
+- **Homepage auto-scrolls to current node** on load and after jumping to a section
+
+### Fixed
+
+- Weak-link question submitted the answer immediately on pillar tap instead of waiting for a confirm button
+- "AI" button in Real or AI question was missing `shadow-inner-top`, inconsistent with all other primary buttons
+
+### Internal
+
+- `data/questions.ts` is now types-only; data aggregation moved to `data/questionBank.ts`
+- `data/questions/helpers.ts` — `social()` and `article()` factory functions auto-generate picsum URLs from question seed IDs, removing boilerplate from all 12 question files (6 NL + 6 EN)
+
+---
+
 ## [0.2.0] — 2026-06-10
 
 ### Added

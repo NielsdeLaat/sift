@@ -16,6 +16,7 @@ export function SectionDivider({ sectionId, fallbackTitle, style }: Props) {
     title: fallbackTitle,
     subtitle: '',
     description: '',
+    theory: '',
   });
 
   return (

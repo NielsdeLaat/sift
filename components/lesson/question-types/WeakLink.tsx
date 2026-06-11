@@ -39,9 +39,13 @@ export function WeakLink({ question, locked, selectedOption, onSelectOption, onA
   }
 
   function handlePillarTap(i: number) {
-    if (locked || selectedOption !== null) return;
+    if (locked) return;
     onSelectOption(i);
-    const correct = isCorrect(pillars[i].pillar, question.correctPillar);
+  }
+
+  function handlePillarConfirm() {
+    if (selectedOption === null) return;
+    const correct = isCorrect(pillars[selectedOption].pillar, question.correctPillar);
     if (!correct) {
       onAnswer(0);
       return;
@@ -73,7 +77,7 @@ export function WeakLink({ question, locked, selectedOption, onSelectOption, onA
             {pillars.map((pillar, i) => (
               <button
                 key={pillar.pillar}
-                disabled={locked || selectedOption !== null}
+                disabled={locked}
                 onClick={() => handlePillarTap(i)}
                 className={[
                   'w-full text-left rounded-xl border-2 px-4 py-3 transition-colors',
@@ -85,6 +89,12 @@ export function WeakLink({ question, locked, selectedOption, onSelectOption, onA
               </button>
             ))}
           </div>
+
+          {!locked && selectedOption !== null && (
+            <Button variant="primary" className="w-full" onClick={handlePillarConfirm}>
+              {t.questions.weakLink.confirm}
+            </Button>
+          )}
         </>
       ) : (
         <>

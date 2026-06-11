@@ -42,6 +42,7 @@ export function SectionBanner({ sections }: Props) {
     title: section.title,
     subtitle: section.subtitle,
     description: section.description,
+    theory: section.theory,
   });
 
   return (

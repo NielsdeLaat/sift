@@ -1,4 +1,5 @@
 import type { WhenOrWhereQuestion } from '../../questions';
+import { social } from '../helpers';
 
 export const whenOrWhereQuestions: WhenOrWhereQuestion[] = [
   {
@@ -7,16 +8,14 @@ export const whenOrWhereQuestions: WhenOrWhereQuestion[] = [
     xp: 60,
     difficulty: 1,
     subtype: 'when',
-    content: {
-      type: 'social',
+    content: social('wow-d1-1', {
       avatarUrl: 'https://api.dicebear.com/7.x/identicon/svg?seed=wow-en-1',
       sourceName: 'Local Observer',
       handle: '@local_observer',
       followerCount: '2.1K followers',
-      publishedAt: undefined,
       text: 'Placeholder text for when-or-where question difficulty 1.',
       imageUrl: 'https://picsum.photos/seed/wow-d1-1/800/450',
-    },
+    }),
     options: [
       'Last week (as claimed)',
       '2023 — an earlier event',
@@ -32,16 +31,14 @@ export const whenOrWhereQuestions: WhenOrWhereQuestion[] = [
     xp: 70,
     difficulty: 2,
     subtype: 'where',
-    content: {
-      type: 'social',
+    content: social('wow-d2-1', {
       avatarUrl: 'https://api.dicebear.com/7.x/identicon/svg?seed=wow-en-2',
       sourceName: 'News Alert',
       handle: '@news_alert',
       followerCount: '8.4K followers',
-      publishedAt: undefined,
       text: 'Placeholder text for when-or-where question difficulty 2.',
       imageUrl: 'https://picsum.photos/seed/wow-d2-1/800/450',
-    },
+    }),
     options: [
       'Location A (as claimed)',
       'Location B — a different place',
@@ -57,16 +54,14 @@ export const whenOrWhereQuestions: WhenOrWhereQuestion[] = [
     xp: 80,
     difficulty: 3,
     subtype: 'where',
-    content: {
-      type: 'social',
+    content: social('wow-d3-1', {
       avatarUrl: 'https://api.dicebear.com/7.x/identicon/svg?seed=wow-en-3',
       sourceName: 'Breaking Now',
       handle: '@breaking_now',
       followerCount: '15.2K followers',
-      publishedAt: undefined,
       text: 'Placeholder text for when-or-where question difficulty 3.',
       imageUrl: 'https://picsum.photos/seed/wow-d3-1/800/450',
-    },
+    }),
     options: [
       'Location A (as claimed)',
       'Location B',

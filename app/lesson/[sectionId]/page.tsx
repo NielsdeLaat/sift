@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
-import { getQuestions } from '@/data/questions';
+import { getQuestions } from '@/data/questionBank';
 import type { Question } from '@/data/questions';
 import { getLessonQuestions, SELF_CONTAINED_TYPES, calcXp } from '@/lib/lesson';
 import { LessonHeader }     from '@/components/lesson/LessonHeader';
