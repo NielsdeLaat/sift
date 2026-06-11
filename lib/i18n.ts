@@ -304,112 +304,124 @@ export type Translations = typeof nl;
 export const sectionTranslations: Record<
   string,
   {
-    nl: { title: string; subtitle: string; description: string };
+    nl: { title: string; subtitle: string; description: string; theory: string };
   }
 > = {
   "section-1": {
     nl: {
       title: "Hoofdstuk 1, Sectie 1",
-      subtitle: "Stop voordat je deelt",
-      description:
-        "Leer de belangrijkste gewoonte voor factchecken: pauzeer voordat je reageert. Oefen met naamtrucs herkennen, echte vs. AI-afbeeldingen beoordelen en de zwakke schakel in een bewering vinden.",
+      subtitle: "Stop en denk na",
+      description: "Je eerste kennismaking met factchecken — geen jargon, alleen de kerngewoonte van pauzeren voordat je reageert.",
+      theory:
+        "Factchecken begint met één gewoonte: vertraag voordat je deelt of reageert. Desinformatie werkt door snelle emoties op te roepen — verrassing, woede of instemming — voordat je helder kunt nadenken. In deze sectie oefen je het instinct om te pauzeren en te vragen: 'klopt dit wel?' Je beoordeelt afbeeldingen, herkent misleidende framing en vindt het zwakste punt in een bewering — zonder speciale tools.",
     },
   },
   "section-2": {
     nl: {
       title: "Hoofdstuk 1, Sectie 2",
-      subtitle: "Spot manipulatie direct",
-      description:
-        "Verdiep je in naamtrucs en retorische tactieken die valse beweringen geloofwaardig laten klinken. Je begint gemeenschappelijke patronen te herkennen in verschillende soorten desinformatie.",
+      subtitle: "Bouw voort op wat je weet",
+      description: "Meer oefening met dezelfde vaardigheden om snellere, meer automatische instincten op te bouwen.",
+      theory:
+        "Goede factcheckers bouwen gewoonten op, niet alleen vaardigheden. Hoe meer je iets oefent, hoe sneller je brein het automatisch opmerkt. Deze sectie versterkt wat je al hebt gezien, zodat je instincten betrouwbaarder worden voordat nieuwe vaardigheden worden geïntroduceerd. Zie het als het trainen van je standaardreactie — van 'delen' naar 'controleren'.",
     },
   },
   "section-3": {
     nl: {
       title: "Hoofdstuk 1, Sectie 3",
-      subtitle: "Niet elke bewerkte afbeelding is AI",
-      description:
-        'Scherp je oog voor AI-gegenereerde beelden, maar vermijd de val van te snel "nep" roepen. Echte afbeeldingen kunnen misleidend zijn; AI-afbeeldingen kunnen subtiel zijn.',
+      subtitle: "Leer de namen voor wat je ziet",
+      description: "Begin namen te geven aan de tactieken die worden gebruikt om te misleiden — zodra je een truc kunt benoemen, verliest die zijn kracht.",
+      theory:
+        "Desinformatie maakt vaak gebruik van specifieke retorische trucs om overtuigender te klinken. Zodra je een truc kunt benoemen, verliest die veel van zijn kracht. Bekende voorbeelden: geladen taal gebruikt emotionele woorden om je reactie te sturen; valse gelijkstelling vergelijkt twee dingen alsof ze gelijk zijn, terwijl dat niet zo is; kersenpikken belicht één waar detail terwijl het grotere plaatje verborgen blijft. Benoemen wat je ziet is de eerste stap om er niet door te worden misleid.",
     },
   },
   "section-4": {
     nl: {
       title: "Hoofdstuk 1, Sectie 4",
-      subtitle: "Vertrouw niet op één bron",
-      description:
-        "Oefen lateraal lezen: verlaat de pagina om te controleren wat anderen zeggen over een bron of bewering. Een waar verhaal is makkelijk te verifiëren; een vals verhaal vaak niet.",
+      subtitle: "Zie wat AI verkeerd doet",
+      description: "Oefen met het herkennen van AI-gegenereerde afbeeldingen door te leren welke specifieke fouten AI steeds maakt.",
+      theory:
+        "AI-afbeeldingsgeneratoren maken afbeeldingen door te voorspellen hoe pixels eruit zouden moeten zien — ze begrijpen niet echt wat ze tekenen. Dit leidt tot terugkerende fouten: handen hebben vaak het verkeerde aantal vingers, tekst in de afbeelding is onleesbaar, achtergronden herhalen zich op onnatuurlijke wijze, en schaduwen of reflecties kloppen niet. Deze verradelijke tekenen verschijnen bij verschillende tools, dus ze leren herkennen geeft je een vaardigheid die breed toepasbaar is.",
     },
   },
   "section-5": {
     nl: {
       title: "Hoofdstuk 1, Sectie 5",
-      subtitle: "Wie plaatst dit eigenlijk?",
-      description:
-        "Ga verder met lateraal lezen: onderzoek de authenticiteit van accounts door te zoeken op handle, profielfoto en domein. Niet elk account is wie het beweert te zijn.",
+      subtitle: "Vind het bewijs in de tekst",
+      description: "Leer een bron te vinden — en op te merken wanneer die ontbreekt — bij elke bewering die je leest.",
+      theory:
+        "Een bewering zonder bron is slechts een mening. Vraag bij het lezen van iets: wie doet deze bewering en waarop baseren ze die? Een goede bron wordt bij naam genoemd, is relevant en onafhankelijk — niet gewoon 'experts zeggen' of 'onderzoeken tonen aan'. Leren opmerken wanneer een bron ontbreekt — of wanneer de geciteerde bron de bewering eigenlijk niet ondersteunt — is een van de meest waardevolle gewoonten die je kunt opbouwen.",
     },
   },
   "section-6": {
     nl: {
       title: "Hoofdstuk 1, Sectie 6",
-      subtitle: "Herleid de bewering naar de bron",
-      description:
-        "Maak kennis met het IMVAIN-kader voor het evalueren van bronnen. Leer of een geciteerde bron — expert, ooggetuige of anoniem — betrouwbaar genoeg is om te vertrouwen.",
+      subtitle: "Zoek slimmer, niet harder",
+      description: "Verdiep je verificatie met geavanceerdere zoektechnieken om beweringen voorbij de pagina te controleren.",
+      theory:
+        "Lateraal lezen betekent de pagina verlaten die je leest om te kijken wat andere bronnen erover zeggen. In plaats van een bron diepgaand te lezen en van binnenuit te beoordelen, open je nieuwe tabbladen en zoek je onafhankelijke beoordelingen ervan. Factcheckers gebruiken dit voortdurend — het is sneller en betrouwbaarder dan een bron op eigen voorwaarden te beoordelen. De sleutel is weten wat je moet zoeken en hoe je de resultaten interpreteert.",
     },
   },
   "section-7": {
     nl: {
       title: "Hoofdstuk 1, Sectie 7",
-      subtitle: "Sommige stemmen tellen zwaarder",
-      description:
-        "Verdiep je in bronnenkwaliteit. Oefen met het onderscheiden van primaire bronnen van tweedehandse verslagen en leer wanneer je een officiële verklaring kunt vertrouwen versus een virale screenshot.",
+      subtitle: "Breid je vocabulaire voor bedrog uit",
+      description: "Breid je vocabulaire van manipulatietactieken uit om meer te herkennen, sneller.",
+      theory:
+        "Hoe meer namen je hebt voor manipulatietactieken, hoe sneller je ze kunt herkennen en verwerpen. Naast de basis: whataboutism wijkt kritiek af door ergens anders naar te wijzen ('maar wat dan met X?'); een hellend vlak beweert dat één stap onvermijdelijk tot rampspoed leidt, zonder bewijs; een beroep op autoriteit gebruikt een geloofwaardig klinkende naam als vervanging voor een echt argument. Dit vocabulaire uitbreiden maakt je moeilijker te misleiden.",
     },
   },
   "section-8": {
     nl: {
       title: "Hoofdstuk 1, Sectie 8",
-      subtitle: "Inspecteer de metadata",
-      description:
-        "Leer afbeeldingsmetadata en omgekeerde-zoekresultaten te lezen om contextmanipulatie op te sporen. Een oude foto in een nieuwe crisis is een van de meest voorkomende vormen van visuele desinformatie.",
+      subtitle: "Tijd en plaats vertellen het verhaal",
+      description: "Leer controleren wanneer en waar een foto of verhaal werkelijk vandaan komt — context is onderdeel van de waarheid.",
+      theory:
+        "Een foto of video is alleen betekenisvol in de originele context — wanneer en waar iets is gemaakt, telt net zoveel als wat het toont. Een van de meest voorkomende desinformatietactieken is het hergebruiken van oude content in een nieuwe crisis: een foto van drie jaar geleden die wordt gedeeld alsof het vandaag is. Het controleren van data, locaties en originele context van afbeeldingen is een kernvaardigheid voor iedereen die met visuele media werkt.",
     },
   },
   "section-9": {
     nl: {
       title: "Hoofdstuk 1, Sectie 9",
-      subtitle: "Tijd is onderdeel van de waarheid",
-      description:
-        "Oefen met het bepalen wanneer een afbeelding of verhaal vandaan komt. Hergebruikte oude content is een belangrijke desinformatietactiek bij snelbewegende crises.",
+      subtitle: "Duik dieper in bronnen",
+      description: "Verdiep je in het beoordelen van bronnen en de kwaliteit van het bewijs dat ze leveren.",
+      theory:
+        "Niet alle bronnen zijn even betrouwbaar. Een primaire bron heeft directe kennis — een ooggetuige, een officieel document, de persoon die het onderzoek heeft uitgevoerd. Een secundaire bron rapporteert wat de primaire bron zei, wat het risico op vertekening introduceert. Vraag bij het beoordelen van een bewering: hoeveel stappen is dit verwijderd van de oorspronkelijke gebeurtenis of data? Hoe meer stappen, hoe zorgvuldiger het gelezen moet worden.",
     },
   },
   "section-10": {
     nl: {
       title: "Hoofdstuk 1, Sectie 10",
-      subtitle: "Locatie is net zo belangrijk als timing",
-      description:
-        "Breid je verificatievaardigheden uit naar locatie. Foto's en video's worden vaak aan een andere plek toegeschreven — de tekenen leren herkennen beschermt je tegen geografische desinformatie.",
+      subtitle: "Wat de afbeeldingsdata onthult",
+      description: "Begin te verkennen wat afbeeldingsbestanden onthullen voorbij wat je met je ogen kunt zien.",
+      theory:
+        "Elk digitaal afbeeldingsbestand bevat meer dan alleen pixels. Metadata — ook wel EXIF-data genoemd — is informatie die automatisch wordt opgeslagen door camera's en apparaten: datum en tijd, GPS-locatie, apparaattype en soms bewerkingsgeschiedenis. Wanneer een afbeelding is gemanipuleerd of in een verkeerde context is geplaatst, kan de metadata de bewering tegenspreken. Leren deze data te lezen voegt een verificatielaag toe die verder gaat dan wat zichtbaar is.",
     },
   },
   "section-11": {
     nl: {
       title: "Hoofdstuk 1, Sectie 11",
-      subtitle: "Elke bewering heeft een breekpunt",
-      description:
-        "Beheers de volledige zwakke-schakel-analyse: bepaal welk pijler van een verhaal bezwijkt onder inspectie en kom tot een zeker oordeel. Dit is de kernbeweging van de factchecker.",
+      subtitle: "Subtielere tekenen van AI",
+      description: "Train je oog voor de subtielere, moeilijker te herkennen tekenen in overtuigendere AI-gegenereerde afbeeldingen.",
+      theory:
+        "AI-beeldgeneratie verbetert snel, maar bepaalde foutpatronen blijven bestaan. Zelfs realistische AI-afbeeldingen worstelen met fijne details — stiksels op stof, vachttextuur, de binnenkant van een mond, de exacte vorm van een oor. Niet-kloppende belichting en te gladde huid zijn ook veelvoorkomende weggevers. Deze subtielere tekenen kennen is belangrijk, omdat de voor de hand liggende fouten — extra vingers, smeltende gezichten — zeldzamer worden naarmate de technologie verbetert.",
     },
   },
   "section-12": {
     nl: {
       title: "Hoofdstuk 1, Sectie 12",
-      subtitle: "Alles tegelijk",
-      description:
-        "Pas alle vaardigheden over alle vraagtypen toe op hogere moeilijkheidsgraad. De laatste sectie weerspiegelt de echte informatie-omgeving: snel, gemengd en ontworpen om te misleiden.",
+      subtitle: "De vijf pijlers van een bewering",
+      description: "Leer het vijf-pijlers-kader voor het ontleden en testen van elke bewering.",
+      theory:
+        "Elke bewering rust op vijf pijlers: wie heeft het gemaakt, wat zegt het precies, wanneer is het gemaakt, waar komt het vandaan, en waarom wordt het gedeeld. Een bewering klopt alleen als alle vijf solide zijn. De vijf-pijlers-check geeft je een gestructureerde manier om het zwakste punt te vinden — als de 'wie' anoniem is, de 'wanneer' verouderd is, of de 'waarom' een duidelijke agenda suggereert, daar moet je je aandacht op richten. Dit kader werkt voor elk type content.",
     },
   },
 };
 
-/** Return the section title/subtitle/description for the given language. */
+/** Return the section title/subtitle/description/theory for the given language. */
 export function getSectionText(
   sectionId: string,
   lang: Lang,
-  fallback: { title: string; subtitle: string; description: string },
+  fallback: { title: string; subtitle: string; description: string; theory: string },
 ) {
   if (lang === "nl") {
     const t = sectionTranslations[sectionId]?.nl;

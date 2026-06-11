@@ -131,6 +131,7 @@ export function DemoMenu({ sections, onJumpTo, onReset, onClose }: Props) {
             title: section.title,
             subtitle: section.subtitle,
             description: section.description,
+            theory: section.theory,
           });
           return (
             <button
