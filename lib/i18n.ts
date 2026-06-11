@@ -50,6 +50,7 @@ const nl = {
       question: "Wat klopt er niet?",
       whyQuestion: "Waarom klopt dit niet?",
       placeholder: "Leg uit in eigen woorden…",
+      confirm: "Bevestig",
       submit: "Verstuur",
       pillars: {
         who: "De bron",
@@ -198,6 +199,7 @@ const en: typeof nl = {
       question: "What doesn't add up?",
       whyQuestion: "Why doesn't this add up?",
       placeholder: "Explain in your own words…",
+      confirm: "Confirm",
       submit: "Submit",
       pillars: {
         who: "Who?",
