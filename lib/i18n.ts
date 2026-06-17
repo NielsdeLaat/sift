@@ -41,6 +41,8 @@ const nl = {
     correct: "Correct!",
     incorrect: "Onjuist",
     continue: "Doorgaan",
+    showExplanation: "Bekijk uitleg",
+    hideExplanation: "Verberg uitleg",
   },
   header: {
     exitLesson: "Les verlaten",
@@ -190,6 +192,8 @@ const en: typeof nl = {
     correct: "Correct!",
     incorrect: "Incorrect",
     continue: "Continue",
+    showExplanation: "Show explanation",
+    hideExplanation: "Hide explanation",
   },
   header: {
     exitLesson: "Exit lesson",
