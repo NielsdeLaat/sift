@@ -52,7 +52,7 @@ export function LeaveThePage({ question, locked, selectedOption, onSelectOption,
         </ExpandableCard>
 
         <h2 className="text-contrast font-bold text-xl text-center">
-          {t.questions.leaveThePage.searchQuestion}
+          {question.question ?? t.questions.leaveThePage.searchQuestion}
         </h2>
 
         <div className="space-y-2">
@@ -100,7 +100,7 @@ export function LeaveThePage({ question, locked, selectedOption, onSelectOption,
       </ExpandableCard>
 
       <h2 className="text-contrast font-bold text-xl text-center">
-        {question.question ?? t.questions.leaveThePage.question}
+        {t.questions.leaveThePage.question}
       </h2>
 
       <div className="space-y-3">
