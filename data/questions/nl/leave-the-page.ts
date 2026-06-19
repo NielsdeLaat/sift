@@ -1,316 +1,333 @@
-import type { LeaveThePageQuestion } from '../../questions';
-import { social, article } from '../helpers';
+import type { LeaveThePageQuestion } from "../../questions";
+import { social, article } from "../helpers";
 
 export const leaveThePageQuestions: LeaveThePageQuestion[] = [
   // ─────────────────────────── DIFFICULTY 1 ───────────────────────────
 
   {
-    id: 'ltp-d1-1',
-    type: 'leave-the-page',
+    id: "ltp-d1-1",
+    type: "leave-the-page",
     xp: 60,
     difficulty: 1,
-    content: article('ltp-d1-1', {
-      sourceName: 'NOS Nieuwsupdate',
-      domain: 'nos-nieuwsupdate.nl',
-      headline: 'Veiligheidsdiensten halen noodplan tevoorschijn voor NAVO-top Den Haag',
-      excerpt: 'Bronnen binnen de veiligheidsdiensten bevestigen dat er een noodprotocol klaarligt voor de komende NAVO-top in Den Haag. Details zijn uit veiligheidsoverwegingen niet openbaar gemaakt.',
+    question: "Wat zou je zoeken om deze informatie te controleren?",
+    content: article("ltp-d1-1", {
+      sourceName: "Nieuws Alert",
+      domain: "nieuwsalert.nl",
+      headline:
+        "Veiligheidsdiensten halen noodplan tevoorschijn voor NAVO-top Den Haag",
+      excerpt:
+        "Bronnen binnen de veiligheidsdiensten bevestigen dat er een noodprotocol klaarligt voor de komende NAVO-top in Den Haag. Details zijn uit veiligheidsoverwegingen niet openbaar gemaakt.",
+      imageUrl: "/images/navo-top-the-hague.jpg",
     }),
     searchOptions: [
-      'NAVO-top Den Haag veiligheidsplan 2025',
-      'nos-nieuwsupdate.nl betrouwbaar',
-      'NOS officieel NAVO-top nieuws',
-      'noodplan veiligheidsdiensten Den Haag',
+      "NAVO-top Den Haag noodplan veiligheidsdiensten",
+      "nieuwsalert.nl betrouwbaar",
+      "is het noodplan NAVO-top echt waar",
+      "NAVO-top Den Haag noodplan schokkend",
     ],
-    correctSearchIndex: 1,
+    correctSearchIndex: 0,
     searchExplanation:
-      'Bij lateral reading zoek je op de naam van de bron zelf — niet op het onderwerp. \'nos-nieuwsupdate.nl betrouwbaar\' brengt je direct bij onafhankelijke beoordelingen van dit specifieke domein.',
+      "Zoek de claim zelf op met neutrale woorden en kijk of betrouwbare bronnen hetzelfde melden. Woorden als 'schokkend' leveren vooral méér viraal nieuws op.",
     cards: [
       {
-        title: 'Over ons — NOS Nieuwsupdate',
-        source: 'nos-nieuwsupdate.nl',
+        title: "NAVO-top in Den Haag: dit zijn de veiligheidsmaatregelen",
+        source: "nos.nl",
         snippet:
-          'NOS Nieuwsupdate brengt betrouwbare, onafhankelijke nieuwsupdates voor Nederland. Wij zijn niet verbonden aan politieke partijen of overheden.',
+          "Rond de NAVO-top gelden uitgebreide veiligheidsmaatregelen: afgesloten wegen, extra marechaussee en een no-flyzone. De NCTV noemt het dreigingsbeeld 'beheersbaar'.",
       },
       {
-        title: 'Pas op: nos-nieuwsupdate.nl is geen NOS — Nieuwscheckers',
-        source: 'nieuwscheckers.nl',
+        title: "Noodplan klaar voor NAVO-top in Den Haag",
+        source: "nieuwsalert.nl",
         snippet:
-          'Het domein nos-nieuwsupdate.nl imiteert de huisstijl van de NOS maar heeft geen redactie, geen journalisten en is niet gelieerd aan de publieke omroep. De echte NOS publiceert uitsluitend op nos.nl.',
+          "Nieuws Alert meldt als eerste dat de veiligheidsdiensten een geheim noodplan klaar hebben liggen. Details zijn niet bekendgemaakt.",
       },
       {
-        title: 'NAVO-top Den Haag — Nieuws en Achtergrond',
-        source: 'nos.nl',
+        title: "Den Haag bereidt zich voor op NAVO-top",
+        source: "nu.nl",
         snippet:
-          'De NOS volgt de NAVO-top in Den Haag op de voet. Volg alle ontwikkelingen via onze berichtgeving en livestream.',
+          "Bekijk het laatste nieuws en de achtergronden over de aankomende NAVO-top in Den Haag, de beveiliging en de verkeershinder voor bewoners.",
       },
       {
-        title: 'NAVO-top artikel 44.000 keer gedeeld in 6 uur',
-        source: 'socialtracker.io',
+        title: '"Eindelijk de waarheid!" – noodplan NAVO-top',
+        source: "frontnieuws-blog.nl",
         snippet:
-          'Het artikel over het noodplan voor de NAVO-top werd in 6 uur tijd meer dan 44.000 keer gedeeld op Facebook en X.',
+          "Frontnieuws deelt het bericht van Nieuws Alert over het geheime noodplan. 'De mainstream media zwijgen hierover', aldus de blog.",
       },
     ],
-    correctCardIndex: 1,
+    correctCardIndex: [0, 2],
     explanation:
-      'Kaart 1 is het enige resultaat dat iets zegt over de bron zelf, niet over het onderwerp. De "Over ons"-pagina (kaart 0) is de bron die zichzelf beoordeelt — dat telt niet. De echte NOS (kaart 2) en het deelcijfer (kaart 3) zeggen niets over de geloofwaardigheid van dit domein. Lateral reading betekent: zoek op de naam van de bron en kijk wat onafhankelijke partijen erover schrijven.',
+      "De NOS en Nu.nl zijn de enige onafhankelijke, betrouwbare bronnen: die bevestigen de gewone beveiliging rond de top, maar nergens een 'geheim noodplan'. De site zelf, een opgewonden blog of het aantal keer delen bewijzen niet dat de claim klopt.",
   },
 
   {
-    id: 'ltp-d1-2',
-    type: 'leave-the-page',
+    id: "ltp-d1-2",
+    type: "leave-the-page",
     xp: 60,
     difficulty: 1,
-    content: social('ltp-d1-2', {
-      sourceName: 'NieuwsFlitsNL',
-      handle: '@NieuwsFlitsNL',
-      followerCount: '28K volgers',
-      text: '🚨 Eritrese asielzoekers gewapend met messen op straat in Almelo — politie doet niets. Deel dit voordat het verwijderd wordt!! 📹 #Almelo #veiligheid',
+    question: "Kun je dit account vertrouwen als nieuwsbron?",
+    content: social("ltp-d1-2", {
+      sourceName: "NieuwsFlitsNL",
+      handle: "@NieuwsFlitsNL",
+      followerCount: "28K volgers",
+      text: "🚨 Eritrese asielzoekers gewapend met messen op straat in Almelo — politie doet niets. Deel dit voordat het verwijderd wordt!! 📹 #Almelo #veiligheid",
     }),
     searchOptions: [
-      'asielzoekers messen Almelo nieuws',
-      '@NieuwsFlitsNL betrouwbaar',
-      'politie Almelo incident melding',
-      'Almelo nieuws vandaag',
+      "asielzoekers messen Almelo nieuws",
+      "@NieuwsFlitsNL wie zit erachter",
+      "politie Almelo steekincident",
+      "Almelo nieuws vandaag",
     ],
     correctSearchIndex: 1,
     searchExplanation:
-      'Om een account te controleren zoek je op de accountnaam — niet op de claim. \'@NieuwsFlitsNL betrouwbaar\' brengt je bij analyses van dit account. Of de politie een melding had (kaart 2) controleert de claim, maar niet of je dit account voor toekomstige berichten kunt vertrouwen.',
+      "Om te beoordelen of je dit account kunt vertrouwen, zoek je op het account zelf en kijk je wie erachter zit. De claim opzoeken zegt iets over dít bericht, maar niet of het account in het algemeen klopt.",
     cards: [
       {
-        title: '@NieuwsFlitsNL op X — 28,2K volgers',
-        source: 'x.com',
+        title: "NieuwsFlitsNL (@NieuwsFlitsNL) / X",
+        source: "x.com",
         snippet:
-          'NieuwsFlitsNL · 28,2K volgers · "Nieuws dat de mainstream media niet brengen" · Gepind bericht: "Volg ons voor eerlijk en ongecensureerd nieuws."',
+          "Het nieuws dat ze niet willen dat je ziet. 🚨 Ongecensureerd. 28K volgers · 23 berichten.",
       },
       {
-        title: 'Politie Oost-Nederland: geen melding van gewapend incident in Almelo',
-        source: 'politie.nl',
+        title: "Politie Oost-Nederland: geen melding van incident in Almelo",
+        source: "politie.nl",
         snippet:
-          'De politie Oost-Nederland heeft geen melding ontvangen van een incident zoals beschreven in het betreffende bericht op sociale media.',
+          "De politie heeft geen melding ontvangen van een gewapend incident in Almelo zoals dat op sociale media wordt rondgestuurd.",
       },
       {
-        title: 'Accountanalyse @NieuwsFlitsNL — aangemaakt 9 dagen geleden',
-        source: 'socialblade.com',
+        title: "@NieuwsFlitsNL — accountstatistieken en groei",
+        source: "socialblade.com",
         snippet:
-          'Account @NieuwsFlitsNL aangemaakt 9 dagen geleden. Totaal 23 posts. Volgersgroei: +27.900 in 48 uur. Geen verificatievinkje. Geen activiteit vóór deze week.',
+          "Aangemaakt 9 dagen geleden. 28.000 volgers (+27.900 in 48 uur). 23 berichten, geen activiteit vóór deze week. Geen verificatie.",
       },
       {
-        title: 'Video Almelo trending — 19.000 keer gedeeld op X',
-        source: 'trendingnl.nl',
+        title: "Trending in Nederland: video 'asielzoekers Almelo'",
+        source: "trendingnl.nl",
         snippet:
-          'De video van @NieuwsFlitsNL staat in de top 5 van meest gedeelde berichten in Nederland vandaag.',
+          "De video staat vandaag in de top 5 van meest gedeelde berichten op X, met ruim 19.000 keer delen.",
       },
     ],
     correctCardIndex: 2,
     explanation:
-      'Kaart 2 is de enige die iets zegt over het account zelf: 9 dagen oud, bijna 28.000 volgers in 48 uur. Dat is een klassiek signaal van een gecoördineerde of kunstmatig opgeblazen account. De politiemelding (kaart 1) controleert de claim, niet de bron. Volgers (kaart 0) en trending-cijfers (kaart 3) zeggen niets over wie er achter het account zit.',
+      "De accountstatistieken zijn het enige resultaat dat laat zien wíé dit is: 9 dagen oud met bijna 28.000 volgers in twee dagen, een klassiek teken van een nep- of opgeblazen account. Het aantal volgers, de trending-cijfers of zelfs de politiemelding zeggen niets over wie er achter het account zit.",
   },
 
   // ─────────────────────────── DIFFICULTY 2 ───────────────────────────
 
   {
-    id: 'ltp-d2-1',
-    type: 'leave-the-page',
+    id: "ltp-d2-1",
+    type: "leave-the-page",
     xp: 85,
     difficulty: 2,
-    content: social('ltp-d2-1', {
-      sourceName: 'Patriot NL',
-      handle: '@patriotnl',
-      followerCount: '54K volgers',
+    content: social("ltp-d2-1", {
+      sourceName: "Patriot NL",
+      handle: "@patriotnl",
+      followerCount: "54K volgers",
       text: '🇳🇱 Elon Musk: "Mark Rutte is een dictator. De Nederlandse boeren hebben gelijk." Eindelijk iemand die de waarheid zegt — deelverbod ingesteld! 🔥 Deel dit voordat het weg is!!',
     }),
     searchOptions: [
-      'Elon Musk Mark Rutte boeren uitspraak',
-      'Elon Musk controversiële uitspraken Twitter',
-      'boeren protest Nederland nieuws',
-      'Musk video viral boeren factcheck',
+      "Elon Musk Mark Rutte boeren uitspraak",
+      "Elon Musk controversiële uitspraken Twitter",
+      "boeren protest Nederland nieuws",
+      "Musk video viral boeren factcheck",
     ],
     correctSearchIndex: 0,
     searchExplanation:
-      'Als een specifiek citaat of filmpje viraal gaat, zoek je zo concreet mogelijk: de naam van de persoon plus de beweerde uitspraak. \'Elon Musk Mark Rutte boeren uitspraak\' brengt je direct bij factchecks en nieuwsartikelen over deze specifieke claim.',
+      "Zoek zo concreet mogelijk: de naam van de persoon plus de beweerde uitspraak. 'Elon Musk Mark Rutte boeren uitspraak' brengt je direct bij factchecks en nieuwsartikelen over deze specifieke claim.",
     cards: [
       {
-        title: 'Elon Musk heeft niets gezegd over boeren en Mark Rutte — Nieuwscheckers',
-        source: 'nieuwscheckers.nl',
+        title:
+          "Elon Musk heeft niets gezegd over boeren en Mark Rutte — Nieuwscheckers",
+        source: "nieuwscheckers.nl",
         snippet:
-          'Het veelgedeelde filmpje is gemanipuleerd: de ondertiteling is nep en het geluid is bewerkt. De originele clip stamt uit een TED-interview over een ander onderwerp. Musk heeft geen uitspraken gedaan over de Nederlandse boerenprotesten.',
+          "Het veelgedeelde filmpje is gemanipuleerd: de ondertiteling is nep en het geluid is bewerkt. De originele clip stamt uit een TED-interview over een ander onderwerp. Musk heeft geen uitspraken gedaan over de Nederlandse boerenprotesten.",
       },
       {
         title: '"Eindelijk iemand die het zegt" — reacties op de Musk-video',
-        source: 'dumpert.nl',
+        source: "dumpert.nl",
         snippet:
           'Duizenden reacties op de Musk-video die viral gaat. "Eindelijk iemand die het uitspreekt," schrijven veel gebruikers in de commentaren.',
       },
       {
-        title: 'Elon Musk — Wikipedia',
-        source: 'nl.wikipedia.org',
+        title: "Elon Musk — Wikipedia",
+        source: "nl.wikipedia.org",
         snippet:
-          'Elon Musk is een Amerikaans-Zuid-Afrikaanse ondernemer, bekend van Tesla, SpaceX en X. Hij staat bekend om controversiële uitspraken op sociale media.',
+          "Elon Musk is een Amerikaans-Zuid-Afrikaanse ondernemer, bekend van Tesla, SpaceX en X. Hij staat bekend om controversiële uitspraken op sociale media.",
       },
       {
-        title: 'Filmpje 2,1 miljoen views — 87.000 likes in 18 uur',
-        source: 'x.com',
+        title: "Filmpje 2,1 miljoen views — 87.000 likes in 18 uur",
+        source: "x.com",
         snippet:
-          'Het filmpje heeft inmiddels 2,1 miljoen views, 87.000 likes en 34.000 retweets op X. Het staat in de wereldwijde trending-lijst.',
+          "Het filmpje heeft inmiddels 2,1 miljoen views, 87.000 likes en 34.000 retweets op X. Het staat in de wereldwijde trending-lijst.",
       },
     ],
     correctCardIndex: 0,
     explanation:
-      'Kaart 0 is de enige die het filmpje zelf verifieert — en het direct als nep bestempelt. Bij D2 is de valkuil kaart 2: Wikipedia geeft achtergrondinformatie over Musk, maar zegt niets over dit specifieke filmpje. Views en likes (kaart 3) en enthousiaste reacties (kaart 1) zijn geen bewijs van echtheid — ze bewijzen alleen dat iets snel verspreid wordt.',
+      "Alleen Nieuwscheckers verifieert het filmpje zelf en laat zien dat het gemanipuleerd is. De Wikipedia-pagina gaat over Musk in het algemeen, en likes, views of enthousiaste reacties bewijzen alleen dat iets snel verspreidt — niet dat het echt is.",
   },
 
   {
-    id: 'ltp-d2-2',
-    type: 'leave-the-page',
+    id: "ltp-d2-2",
+    type: "leave-the-page",
     xp: 85,
     difficulty: 2,
-    content: social('ltp-d2-2', {
-      sourceName: 'Nederlanders Voor Veiligheid',
-      handle: '@nederlandersvoorveiligheid',
-      followerCount: '51K likes',
-      text: 'SCHOKKEREND: overheid verbergt criminaliteitscijfers buurt rondom NAVO-top. Dit mag niet stil blijven. Deel dit met iedereen die je kent. 🚨',
+    question: "Verteld dit account de waarheid?",
+    content: social("ltp-d2-2", {
+      sourceName: "Nederlanders Voor Veiligheid",
+      handle: "@nederlandersvoorveiligheid",
+      followerCount: "51K likes",
+      text: "SCHOKKEREND: overheid verbergt criminaliteitscijfers buurt rondom NAVO-top. Dit mag niet stil blijven. Deel dit met iedereen die je kent. 🚨",
     }),
     searchOptions: [
-      'criminaliteitscijfers NAVO-top overheid verborgen',
-      'Nederlanders Voor Veiligheid Facebook pagina',
-      'overheid criminaliteitsdata Nederland',
-      'NAVO-top Den Haag criminaliteit buurt',
+      "criminaliteitscijfers Nederland buurt opvragen",
+      "Nederlanders Voor Veiligheid Facebook",
+      "overheid verbergt criminaliteit NAVO-top",
+      "criminaliteit Den Haag schokkend onthuld",
     ],
-    correctSearchIndex: 1,
+    correctSearchIndex: 0,
     searchExplanation:
-      'Om een pagina te beoordelen zoek je op de naam van die pagina — niet op de claim die ze maakt. \'Nederlanders Voor Veiligheid Facebook pagina\' brengt je bij onderzoeksjournalistiek over wie er achter deze pagina zit en of ze onderdeel is van een gecoördineerd netwerk.',
+      "De claim is dat cijfers verborgen worden, dus check je eerst of die cijfers ergens openbaar staan. Zoeken met de woorden van de post zelf ('verbergt', 'schokkend') levert vooral meer berichten op die dezelfde claim herhalen.",
     cards: [
       {
-        title: '"Nederlanders Voor Veiligheid" — 51K likes · Facebook',
-        source: 'facebook.com',
+        title: "Cijfers over criminaliteit per wijk en buurt",
+        source: "cbs.nl",
         snippet:
-          '"Nederlanders Voor Veiligheid" · Pagina · "Onafhankelijk platform voor Nederlanders die de waarheid willen weten. Geen censuur, geen agenda."',
+          "Het CBS publiceert geregistreerde criminaliteit per gemeente, wijk en buurt. Cijfers zijn vrij opvraagbaar via StatLine en worden elk kwartaal bijgewerkt.",
       },
       {
-        title: 'Criminaliteitscijfers Nederland — Ministerie van Justitie en Veiligheid',
-        source: 'rijksoverheid.nl',
+        title: "Wat doet de overheid tegen criminaliteit?",
+        source: "rijksoverheid.nl",
         snippet:
-          'Het ministerie van Justitie en Veiligheid publiceert kwartaalcijfers over criminaliteit. De meest recente rapportage is beschikbaar via de jaarlijkse veiligheidsmonitor.',
+          "Informatie over het landelijke veiligheidsbeleid, de aanpak van ondermijning en de rol van politie en justitie bij het bestrijden van criminaliteit.",
       },
       {
-        title: 'Bericht 3.800 keer gedeeld in 4 uur',
-        source: 'crowdtangle.com',
+        title: '"Nederlanders Voor Veiligheid" · Pagina · Facebook',
+        source: "facebook.com",
         snippet:
-          'Het bericht van "Nederlanders Voor Veiligheid" werd in 4 uur 3.800 keer gedeeld. Het bereikt voornamelijk 45–65-jarigen in Noord-Brabant en Limburg.',
+          "Onafhankelijk platform voor Nederlanders die de waarheid willen weten. Geen censuur, geen agenda. 51K vind-ik-leuks.",
       },
       {
-        title: 'Netwerk van rechtse Facebookpagina\'s verspreidt AI-beelden — De Groene Amsterdammer',
-        source: 'groene.nl',
+        title: "Bericht 3.800 keer gedeeld in 4 uur",
+        source: "crowdtangle.com",
         snippet:
-          'Data-onderzoek toont aan dat "Nederlanders Voor Veiligheid" onderdeel is van een gecoördineerd netwerk van pagina\'s dat AI-gegenereerde foto\'s gebruikt om bereik te vergroten. De pagina\'s hebben geen redactie of herleidbare eigenaar.',
+          "Het bericht bereikte in vier uur 3.800 keer delen, vooral onder 45–65-jarigen in Noord-Brabant en Limburg.",
       },
     ],
-    correctCardIndex: 3,
+    correctCardIndex: 0,
     explanation:
-      'Kaart 3 is het enige resultaat dat iets zegt over wie er achter de pagina zit. De valkuil bij D2 is kaart 1: het ministerie is een betrouwbare bron voor criminaliteitscijfers in het algemeen, maar het zegt niets over de geloofwaardigheid van dézé Facebookpagina. Een betrouwbare bron over het onderwerp is niet hetzelfde als een bewijs dat de pagina die het deelt ook betrouwbaar is.',
+      "Het CBS publiceert criminaliteitscijfers gewoon openbaar tot op buurtniveau, dus de claim dat de overheid ze 'verbergt' klopt niet. De pagina die zichzelf 'onafhankelijk' noemt en het aantal keer delen zeggen niets over of de claim waar is.",
   },
 
   // ─────────────────────────── DIFFICULTY 3 ───────────────────────────
 
   {
-    id: 'ltp-d3-1',
-    type: 'leave-the-page',
+    id: "ltp-d3-1",
+    type: "leave-the-page",
     xp: 110,
     difficulty: 3,
-    content: article('ltp-d3-1', {
-      sourceName: 'IDIV',
-      domain: 'idiv-instituut.nl',
-      headline: 'IDIV-rapport: drinkwater in meerdere Nederlandse steden kwetsbaar voor sabotage',
-      excerpt: 'Een nieuw rapport van het Instituut voor Drinkwater- en Infrastructuurveiligheid (IDIV) waarschuwt dat kwetsbaarheden in het drinkwatersysteem nog steeds niet zijn gedicht. De bevindingen zijn gedeeld met de Tweede Kamer.',
+    question: "Kun je dit instituut vertrouwen als bron?",
+    content: article("ltp-d3-1", {
+      sourceName: "IDIV",
+      domain: "idiv-instituut.nl",
+      headline:
+        "IDIV-rapport: drinkwater in meerdere Nederlandse steden kwetsbaar voor sabotage",
+      excerpt:
+        "Een nieuw rapport van het Instituut voor Drinkwater- en Infrastructuurveiligheid (IDIV) waarschuwt dat kwetsbaarheden in het drinkwatersysteem nog niet zijn gedicht. De bevindingen zijn gedeeld met de Tweede Kamer.",
+      imageUrl: "/images/tap-water.jpg",
     }),
     searchOptions: [
-      'drinkwater sabotage Nederland veiligheid',
-      'IDIV instituut drinkwater betrouwbaar',
-      'RIVM drinkwaterkwaliteit Nederland rapport',
-      'Tweede Kamer drinkwater sabotage debat',
+      "drinkwater sabotage Nederland veiligheid",
+      "IDIV instituut wie zit erachter",
+      "RIVM drinkwater rapport Nederland",
+      "drinkwater sabotage schokkend rapport",
     ],
     correctSearchIndex: 1,
     searchExplanation:
-      'Het IDIV is de bron zelf — om die te beoordelen zoek je op de naam van het instituut en kijk je wat anderen erover schrijven. \'IDIV instituut drinkwater betrouwbaar\' brengt je bij LinkedIn, vakbladen en eventuele berichtgeving die onthult hoe klein en recent dit instituut werkelijk is.',
+      "Het IDIV is hier de bron, dus zoek je op de naam van het instituut en kijk je wat anderen erover schrijven. Het onderwerp opzoeken vertelt je of drinkwaterveiligheid speelt, maar niet of dít instituut te vertrouwen is.",
     cards: [
       {
-        title: 'IDIV — Instituut voor Drinkwater- en Infrastructuurveiligheid',
-        source: 'idiv-instituut.nl',
+        title:
+          "Over IDIV — Instituut voor Drinkwater- en Infrastructuurveiligheid",
+        source: "idiv-instituut.nl",
         snippet:
-          '"Het IDIV is een onafhankelijk kenniscentrum dat overheden en bedrijven adviseert over veiligheid van vitale infrastructuur. Ons team bestaat uit experts met jarenlange ervaring in de sector."',
+          "Onafhankelijk kenniscentrum dat overheden en bedrijven adviseert over de veiligheid van vitale infrastructuur. Ons team bestaat uit ervaren experts uit de sector.",
       },
       {
-        title: 'IDIV-rapport bereikt 2,3 miljoen mensen via sociale media',
-        source: 'buzzsumo.com',
+        title: "IDIV-rapport veelgedeeld op sociale media",
+        source: "buzzsumo.com",
         snippet:
-          'Het rapport van het IDIV werd in 48 uur door 60 sociale mediapagina\'s gedeeld en bereikte naar schatting 2,3 miljoen mensen in Nederland.',
+          "Het rapport werd in 48 uur door zo'n 60 pagina's gedeeld en bereikte naar schatting 2,3 miljoen mensen in Nederland.",
       },
       {
-        title: 'Instituut voor Drinkwater- en Infrastructuurveiligheid — LinkedIn',
-        source: 'linkedin.com',
+        title:
+          "Instituut voor Drinkwater- en Infrastructuurveiligheid | LinkedIn",
+        source: "linkedin.com",
         snippet:
-          'Instituut voor Drinkwater- en Infrastructuurveiligheid · 1 medewerker · Opgericht augustus 2024 · Geen vermelde samenwerkingen met universiteiten of overheidsinstanties · Geen publicaties in vakbladen.',
+          "1 medewerker · Opgericht augustus 2024 · Geen vermelde samenwerkingen met universiteiten of overheden · Geen publicaties.",
       },
       {
-        title: 'Drinkwaterkwaliteit in Nederland — RIVM',
-        source: 'rivm.nl',
+        title: "Drinkwaterkwaliteit in Nederland",
+        source: "rivm.nl",
         snippet:
-          'Het RIVM monitort de kwaliteit van drinkwater in Nederland samen met drinkwaterbedrijven. Actuele informatie is beschikbaar via het jaarlijkse drinkwaterrapport.',
+          "Het RIVM bewaakt samen met drinkwaterbedrijven de kwaliteit van het Nederlandse drinkwater. Actuele cijfers staan in het jaarlijkse drinkwaterrapport.",
       },
     ],
     correctCardIndex: 2,
     explanation:
-      'Kaart 2 is de enige die iets zegt over het IDIV als organisatie: 1 medewerker, opgericht in 2024, geen samenwerkingen, geen publicaties. Een legitiem kennisinstituut heeft een aantoonbare academische of professionele track record. De valkuil bij D3 is kaart 3: het RIVM is een betrouwbare bron over drinkwater in het algemeen, maar het zegt niets over de geloofwaardigheid van het IDIV. Goed en relevant ≠ antwoord op de vraag wie dit instituut is.',
+      "Alleen het LinkedIn-resultaat laat zien wie het IDIV is: één medewerker, opgericht in 2024, geen samenwerkingen en geen publicaties. Het RIVM is betrouwbaar over drinkwater zelf maar zegt niets over dit instituut, en de 'over ons'-pagina beoordeelt alleen zichzelf.",
   },
 
   {
-    id: 'ltp-d3-2',
-    type: 'leave-the-page',
+    id: "ltp-d3-2",
+    type: "leave-the-page",
     xp: 110,
     difficulty: 3,
-    content: article('ltp-d3-2', {
-      sourceName: 'Veiligheidsregio Nieuws',
-      domain: 'veiligheidsregio-nieuws.nl',
-      headline: 'EVACUATIE ROTTERDAM-MAASHAVEN: verlaat onmiddellijk de wijk — gasstoring',
-      excerpt: 'De veiligheidsregio heeft een evacuatieorder uitgevaardigd voor straten rondom de Maashaven na een ernstige gasstoring. Bewoners wordt gevraagd direct de wijk te verlaten en 112 niet te bellen tenzij noodzakelijk.',
+    question: "Is er echt een evacuatie afgekondigd?",
+    content: article("ltp-d3-2", {
+      sourceName: "Veiligheidsregio Nieuws",
+      domain: "veiligheidsregio-nieuws.nl",
+      headline:
+        "EVACUATIE ROTTERDAM-MAASHAVEN: verlaat onmiddellijk de wijk — gasstoring",
+      excerpt:
+        "De veiligheidsregio heeft een evacuatieorder uitgevaardigd voor straten rondom de Maashaven na een ernstige gasstoring. Bewoners wordt gevraagd direct de wijk te verlaten en 112 niet te bellen tenzij noodzakelijk.",
+      imageUrl: "/images/rotterdam-skyline.jpg",
     }),
     searchOptions: [
-      'gasstoring Rotterdam Maashaven nieuws',
-      'evacuatie Maashaven bewoners instructies',
-      'veiligheidsregio Rotterdam officieel website domein',
-      '112 gasstoring Rotterdam melden',
+      "NL-Alert evacuatie Rotterdam Maashaven",
+      "veiligheidsregio-nieuws.nl betrouwbaar",
+      "evacuatie Maashaven verlaat de wijk nu",
+      "gasstoring Rotterdam delen viral",
     ],
-    correctSearchIndex: 2,
+    correctSearchIndex: 0,
     searchExplanation:
-      'Onder tijdsdruk is de neiging groot om op het incident zelf te zoeken. Maar voor evacuatie-instructies is het cruciaal te weten of de bron officieel is. \'Veiligheidsregio Rotterdam officieel website domein\' toont de echte domeinnaam — en maakt meteen duidelijk dat veiligheidsregio-nieuws.nl die niet is.',
+      "Een echte evacuatie wordt afgekondigd via officiële kanalen zoals NL-Alert, dus daar check je of de order bestaat. Zoeken met de paniekwoorden uit het bericht zelf levert vooral meer kopieën van dezelfde claim op.",
     cards: [
       {
-        title: 'Let op: veiligheidsregio-nieuws.nl is niet officieel — isdatechtzo.nl',
-        source: 'isdatechtzo.nl',
+        title: "Geen NL-Alert of evacuatie voor Maashaven",
+        source: "nl-alert.nl",
         snippet:
-          'veiligheidsregio-nieuws.nl is niet gelieerd aan een van de 25 officiële veiligheidsregio\'s. De Veiligheidsregio Rotterdam-Rijnmond communiceert uitsluitend via veiligheidsregio-rr.nl en het NL-Alert systeem.',
+          "Er is geen NL-Alert verstuurd voor de Maashaven of omgeving. Bij een echte evacuatie ontvangt u een NL-Alert op uw telefoon; volg alleen officiële instructies.",
       },
       {
-        title: 'Over ons — Veiligheidsregio Nieuws',
-        source: 'veiligheidsregio-nieuws.nl',
+        title: "Veiligheidsregio Rotterdam-Rijnmond — actuele incidenten",
+        source: "vr-rr.nl",
         snippet:
-          '"Veiligheidsregio Nieuws aggregeert en verspreidt officiële mededelingen van Nederlandse veiligheidsregio\'s om burgers snel en correct te informeren tijdens incidenten."',
+          "Overzicht van actuele incidenten in de regio. Op dit moment zijn er geen meldingen van een gasstoring of evacuatie rond de Maashaven.",
+      },
+      {
+        title: "Over ons — Veiligheidsregio Nieuws",
+        source: "veiligheidsregio-nieuws.nl",
+        snippet:
+          "Wij verspreiden snel en betrouwbaar mededelingen van Nederlandse veiligheidsregio's om burgers tijdens incidenten te informeren.",
       },
       {
         title: 'Evacuatiebericht 1.200 keer gedeeld: "Verlaat nu de wijk"',
-        source: 'x.com',
+        source: "x.com",
         snippet:
-          'Het evacuatiebericht van veiligheidsregio-nieuws.nl werd in 1 uur 1.200 keer gedeeld op X. Meerdere buurtbewoners delen het bericht met hun contacten.',
-      },
-      {
-        title: 'Gasstoring Rotterdam-Zuid — actuele verkeersmeldingen',
-        source: 'anwb.nl',
-        snippet:
-          'ANWB meldt wegafzettingen rondom de Maashaven door een gasstoring. Volg lokale media en de officiële berichtgeving van uw gemeente voor evacutatie-instructies.',
+          "Het bericht werd in een uur ruim 1.200 keer gedeeld. Buurtbewoners sturen het door aan hun contacten.",
       },
     ],
     correctCardIndex: 0,
     explanation:
-      'Kaart 0 is de enige die het domein zelf verifieert en een alternatief geeft. De moeilijkheid bij D3 is de urgentie: een gasstoring dwingt je snel te handelen, waardoor kaart 3 (ANWB, bekende betrouwbare bron) verleidelijk is. Maar de ANWB zegt niets over veiligheidsregio-nieuws.nl. Kaart 1 is de bron die zichzelf goedkeurt — nooit doorslaggevend. Juist onder tijdsdruk is lateral reading het meest waardevol: één klik naar isdatechtzo.nl was genoeg.',
+      "Een echte evacuatie loopt via NL-Alert, en daar staat dat er geen melding voor de Maashaven is verstuurd — de order bestaat dus niet. De site die zichzelf 'betrouwbaar' noemt en het aantal keer delen zeggen niets over of er echt iets aan de hand is.",
   },
 ];
