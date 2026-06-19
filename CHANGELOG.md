@@ -4,6 +4,24 @@ All notable changes to this project are documented here.
 
 ---
 
+## [0.2.2] — 2026-06-19
+
+### Added
+
+- **Feed-test example posts** — replaced placeholder content with 7 realistic Dutch-context posts (farmer protests, Limburg floods, 5G mast arson, tap water conspiracy, solar energy statistics, sugar/diabetes study, COVID grave hoax); shared across all 12 feed-test questions in both NL and EN
+- **Collapsible explanation in feedback banner** — users can expand/collapse the explanation text after answering a question
+
+### Changed
+
+- **New NL question content and images** — all question types received updated Dutch content and matching images
+- **Temporary English translations** — NL question content translated to English across all question types as a stopgap until dedicated EN content is authored
+
+### Fixed
+
+- Feedback banner was hidden behind the expanded article overlay
+
+---
+
 ## [0.2.1] — 2026-06-11
 
 ### Added
